@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Walmart Wish List</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -41,5 +43,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Bogle-Black.otf</string>
+		<string>Bogle-BlackItalic.otf</string>
+		<string>Bogle-Bold.otf</string>
+		<string>Bogle-BoldItalic.otf</string>
+		<string>Bogle-Regular.otf</string>
+		<string>Bogle-RegularItalic.otf</string>
+	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Walmart Wish List needs to access your photos to save pictures</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Walmart Wish List needs to access your photos to save pictures</string>
 </dict>
 </plist>

@@ -7,21 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5516CB5434D5C319FB957019 /* Pods_WalmartWishList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831DAF45569FCA34082B0CF8 /* Pods_WalmartWishList.framework */; };
+		630BFEFB21B6B05600D30DE2 /* ListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */; };
+		630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFC21B6B17700D30DE2 /* Constants.swift */; };
+		630BFEFF21B6B1E300D30DE2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFE21B6B1E300D30DE2 /* Person.swift */; };
+		630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFF0021B6B2C200D30DE2 /* ListItem.swift */; };
+		630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFF0221B6D52600D30DE2 /* PersonCell.swift */; };
+		634AE74E21B5DE2600281FE4 /* Bogle-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */; };
+		634AE74F21B5DE2600281FE4 /* Bogle-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */; };
+		634AE75021B5DE2600281FE4 /* Bogle-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74A21B5DE2600281FE4 /* Bogle-Black.otf */; };
+		634AE75121B5DE2600281FE4 /* Bogle-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74B21B5DE2600281FE4 /* Bogle-BoldItalic.otf */; };
+		634AE75221B5DE2600281FE4 /* Bogle-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74C21B5DE2600281FE4 /* Bogle-Regular.otf */; };
+		634AE75321B5DE2600281FE4 /* Bogle-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74D21B5DE2600281FE4 /* Bogle-RegularItalic.otf */; };
+		63C0A81A21B6F72A00DF0156 /* PersonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0A81921B6F72A00DF0156 /* PersonProtocol.swift */; };
+		63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */; };
 		63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9EB821B5D8BB00DF7E70 /* AppDelegate.swift */; };
-		63CA9EBB21B5D8BB00DF7E70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9EBA21B5D8BB00DF7E70 /* ViewController.swift */; };
 		63CA9EBE21B5D8BB00DF7E70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EBC21B5D8BB00DF7E70 /* Main.storyboard */; };
 		63CA9EC021B5D8BC00DF7E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */; };
 		63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F8E72A0BAA6552557132A38 /* Pods-WalmartWishList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalmartWishList.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList.release.xcconfig"; sourceTree = "<group>"; };
+		630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewController.swift; sourceTree = "<group>"; };
+		630BFEFC21B6B17700D30DE2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		630BFEFE21B6B1E300D30DE2 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		630BFF0021B6B2C200D30DE2 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		630BFF0221B6D52600D30DE2 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-Bold.otf"; sourceTree = "<group>"; };
+		634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-BlackItalic.otf"; sourceTree = "<group>"; };
+		634AE74A21B5DE2600281FE4 /* Bogle-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-Black.otf"; sourceTree = "<group>"; };
+		634AE74B21B5DE2600281FE4 /* Bogle-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-BoldItalic.otf"; sourceTree = "<group>"; };
+		634AE74C21B5DE2600281FE4 /* Bogle-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-Regular.otf"; sourceTree = "<group>"; };
+		634AE74D21B5DE2600281FE4 /* Bogle-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-RegularItalic.otf"; sourceTree = "<group>"; };
+		63C0A81921B6F72A00DF0156 /* PersonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonProtocol.swift; sourceTree = "<group>"; };
+		63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
 		63CA9EB521B5D8BB00DF7E70 /* WalmartWishList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalmartWishList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63CA9EB821B5D8BB00DF7E70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		63CA9EBA21B5D8BB00DF7E70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		63CA9EBD21B5D8BB00DF7E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63CA9EC221B5D8BC00DF7E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63CA9EC421B5D8BC00DF7E70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		831DAF45569FCA34082B0CF8 /* Pods_WalmartWishList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalmartWishList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE824693746F9F12AFA740FD /* Pods-WalmartWishList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalmartWishList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +57,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5516CB5434D5C319FB957019 /* Pods_WalmartWishList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		634AE74721B5DDFC00281FE4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				634AE74A21B5DE2600281FE4 /* Bogle-Black.otf */,
+				634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */,
+				634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */,
+				634AE74B21B5DE2600281FE4 /* Bogle-BoldItalic.otf */,
+				634AE74C21B5DE2600281FE4 /* Bogle-Regular.otf */,
+				634AE74D21B5DE2600281FE4 /* Bogle-RegularItalic.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		63C0A81821B6F70600DF0156 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				63C0A81921B6F72A00DF0156 /* PersonProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		63CA9EAC21B5D8BB00DF7E70 = {
 			isa = PBXGroup;
 			children = (
 				63CA9EB721B5D8BB00DF7E70 /* WalmartWishList */,
 				63CA9EB621B5D8BB00DF7E70 /* Products */,
+				B2CE656A6DF0CEB169BCFC14 /* Pods */,
+				6646704A79EDCE8E19AC5F33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +106,78 @@
 		63CA9EB721B5D8BB00DF7E70 /* WalmartWishList */ = {
 			isa = PBXGroup;
 			children = (
-				63CA9EB821B5D8BB00DF7E70 /* AppDelegate.swift */,
-				63CA9EBA21B5D8BB00DF7E70 /* ViewController.swift */,
-				63CA9EBC21B5D8BB00DF7E70 /* Main.storyboard */,
-				63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */,
-				63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */,
-				63CA9EC421B5D8BC00DF7E70 /* Info.plist */,
+				63CA9ECE21B5D91D00DF7E70 /* Model */,
+				63CA9ECD21B5D91600DF7E70 /* View */,
+				63CA9ECC21B5D90D00DF7E70 /* Controller */,
+				63C0A81821B6F70600DF0156 /* Protocols */,
+				63CA9ECB21B5D8FE00DF7E70 /* Storyboards */,
+				63CA9ECA21B5D8C500DF7E70 /* Supporting Files */,
 			);
 			path = WalmartWishList;
+			sourceTree = "<group>";
+		};
+		63CA9ECA21B5D8C500DF7E70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				634AE74721B5DDFC00281FE4 /* Fonts */,
+				63CA9EB821B5D8BB00DF7E70 /* AppDelegate.swift */,
+				63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */,
+				63CA9EC421B5D8BC00DF7E70 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63CA9ECB21B5D8FE00DF7E70 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				63CA9EBC21B5D8BB00DF7E70 /* Main.storyboard */,
+				63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		63CA9ECC21B5D90D00DF7E70 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */,
+				63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		63CA9ECD21B5D91600DF7E70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				630BFF0221B6D52600D30DE2 /* PersonCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63CA9ECE21B5D91D00DF7E70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				630BFEFC21B6B17700D30DE2 /* Constants.swift */,
+				630BFEFE21B6B1E300D30DE2 /* Person.swift */,
+				630BFF0021B6B2C200D30DE2 /* ListItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6646704A79EDCE8E19AC5F33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				831DAF45569FCA34082B0CF8 /* Pods_WalmartWishList.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2CE656A6DF0CEB169BCFC14 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE824693746F9F12AFA740FD /* Pods-WalmartWishList.debug.xcconfig */,
+				1F8E72A0BAA6552557132A38 /* Pods-WalmartWishList.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63CA9EC721B5D8BC00DF7E70 /* Build configuration list for PBXNativeTarget "WalmartWishList" */;
 			buildPhases = (
+				BD3E62166DC1009C0AEFB516 /* [CP] Check Pods Manifest.lock */,
 				63CA9EB121B5D8BB00DF7E70 /* Sources */,
 				63CA9EB221B5D8BB00DF7E70 /* Frameworks */,
 				63CA9EB321B5D8BB00DF7E70 /* Resources */,
+				3FEFC7007CEC1E974E82C120 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,7 +240,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634AE75221B5DE2600281FE4 /* Bogle-Regular.otf in Resources */,
+				634AE74E21B5DE2600281FE4 /* Bogle-Bold.otf in Resources */,
+				634AE75021B5DE2600281FE4 /* Bogle-Black.otf in Resources */,
+				634AE75321B5DE2600281FE4 /* Bogle-RegularItalic.otf in Resources */,
+				634AE74F21B5DE2600281FE4 /* Bogle-BlackItalic.otf in Resources */,
 				63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */,
+				634AE75121B5DE2600281FE4 /* Bogle-BoldItalic.otf in Resources */,
 				63CA9EC021B5D8BC00DF7E70 /* Assets.xcassets in Resources */,
 				63CA9EBE21B5D8BB00DF7E70 /* Main.storyboard in Resources */,
 			);
@@ -130,13 +254,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3FEFC7007CEC1E974E82C120 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD3E62166DC1009C0AEFB516 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WalmartWishList-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		63CA9EB121B5D8BB00DF7E70 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63CA9EBB21B5D8BB00DF7E70 /* ViewController.swift in Sources */,
+				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
+				630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */,
 				63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */,
+				630BFEFB21B6B05600D30DE2 /* ListSelectionViewController.swift in Sources */,
+				630BFEFF21B6B1E300D30DE2 /* Person.swift in Sources */,
+				630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */,
+				63C0A81A21B6F72A00DF0156 /* PersonProtocol.swift in Sources */,
+				63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,11 +459,12 @@
 		};
 		63CA9EC821B5D8BC00DF7E70 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE824693746F9F12AFA740FD /* Pods-WalmartWishList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7DFWNNEL3;
-				INFOPLIST_FILE = WalmartWishList/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WalmartWishList/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,11 +478,12 @@
 		};
 		63CA9EC921B5D8BC00DF7E70 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F8E72A0BAA6552557132A38 /* Pods-WalmartWishList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7DFWNNEL3;
-				INFOPLIST_FILE = WalmartWishList/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WalmartWishList/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
