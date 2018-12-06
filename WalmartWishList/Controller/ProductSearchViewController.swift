@@ -92,7 +92,7 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstant.searchItemCell, for: indexPath) as? SearchItemCell else { return UICollectionViewCell() }
         cell.productNameLabel.text = products[indexPath.item].name
         cell.productPriceLabel.text = "Price: \(String(format: "$%.2f", products[indexPath.item].salePrice))"
-        cell.productAvailableLabel.text = "Available Online: \(products[indexPath.item].availableOnline)"
+        cell.productAvailableLabel.text = "Available Online: \(products[indexPath.item].availableOnline ? "Yes" : "No")"
         return cell
     }
     

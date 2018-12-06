@@ -26,6 +26,11 @@ class ListSelectionViewController: UIViewController, PersonDelegate {
         loadPeople()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     // MARK: - PersonDelegate Methods
     func convertInputToPerson(name: String, image: String) {
         let newPerson = Person()

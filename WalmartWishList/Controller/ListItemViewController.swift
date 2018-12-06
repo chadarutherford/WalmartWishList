@@ -38,6 +38,15 @@ class ListItemViewController: UIViewController, ItemDelegate {
         
         guard let name = selectedPerson?.name else { return }
         pageTitleLabel.text = name
+        do {
+            try realm.write {
+                guard let itemCount = items?.count else { return }
+                selectedPerson?.itemCount = itemCount
+            }
+        } catch let error {
+            print(error)
+        }
+        tableView.reloadData()
     }
     
     func loadItemsFromDelegate() {
@@ -96,7 +105,7 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
         if let item = items?[indexPath.row] {
             cell.itemNameLabel.text = item.name
             cell.itemPriceLabel.text = String(format: "$%.2f", item.salePrice)
-            cell.itemAvailableLabel.text = "Available Online: \(item.availableOnline)"
+            cell.itemAvailableLabel.text = "Available Online: \(item.availableOnline ? "Yes" : "No")"
         } else {
             cell.itemNameLabel.text = "Tap add button to add items to list"
         }
