@@ -23,11 +23,8 @@ class ListSelectionViewController: UIViewController, PersonDelegate {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
         loadPeople()
     }
-    
-    // MARK: - Actions
     
     // MARK: - PersonDelegate Methods
     func convertInputToPerson(name: String, image: String) {
@@ -41,7 +38,6 @@ class ListSelectionViewController: UIViewController, PersonDelegate {
         } catch let error {
             print(error)
         }
-        
         tableView.reloadData()
     }
     
@@ -57,13 +53,19 @@ class ListSelectionViewController: UIViewController, PersonDelegate {
         case SegueConstant.addPersonSegue:
             guard let destinationVC = segue.destination as? AddPersonViewController else { return }
             destinationVC.delegate = self
+        case SegueConstant.itemsSegue:
+            guard let destinationVC = segue.destination as? ListItemViewController else { return }
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            destinationVC.selectedPerson = people?[indexPath.row]
         default:
             break
         }
     }
 }
 
+// MARK: - TableViewExtension
 extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSource {
+    
     // MARK: - TableView DataSource Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -94,4 +96,7 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     // MARK: - TableViewDelegate Methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

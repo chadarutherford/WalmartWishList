@@ -13,4 +13,5 @@ class Person: Object {
     @objc dynamic var name = ""
     @objc dynamic var image = ""
     @objc dynamic var itemCount = 0
+    let items = List<ItemObject>()
 }

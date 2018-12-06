@@ -1,5 +1,5 @@
 //
-//  PersonProtocol.swift
+//  PersistableProtocol.swift
 //  WalmartWishList
 //
 //  Created by Chad Rutherford on 12/4/18.

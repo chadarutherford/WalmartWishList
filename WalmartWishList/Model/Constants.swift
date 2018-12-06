@@ -10,23 +10,19 @@ import Foundation
 
 struct CellConstant {
     static let personCell = "PersonCell"
+    static let searchItemCell = "SearchItemCell"
+    static let itemsCell = "ItemsCell"
 }
 
 struct SegueConstant {
     static let addPersonSegue = "addPerson"
+    static let itemsSegue = "goToItems"
+    static let searchSegue = "goToSearch"
+    static let detailSegue = "goToDetail"
 }
 
-//guard let url = URL(string: "https://api.walmartlabs.com/v1/search?apiKey=5cjczkw7a8ghwxduvgwrhk4v&query=ipod") else { return }
-//
-//URLSession.shared.dataTask(with: url) { data, response, error in
-//    guard let data = data else { return }
-//    do {
-//        let itemInfo = try JSONDecoder().decode(ListItem.self, from: data)
-//
-//        DispatchQueue.main.async {
-//            print(itemInfo)
-//        }
-//    } catch let error {
-//        print(error)
-//    }
-//    }.resume()
+struct NetworkingConstants {
+    static let baseURL = "https://api.walmartlabs.com/v1/search?"
+    static let apiKey = "apiKey=5cjczkw7a8ghwxduvgwrhk4v"
+    static let finalUrl = "&query="
+}
