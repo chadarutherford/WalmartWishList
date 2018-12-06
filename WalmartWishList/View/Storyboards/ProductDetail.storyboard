@@ -102,6 +102,7 @@
                                 </state>
                                 <connections>
                                     <action selector="wishListButtonTapped:" destination="pru-WL-5v6" eventType="touchUpInside" id="iQN-Kg-cRZ"/>
+                                    <segue destination="TcC-3J-NIa" kind="unwind" identifier="unwindToListItemVC" unwindAction="unwindToListItemVCWithSegue:" id="bpx-NF-mQk"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9wL-Oz-3Wt">
@@ -148,6 +149,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h28-Gy-IN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TcC-3J-NIa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2197.5999999999999" y="142.61083743842366"/>
         </scene>

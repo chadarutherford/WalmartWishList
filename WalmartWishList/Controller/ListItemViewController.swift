@@ -60,6 +60,7 @@ class ListItemViewController: UIViewController, ItemDelegate {
         } catch let error {
             print(error)
         }
+        tableView.reloadData()
     }
     
     func loadItems() {
@@ -72,6 +73,9 @@ class ListItemViewController: UIViewController, ItemDelegate {
     // MARK: - Actions
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)
+    }
+    
+    @IBAction func unwindToListItemVC(segue: UIStoryboardSegue) {
     }
 }
 

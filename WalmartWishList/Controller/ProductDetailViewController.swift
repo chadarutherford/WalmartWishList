@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol ItemDelegate {
     var item: ItemObject { get set }
@@ -23,6 +24,7 @@ class ProductDetailViewController: UIViewController, ItemDelegate {
     @IBOutlet weak var wishListButton: UIButton!
     
     // MARK: - Properties
+    let realm = try! Realm()
     var delegate: ItemDelegate?
     var item = ItemObject()
     
@@ -52,11 +54,27 @@ class ProductDetailViewController: UIViewController, ItemDelegate {
     
     // MARK: - Actions
     @IBAction func wishListButtonTapped(_ sender: UIButton) {
-        guard let itemsVC = UIViewController() as? ListItemViewController else { return }
-        itemsVC.delegate = self
+        performSegue(withIdentifier: SegueConstant.unwindToListItem, sender: self)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case SegueConstant.unwindToListItem:
+            guard let itemsVC = segue.destination as? ListItemViewController else { return }
+            do {
+                try realm.write {
+                    itemsVC.selectedPerson?.items.append(item)
+                }
+            } catch let error {
+                print(error)
+            }
+        default:
+            break
+        }
     }
 }
