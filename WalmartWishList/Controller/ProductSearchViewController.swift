@@ -21,7 +21,6 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -37,7 +36,6 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
         let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(searchTerm)"
         print(searchURL)
         guard let url = URL(string: searchURL) else { return }
-        
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let data = data else { return }
             do {
@@ -47,7 +45,12 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
                     newItem.name = item.name
                     newItem.salePrice = item.salePrice
                     newItem.shortDescription = item.shortDescription
-                    newItem.thumbnailImage = item.thumbnailImage
+                    guard let imageURL = URL(string: item.thumbnailImage) else { return }
+                    do {
+                        newItem.thumbnailImage = try Data(contentsOf: imageURL)
+                    } catch let error {
+                        print(error)
+                    }
                     newItem.availableOnline = item.availableOnline
                     self?.products.append(newItem)
                 }
@@ -90,6 +93,7 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstant.searchItemCell, for: indexPath) as? SearchItemCell else { return UICollectionViewCell() }
+        cell.productImageView.image = UIImage(data: products[indexPath.item].thumbnailImage)
         cell.productNameLabel.text = products[indexPath.item].name
         cell.productPriceLabel.text = "Price: \(String(format: "$%.2f", products[indexPath.item].salePrice))"
         cell.productAvailableLabel.text = "Available Online: \(products[indexPath.item].availableOnline ? "Yes" : "No")"

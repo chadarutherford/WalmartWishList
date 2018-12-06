@@ -41,15 +41,19 @@ class ProductDetailViewController: UIViewController, ItemDelegate {
         item.name = name
         guard let price = delegate?.item.salePrice else { return }
         item.salePrice = price
-        guard let available = delegate?.item.availableOnline else { return }
-        item.availableOnline = available
         guard let productDescription = delegate?.item.shortDescription else { return }
         item.shortDescription = productDescription
+        guard let image = delegate?.item.thumbnailImage else { return }
+        item.thumbnailImage = image
+        guard let available = delegate?.item.availableOnline else { return }
+        item.availableOnline = available
         
+        productImageView.image = UIImage(data: image)
         productNameLabel.text = name
         productPriceLabel.text = "Price: \(String(format: "$%.2f", price))"
-        productAvailableLabel.text = "Available Online: \(available ? "Yes" : "No")"
         productDescriptionTextView.text = "Description:\n \(productDescription)"
+        productAvailableLabel.text = "Available Online: \(available ? "Yes" : "No")"
+        
     }
     
     // MARK: - Actions

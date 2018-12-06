@@ -32,7 +32,7 @@ class ListSelectionViewController: UIViewController, PersonDelegate {
     }
     
     // MARK: - PersonDelegate Methods
-    func convertInputToPerson(name: String, image: String) {
+    func convertInputToPerson(name: String, image: Data) {
         let newPerson = Person()
         newPerson.name = name
         newPerson.image = image
@@ -82,21 +82,11 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.personCell, for: indexPath) as? PersonCell else { return UITableViewCell() }
-        
-        let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
         if let person = people?[indexPath.row] {
-            if let filePath = documentsURL?.appendingPathComponent("\(person.image).jpg").path {
-                if fileManager.fileExists(atPath: filePath) {
-                    cell.personImageView.image = UIImage(contentsOfFile: filePath)
-                } else {
-                    cell.personImageView.image = UIImage(named: "profile_default")
-                }
-            }
+            cell.personImageView.image = UIImage(data: person.image)
             cell.nameLabel.text = person.name
             cell.itemCountLabel.text = "Items: \(person.itemCount)"
         }
-        
         return cell
     }
     

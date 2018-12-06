@@ -35,7 +35,6 @@ class ListItemViewController: UIViewController, ItemDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         guard let name = selectedPerson?.name else { return }
         pageTitleLabel.text = name
         do {
@@ -53,11 +52,12 @@ class ListItemViewController: UIViewController, ItemDelegate {
         guard let name = delegate?.item.name else { return }
         guard let price = delegate?.item.salePrice else { return }
         guard let productDescription = delegate?.item.shortDescription else { return }
+        guard let image = delegate?.item.thumbnailImage else { return }
         guard let available = delegate?.item.availableOnline else { return }
-        
         item.name = name
         item.salePrice = price
         item.shortDescription = productDescription
+        item.thumbnailImage = image
         item.availableOnline = available
         do {
             try realm.write {
@@ -103,6 +103,7 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.itemsCell, for: indexPath) as? ItemsCell else { return UITableViewCell() }
         if let item = items?[indexPath.row] {
+            cell.itemImageView.image = UIImage(data: item.thumbnailImage)
             cell.itemNameLabel.text = item.name
             cell.itemPriceLabel.text = String(format: "$%.2f", item.salePrice)
             cell.itemAvailableLabel.text = "Available Online: \(item.availableOnline ? "Yes" : "No")"

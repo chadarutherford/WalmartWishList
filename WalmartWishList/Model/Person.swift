@@ -11,7 +11,7 @@ import RealmSwift
 
 class Person: Object {
     @objc dynamic var name = ""
-    @objc dynamic var image = ""
+    @objc dynamic var image = Data()
     @objc dynamic var itemCount = 0
     let items = List<ItemObject>()
 }
