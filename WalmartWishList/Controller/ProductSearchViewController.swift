@@ -113,7 +113,7 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
 extension ProductSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else { return }
-        searchTerm = text.lowercased()
+        searchTerm = text.replacingOccurrences(of: " ", with: "%20")
         searchBar.resignFirstResponder()
         loadItems()
     }
