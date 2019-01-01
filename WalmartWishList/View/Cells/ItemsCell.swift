@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemsCell: UITableViewCell {
+final class ItemsCell: UITableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var itemImageView: UIImageView!

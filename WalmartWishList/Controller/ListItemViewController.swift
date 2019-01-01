@@ -9,15 +9,16 @@
 import UIKit
 import RealmSwift
 
-class ListItemViewController: UIViewController, ItemDelegate {
+final class ListItemViewController: UIViewController, ItemDelegate {
+    
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pageTitleLabel: UILabel!
     
     // MARK: - Properties
-    let realm = try! Realm()
-    var items: Results<ItemObject>?
+    private let realm = try! Realm()
+    private var items: Results<ItemObject>?
     var selectedPerson: Person? {
         didSet {
             loadItems()
@@ -25,6 +26,9 @@ class ListItemViewController: UIViewController, ItemDelegate {
         }
     }
     var delegate: ItemDelegate?
+    
+    // MARK: - Item Delegate
+    var item: ItemObject?
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -48,19 +52,16 @@ class ListItemViewController: UIViewController, ItemDelegate {
         tableView.reloadData()
     }
     
-    func loadItemsFromDelegate() {
-        guard let name = delegate?.item.name else { return }
-        guard let price = delegate?.item.salePrice else { return }
-        guard let productDescription = delegate?.item.shortDescription else { return }
-        guard let image = delegate?.item.thumbnailImage else { return }
-        guard let available = delegate?.item.availableOnline else { return }
-        item.name = name
-        item.salePrice = price
-        item.shortDescription = productDescription
-        item.thumbnailImage = image
-        item.availableOnline = available
+    private func loadItemsFromDelegate() {
+        guard let name = delegate?.item?.name else { return }
+        guard let price = delegate?.item?.salePrice else { return }
+        guard let productDescription = delegate?.item?.shortDescription else { return }
+        guard let image = delegate?.item?.thumbnailImage else { return }
+        guard let available = delegate?.item?.availableOnline else { return }
+        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, thumbnailImage: image, availableOnline: available)
         do {
             try realm.write {
+                guard let item = item else { return }
                 realm.add(item)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -72,12 +73,9 @@ class ListItemViewController: UIViewController, ItemDelegate {
         tableView.reloadData()
     }
     
-    func loadItems() {
+    private func loadItems() {
         items = selectedPerson?.items.sorted(byKeyPath: "name", ascending: true)
     }
-    
-    // MARK: - Item Delegate
-    var item = ItemObject()
     
     // MARK: - Actions
     @IBAction func backButtonPressed(_ sender: UIButton) {

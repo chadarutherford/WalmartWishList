@@ -9,9 +9,15 @@
 import Foundation
 import RealmSwift
 
-class Person: Object {
+final class Person: Object {
     @objc dynamic var name = ""
     @objc dynamic var image = Data()
     @objc dynamic var itemCount = 0
     let items = List<ItemObject>()
+    
+    convenience required init(name: String, image: Data) {
+        self.init()
+        self.name = name
+        self.image = image
+    }
 }

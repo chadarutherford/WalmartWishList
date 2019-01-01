@@ -8,15 +8,18 @@
 
 import UIKit
 
-class ProductSearchViewController: UIViewController, ItemDelegate {
+final class ProductSearchViewController: UIViewController, ItemDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Properties
-    var products = [ItemObject]()
-    var searchTerm = ""
+    private var products = [ItemObject]()
+    private var searchTerm = ""
+    
+    // MARK: - Item Delegate
+    var item: ItemObject?
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -32,7 +35,7 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
     }
     
     // MARK: - Helper Methods
-    func loadItems() {
+    private func loadItems() {
         let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(searchTerm)"
         print(searchURL)
         guard let url = URL(string: searchURL) else { return }
@@ -62,9 +65,6 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
             }
             }.resume()
     }
-    
-    // MARK: - Item Delegate
-    var item: ItemObject = ItemObject()
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -99,11 +99,7 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        item.name = products[indexPath.item].name
-        item.salePrice = products[indexPath.item].salePrice
-        item.shortDescription = products[indexPath.item].shortDescription
-        item.thumbnailImage = products[indexPath.item].thumbnailImage
-        item.availableOnline = products[indexPath.item].availableOnline
+        item = ItemObject(name: products[indexPath.item].name, salePrice: products[indexPath.item].salePrice, shortDescription: products[indexPath.item].shortDescription, thumbnailImage: products[indexPath.item].thumbnailImage, availableOnline: products[indexPath.item].availableOnline)
         performSegue(withIdentifier: SegueConstant.detailSegue, sender: self)
     }
 }

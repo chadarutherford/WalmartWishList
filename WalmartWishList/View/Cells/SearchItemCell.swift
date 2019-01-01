@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchItemCell: UICollectionViewCell {
+final class SearchItemCell: UICollectionViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var productImageView: UIImageView!

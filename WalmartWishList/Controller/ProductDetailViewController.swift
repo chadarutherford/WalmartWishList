@@ -10,10 +10,10 @@ import UIKit
 import RealmSwift
 
 protocol ItemDelegate {
-    var item: ItemObject { get set }
+    var item: ItemObject? { get set }
 }
 
-class ProductDetailViewController: UIViewController, ItemDelegate {
+final class ProductDetailViewController: UIViewController, ItemDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var productImageView: UIImageView!
@@ -24,10 +24,9 @@ class ProductDetailViewController: UIViewController, ItemDelegate {
     @IBOutlet weak var wishListButton: UIButton!
     
     // MARK: - Properties
-    let realm = try! Realm()
+    private let realm = try! Realm()
     var delegate: ItemDelegate?
-    var item = ItemObject()
-    
+    var item: ItemObject?
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +35,14 @@ class ProductDetailViewController: UIViewController, ItemDelegate {
     }
     
     // MARK: - Helper Methods
-    func loadProduct() {
-        guard let name = delegate?.item.name else { return }
-        item.name = name
-        guard let price = delegate?.item.salePrice else { return }
-        item.salePrice = price
-        guard let productDescription = delegate?.item.shortDescription else { return }
-        item.shortDescription = productDescription
-        guard let image = delegate?.item.thumbnailImage else { return }
-        item.thumbnailImage = image
-        guard let available = delegate?.item.availableOnline else { return }
-        item.availableOnline = available
+    private func loadProduct() {
+        guard let name = delegate?.item?.name else { return }
+        guard let price = delegate?.item?.salePrice else { return }
+        guard let productDescription = delegate?.item?.shortDescription else { return }
+        guard let image = delegate?.item?.thumbnailImage else { return }
+        guard let available = delegate?.item?.availableOnline else { return }
+        
+        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, thumbnailImage: image, availableOnline: available)
         
         productImageView.image = UIImage(data: image)
         productNameLabel.text = name
@@ -72,6 +68,7 @@ class ProductDetailViewController: UIViewController, ItemDelegate {
             guard let itemsVC = segue.destination as? ListItemViewController else { return }
             do {
                 try realm.write {
+                    guard let item = item else { return }
                     itemsVC.selectedPerson?.items.append(item)
                 }
             } catch let error {

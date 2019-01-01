@@ -12,7 +12,7 @@ protocol PersonDelegate {
     func convertInputToPerson(name: String, image: Data)
 }
 
-class AddPersonViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class AddPersonViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var personImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -20,9 +20,9 @@ class AddPersonViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var popupView: UIView!
     
-    var imagePicker = UIImagePickerController()
     var delegate: PersonDelegate?
-    var imageData = Data()
+    private var imagePicker = UIImagePickerController()
+    private var imageData = Data()
     
     override func viewDidLoad() {
         super.viewDidLoad()

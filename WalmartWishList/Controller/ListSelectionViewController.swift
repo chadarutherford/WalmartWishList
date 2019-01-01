@@ -9,14 +9,14 @@
 import UIKit
 import RealmSwift
 
-class ListSelectionViewController: UIViewController, PersonDelegate {
+final class ListSelectionViewController: UIViewController, PersonDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
-    var people: Results<Person>?
-    let realm = try? Realm()
+    private var people: Results<Person>?
+    private let realm = try? Realm()
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -33,9 +33,7 @@ class ListSelectionViewController: UIViewController, PersonDelegate {
     
     // MARK: - PersonDelegate Methods
     func convertInputToPerson(name: String, image: Data) {
-        let newPerson = Person()
-        newPerson.name = name
-        newPerson.image = image
+        let newPerson = Person(name: name, image: image)
         do {
             try realm?.write {
                 realm?.add(newPerson)
@@ -47,7 +45,7 @@ class ListSelectionViewController: UIViewController, PersonDelegate {
     }
     
     // MARK: - Helper Methods
-    func loadPeople() {
+    private func loadPeople() {
         people = realm?.objects(Person.self)
         tableView.reloadData()
     }
