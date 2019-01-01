@@ -83,9 +83,8 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.personCell, for: indexPath) as? PersonCell else { return UITableViewCell() }
         if let person = people?[indexPath.row] {
-            cell.personImageView.image = UIImage(data: person.image)
-            cell.nameLabel.text = person.name
-            cell.itemCountLabel.text = "Items: \(person.itemCount)"
+            guard let image = UIImage(data: person.image) else { fatalError() }
+            cell.configure(withImage: image, withName: person.name, withItemCount: person.itemCount)
         }
         return cell
     }

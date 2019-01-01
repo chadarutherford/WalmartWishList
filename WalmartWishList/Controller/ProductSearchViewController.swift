@@ -93,10 +93,8 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstant.searchItemCell, for: indexPath) as? SearchItemCell else { return UICollectionViewCell() }
-        cell.productImageView.image = UIImage(data: products[indexPath.item].thumbnailImage)
-        cell.productNameLabel.text = products[indexPath.item].name
-        cell.productPriceLabel.text = "Price: \(String(format: "$%.2f", products[indexPath.item].salePrice))"
-        cell.productAvailableLabel.text = "Available Online: \(products[indexPath.item].availableOnline ? "Yes" : "No")"
+        guard let image = UIImage(data: products[indexPath.item].thumbnailImage) else { fatalError() }
+        cell.configure(withImage: image, withName: products[indexPath.item].name, withPrice: products[indexPath.item].salePrice, withAvailability: products[indexPath.item].availableOnline)
         return cell
     }
     

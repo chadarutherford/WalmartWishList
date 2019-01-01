@@ -103,12 +103,8 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.itemsCell, for: indexPath) as? ItemsCell else { return UITableViewCell() }
         if let item = items?[indexPath.row] {
-            cell.itemImageView.image = UIImage(data: item.thumbnailImage)
-            cell.itemNameLabel.text = item.name
-            cell.itemPriceLabel.text = String(format: "$%.2f", item.salePrice)
-            cell.itemAvailableLabel.text = "Available Online: \(item.availableOnline ? "Yes" : "No")"
-        } else {
-            cell.itemNameLabel.text = "Tap add button to add items to list"
+            guard let image = UIImage(data: item.thumbnailImage) else { fatalError() }
+            cell.configure(withImage: image, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
         }
         return cell
     }

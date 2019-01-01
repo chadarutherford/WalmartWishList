@@ -16,4 +16,10 @@ class SearchItemCell: UICollectionViewCell {
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productAvailableLabel: UILabel!
     
+    func configure(withImage image: UIImage, withName name: String, withPrice price: Double, withAvailability availability: Bool) {
+        productImageView.image = image
+        productNameLabel.text = name
+        productPriceLabel.text = "Price: \(String(format: "$%.2f", price))"
+        productAvailableLabel.text = "Available Online: \(availability ? "Yes" : "No")"
+    }
 }
