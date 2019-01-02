@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cz7-9b-WSc">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Bogle-Bold.otf">
+            <string>Bogle-Bold</string>
+        </array>
+        <array key="Bogle-Regular.otf">
+            <string>Bogle-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Item Detail View Controller-->
+        <scene sceneID="92a-9M-psG">
+            <objects>
+                <viewController id="cz7-9b-WSc" customClass="ItemDetailViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="usO-qG-n9T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o1M-IL-zxh">
+                                <rect key="frame" x="87" y="120" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="o1M-IL-zxh" secondAttribute="height" multiplier="1:1" id="1Cc-ia-eT4"/>
+                                    <constraint firstAttribute="height" constant="200" id="rkA-Nd-DWX"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xgg-Cu-OBP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="92a-oM-B3I">
+                                        <rect key="frame" x="162" y="40" width="51" height="30"/>
+                                        <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYV-oQ-ig7">
+                                        <rect key="frame" x="20" y="38" width="57" height="36"/>
+                                        <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="17"/>
+                                        <state key="normal" title="&lt;- Back">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="cz7-9b-WSc" eventType="touchUpInside" id="W4K-f5-pP0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0058627240359999996" green="0.1180563048" blue="0.25512742999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="B65-OK-1Wr"/>
+                                    <constraint firstItem="fYV-oQ-ig7" firstAttribute="leading" secondItem="Xgg-Cu-OBP" secondAttribute="leading" constant="20" id="B9t-no-Kaa"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="92a-oM-B3I" secondAttribute="trailing" constant="162" id="FzX-Jg-vrH"/>
+                                    <constraint firstItem="92a-oM-B3I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xgg-Cu-OBP" secondAttribute="leading" constant="162" id="HvH-rJ-5QX"/>
+                                    <constraint firstItem="92a-oM-B3I" firstAttribute="top" secondItem="Xgg-Cu-OBP" secondAttribute="top" constant="40" id="J2U-ku-k0W"/>
+                                    <constraint firstAttribute="bottom" secondItem="92a-oM-B3I" secondAttribute="bottom" constant="20" id="WIA-pz-wS0"/>
+                                    <constraint firstAttribute="bottom" secondItem="fYV-oQ-ig7" secondAttribute="bottom" constant="16" id="d9R-53-BKA"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone XS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="I2J-Hs-OI0">
+                                <rect key="frame" x="16" y="337" width="343" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="vjc-SQ-bGb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price: $999.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efs-Tv-6qy">
+                                <rect key="frame" x="16" y="414" width="343" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="XKI-C0-05w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Bogle-Regular" family="Bogle" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVd-Sk-gbM">
+                                <rect key="frame" x="152" y="469" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="5To-5R-5dR"/>
+                                    <constraint firstAttribute="width" secondItem="ZVd-Sk-gbM" secondAttribute="height" multiplier="1:1" id="Za7-hC-CJj"/>
+                                    <constraint firstAttribute="width" constant="70" id="kSy-9j-0bD"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="checked"/>
+                                <connections>
+                                    <action selector="checkButtonTapped:" destination="cz7-9b-WSc" eventType="touchUpInside" id="Cih-UG-tiG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I2J-Hs-OI0" firstAttribute="top" secondItem="o1M-IL-zxh" secondAttribute="bottom" constant="17" id="0AV-PM-NjZ"/>
+                            <constraint firstItem="thd-X2-9S9" firstAttribute="trailing" secondItem="Efs-Tv-6qy" secondAttribute="trailing" constant="16" id="EKL-cI-rP2"/>
+                            <constraint firstItem="Xgg-Cu-OBP" firstAttribute="top" secondItem="usO-qG-n9T" secondAttribute="top" id="EeF-Sc-FMb"/>
+                            <constraint firstItem="Xgg-Cu-OBP" firstAttribute="trailing" secondItem="thd-X2-9S9" secondAttribute="trailing" id="PXX-eX-jSp"/>
+                            <constraint firstItem="o1M-IL-zxh" firstAttribute="leading" secondItem="thd-X2-9S9" secondAttribute="leading" constant="87" id="Pc2-pA-Wn4"/>
+                            <constraint firstItem="o1M-IL-zxh" firstAttribute="top" secondItem="Xgg-Cu-OBP" secondAttribute="bottom" constant="30" id="Q2I-t5-KUw"/>
+                            <constraint firstItem="Xgg-Cu-OBP" firstAttribute="leading" secondItem="thd-X2-9S9" secondAttribute="leading" id="aGK-Ty-scv"/>
+                            <constraint firstItem="thd-X2-9S9" firstAttribute="trailing" secondItem="ZVd-Sk-gbM" secondAttribute="trailing" constant="153" id="ath-FQ-Asm"/>
+                            <constraint firstItem="Efs-Tv-6qy" firstAttribute="leading" secondItem="thd-X2-9S9" secondAttribute="leading" constant="16" id="b79-vd-E6C"/>
+                            <constraint firstItem="thd-X2-9S9" firstAttribute="trailing" secondItem="o1M-IL-zxh" secondAttribute="trailing" constant="88" id="fTy-FD-HT0"/>
+                            <constraint firstItem="I2J-Hs-OI0" firstAttribute="leading" secondItem="thd-X2-9S9" secondAttribute="leading" constant="16" id="fnK-O5-twp"/>
+                            <constraint firstItem="ZVd-Sk-gbM" firstAttribute="leading" secondItem="thd-X2-9S9" secondAttribute="leading" constant="152" id="lMi-qB-plh"/>
+                            <constraint firstItem="ZVd-Sk-gbM" firstAttribute="top" secondItem="Efs-Tv-6qy" secondAttribute="bottom" constant="30" id="pci-JP-nPc"/>
+                            <constraint firstItem="thd-X2-9S9" firstAttribute="trailing" secondItem="I2J-Hs-OI0" secondAttribute="trailing" constant="16" id="qOV-pE-5Ku"/>
+                            <constraint firstItem="Efs-Tv-6qy" firstAttribute="top" secondItem="I2J-Hs-OI0" secondAttribute="bottom" constant="8" id="thn-2V-sgJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="thd-X2-9S9"/>
+                    </view>
+                    <connections>
+                        <outlet property="itemImageView" destination="o1M-IL-zxh" id="lB2-7z-PZw"/>
+                        <outlet property="itemNameLabel" destination="I2J-Hs-OI0" id="shN-1f-6wi"/>
+                        <outlet property="itemPriceLabel" destination="Efs-Tv-6qy" id="tDN-xl-K8l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vhy-NO-kfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2005.5999999999999" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checked" width="512" height="512"/>
+    </resources>
+</document>

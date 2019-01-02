@@ -84,6 +84,13 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     @IBAction func unwindToListItemVC(segue: UIStoryboardSegue) {
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = segue.destination as? ItemDetailViewController else { return }
+        destinationVC.delegate = self
+        destinationVC.item = item
+    }
 }
 
 // MARK: - TableView Extension
@@ -105,5 +112,16 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(withImage: image, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
         }
         return cell
+    }
+    
+    // MARK: - TableView Delegate Methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let name = items?[indexPath.row].name else { return }
+        guard let price = items?[indexPath.row].salePrice else { return }
+        guard let description = items?[indexPath.row].shortDescription else { return }
+        guard let image = items?[indexPath.row].thumbnailImage else { return }
+        guard let available = items?[indexPath.row].availableOnline else { return }
+        item = ItemObject(name: name, salePrice: price, shortDescription: description, thumbnailImage: image, availableOnline: available)
+        performSegue(withIdentifier: SegueConstant.itemsDetailSegue, sender: self)
     }
 }

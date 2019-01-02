@@ -48,7 +48,7 @@ final class ProductSearchViewController: UIViewController, ItemDelegate {
                     newItem.name = item.name
                     newItem.salePrice = item.salePrice
                     newItem.shortDescription = item.shortDescription
-                    guard let imageURL = URL(string: item.thumbnailImage) else { return }
+                    guard let imageURL = URL(string: item.largeImage) else { return }
                     do {
                         newItem.thumbnailImage = try Data(contentsOf: imageURL)
                     } catch let error {

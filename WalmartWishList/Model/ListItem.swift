@@ -16,7 +16,7 @@ struct ListItem: Codable {
         var name: String
         var salePrice: Double
         var shortDescription: String
-        var thumbnailImage: String
+        var largeImage: String
         var availableOnline: Bool
     }
 }
