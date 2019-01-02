@@ -42,7 +42,7 @@ final class ProductDetailViewController: UIViewController, ItemDelegate {
         guard let image = delegate?.item?.thumbnailImage else { return }
         guard let available = delegate?.item?.availableOnline else { return }
         
-        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, thumbnailImage: image, availableOnline: available)
+        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, thumbnailImage: image, availableOnline: available, isPurchased: false)
         
         productImageView.image = UIImage(data: image)
         productNameLabel.text = name

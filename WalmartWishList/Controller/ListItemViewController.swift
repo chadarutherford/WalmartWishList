@@ -58,7 +58,7 @@ final class ListItemViewController: UIViewController, ItemDelegate {
         guard let productDescription = delegate?.item?.shortDescription else { return }
         guard let image = delegate?.item?.thumbnailImage else { return }
         guard let available = delegate?.item?.availableOnline else { return }
-        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, thumbnailImage: image, availableOnline: available)
+        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, thumbnailImage: image, availableOnline: available, isPurchased: false)
         do {
             try realm.write {
                 guard let item = item else { return }
@@ -89,7 +89,6 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationVC = segue.destination as? ItemDetailViewController else { return }
         destinationVC.delegate = self
-        destinationVC.item = item
     }
 }
 
@@ -110,6 +109,7 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
         if let item = items?[indexPath.row] {
             guard let image = UIImage(data: item.thumbnailImage) else { fatalError() }
             cell.configure(withImage: image, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
+            cell.accessoryType = item.isPurchased ? .checkmark : .none
         }
         return cell
     }
@@ -121,7 +121,7 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
         guard let description = items?[indexPath.row].shortDescription else { return }
         guard let image = items?[indexPath.row].thumbnailImage else { return }
         guard let available = items?[indexPath.row].availableOnline else { return }
-        item = ItemObject(name: name, salePrice: price, shortDescription: description, thumbnailImage: image, availableOnline: available)
+        item = ItemObject(name: name, salePrice: price, shortDescription: description, thumbnailImage: image, availableOnline: available, isPurchased: false)
         performSegue(withIdentifier: SegueConstant.itemsDetailSegue, sender: self)
     }
 }

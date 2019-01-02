@@ -99,7 +99,7 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        item = ItemObject(name: products[indexPath.item].name, salePrice: products[indexPath.item].salePrice, shortDescription: products[indexPath.item].shortDescription, thumbnailImage: products[indexPath.item].thumbnailImage, availableOnline: products[indexPath.item].availableOnline)
+        item = ItemObject(name: products[indexPath.item].name, salePrice: products[indexPath.item].salePrice, shortDescription: products[indexPath.item].shortDescription, thumbnailImage: products[indexPath.item].thumbnailImage, availableOnline: products[indexPath.item].availableOnline, isPurchased: false)
         performSegue(withIdentifier: SegueConstant.detailSegue, sender: self)
     }
 }

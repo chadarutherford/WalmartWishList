@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ItemDetailViewController: UIViewController, ItemDelegate {
 
@@ -16,6 +17,7 @@ class ItemDetailViewController: UIViewController, ItemDelegate {
     @IBOutlet weak var itemPriceLabel: UILabel!
     
     // MARK: - Properties
+    let realm = try! Realm()
     var delegate: ItemDelegate?
     var item: ItemObject?
     
@@ -30,7 +32,12 @@ class ItemDetailViewController: UIViewController, ItemDelegate {
     func loadProduct() {
         guard let name = delegate?.item?.name else { return }
         guard let price = delegate?.item?.salePrice else { return }
+        guard let description = delegate?.item?.shortDescription else { return }
         guard let image = delegate?.item?.thumbnailImage else { return }
+        guard let available = delegate?.item?.availableOnline else { return }
+        guard let purchased = delegate?.item?.isPurchased else { return }
+        
+        item = ItemObject(name: name, salePrice: price, shortDescription: description, thumbnailImage: image, availableOnline: available, isPurchased: purchased)
         
         itemImageView.image = UIImage(data: image)
         itemNameLabel.text = name
@@ -43,6 +50,14 @@ class ItemDetailViewController: UIViewController, ItemDelegate {
     }
     
     @IBAction func checkButtonTapped(_ sender: UIButton) {
-        
+        do {
+            try realm.write {
+                guard let item = item else { return }
+                item.isPurchased = true
+            }
+        } catch let error {
+            print(error)
+        }
+        dismiss(animated: true)
     }
 }
