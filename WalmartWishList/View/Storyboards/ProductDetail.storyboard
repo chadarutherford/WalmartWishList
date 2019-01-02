@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pru-WL-5v6">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -23,7 +23,7 @@
             <objects>
                 <viewController id="pru-WL-5v6" customClass="ProductDetailViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Du8-3G-0ne">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-n5-rqn">
@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="height" constant="200" id="H4L-uV-UOj"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone XS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHL-5l-dg0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone XS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="RHL-5l-dg0">
                                 <rect key="frame" x="42" y="372" width="291" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="0ei-5W-R7s"/>
@@ -90,8 +90,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9wL-Oz-3Wt">
+                                <rect key="frame" x="42" y="526" width="291" height="68"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHK-rH-qVQ">
-                                <rect key="frame" x="42" y="708" width="291" height="40"/>
+                                <rect key="frame" x="42" y="607" width="291" height="40"/>
                                 <color key="backgroundColor" red="0.0058627240359999996" green="0.1180563048" blue="0.25512742999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="C7D-1H-BcZ"/>
@@ -105,12 +111,6 @@
                                     <segue destination="TcC-3J-NIa" kind="unwind" identifier="unwindToListItemVC" unwindAction="unwindToListItemVCWithSegue:" id="bpx-NF-mQk"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9wL-Oz-3Wt">
-                                <rect key="frame" x="42" y="526" width="291" height="169"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -120,7 +120,7 @@
                             <constraint firstAttribute="trailing" secondItem="RHL-5l-dg0" secondAttribute="trailing" constant="42" id="GcL-7y-bdr"/>
                             <constraint firstItem="CWn-n5-rqn" firstAttribute="leading" secondItem="Du8-3G-0ne" secondAttribute="leading" id="K5V-3d-PoZ"/>
                             <constraint firstAttribute="trailing" secondItem="NL2-Yg-fPd" secondAttribute="trailing" constant="42" id="LMV-Hf-HTR"/>
-                            <constraint firstAttribute="bottom" secondItem="IHK-rH-qVQ" secondAttribute="bottom" constant="64" id="Mpt-Sa-Z4M"/>
+                            <constraint firstAttribute="bottom" secondItem="IHK-rH-qVQ" secondAttribute="bottom" constant="20" id="Mpt-Sa-Z4M"/>
                             <constraint firstItem="IHK-rH-qVQ" firstAttribute="top" secondItem="9wL-Oz-3Wt" secondAttribute="bottom" constant="13" id="Nes-Rd-cWN"/>
                             <constraint firstAttribute="trailing" secondItem="CWn-n5-rqn" secondAttribute="trailing" id="OGr-lo-u9i"/>
                             <constraint firstItem="Mkk-7E-JNw" firstAttribute="leading" secondItem="Du8-3G-0ne" secondAttribute="leading" constant="42" id="Py2-U1-hQW"/>
