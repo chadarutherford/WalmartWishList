@@ -25,6 +25,7 @@ final class ListSelectionViewController: UIViewController, PersonDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         loadPeople()
+        // Database.database().reference().child("List").setValue(people)
     }
     
     override func viewWillAppear(_ animated: Bool) {
