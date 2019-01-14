@@ -18,11 +18,11 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     // MARK: - Properties
     private let realm = try! Realm()
-    private var items: Results<ItemObject>?
+    private var items: [ItemObject]?
     var selectedPerson: Person? {
         didSet {
             loadItems()
-            loadItemsFromDelegate()
+            // loadItemsFromDelegate()
         }
     }
     var delegate: ItemDelegate?
@@ -52,29 +52,77 @@ final class ListItemViewController: UIViewController, ItemDelegate {
         tableView.reloadData()
     }
     
-    private func loadItemsFromDelegate() {
-        guard let name = delegate?.item?.name else { return }
-        guard let price = delegate?.item?.salePrice else { return }
-        guard let productDescription = delegate?.item?.shortDescription else { return }
-        guard let image = delegate?.item?.thumbnailImage else { return }
-        guard let available = delegate?.item?.availableOnline else { return }
-        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, thumbnailImage: image, availableOnline: available, isPurchased: false)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         do {
             try realm.write {
-                guard let item = item else { return }
-                realm.add(item)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                guard let itemCount = items?.count else { return }
+                selectedPerson?.itemCount = itemCount
             }
         } catch let error {
             print(error)
         }
-        tableView.reloadData()
     }
     
+//    // MARK: - Helper Methods
+//    private func loadItemsFromDelegate() {
+//        guard let name = delegate?.item?.name else { return }
+//        guard let price = delegate?.item?.salePrice else { return }
+//        guard let productDescription = delegate?.item?.shortDescription else { return }
+//        guard let image = delegate?.item?.thumbnailImage else { return }
+//        guard let available = delegate?.item?.availableOnline else { return }
+//        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, thumbnailImage: image, availableOnline: available, isPurchased: false)
+//        do {
+//            try realm.write {
+//                guard let item = item else { return }
+//                realm.add(item)
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        } catch let error {
+//            print(error)
+//        }
+//        tableView.reloadData()
+//    }
+    
     private func loadItems() {
-        items = selectedPerson?.items.sorted(byKeyPath: "name", ascending: true)
+        guard let realmItems = selectedPerson?.items else { return }
+        items = Array(realmItems)
+    }
+    
+    func contextualCompleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        guard let editItem = items?[indexPath.row] else { fatalError() }
+        let action = UIContextualAction(style: .normal, title: "Purchased") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+            do {
+                try self?.realm.write {
+                    editItem.isPurchased = !editItem.isPurchased
+                }
+            } catch let error {
+                print(error)
+            }
+            self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
+        }
+        action.backgroundColor = UIColor.green
+        return action
+    }
+    
+    func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        guard let deleteItem = items?[indexPath.row] else { fatalError() }
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+            do {
+                try self?.realm.write {
+                    self?.realm.delete(deleteItem)
+                }
+            } catch let error {
+                print(error)
+            }
+            self?.tableView.reloadData()
+            completionHandler(true)
+        }
+        action.backgroundColor = UIColor.red
+        return action
     }
     
     // MARK: - Actions
@@ -83,12 +131,6 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     }
     
     @IBAction func unwindToListItemVC(segue: UIStoryboardSegue) {
-    }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationVC = segue.destination as? ItemDetailViewController else { return }
-        destinationVC.delegate = self
     }
 }
 
@@ -109,19 +151,17 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
         if let item = items?[indexPath.row] {
             guard let image = UIImage(data: item.thumbnailImage) else { fatalError() }
             cell.configure(withImage: image, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
+            print(item.isPurchased)
             cell.accessoryType = item.isPurchased ? .checkmark : .none
         }
         return cell
     }
     
     // MARK: - TableView Delegate Methods
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let name = items?[indexPath.row].name else { return }
-        guard let price = items?[indexPath.row].salePrice else { return }
-        guard let description = items?[indexPath.row].shortDescription else { return }
-        guard let image = items?[indexPath.row].thumbnailImage else { return }
-        guard let available = items?[indexPath.row].availableOnline else { return }
-        item = ItemObject(name: name, salePrice: price, shortDescription: description, thumbnailImage: image, availableOnline: available, isPurchased: false)
-        performSegue(withIdentifier: SegueConstant.itemsDetailSegue, sender: self)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let completeAction = contextualCompleteAction(forRowAtIndexPath: indexPath)
+        let deleteAction = contextualDeleteAction(forRowAtIndexPath: indexPath)
+        let swipeConfig = UISwipeActionsConfiguration(actions:  [deleteAction, completeAction])
+        return swipeConfig
     }
 }

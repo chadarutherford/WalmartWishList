@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
 
 final class ListSelectionViewController: UIViewController, PersonDelegate {
     
@@ -15,7 +16,7 @@ final class ListSelectionViewController: UIViewController, PersonDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
-    private var people: Results<Person>?
+    private var people: [Person]?
     private let realm = try? Realm()
     
     // MARK: - ViewController Life Cycle
@@ -46,7 +47,8 @@ final class ListSelectionViewController: UIViewController, PersonDelegate {
     
     // MARK: - Helper Methods
     private func loadPeople() {
-        people = realm?.objects(Person.self)
+        guard let results = realm?.objects(Person.self) else { return }
+        people = Array(results)
         tableView.reloadData()
     }
     

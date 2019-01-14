@@ -35,7 +35,7 @@ final class ProductSearchViewController: UIViewController, ItemDelegate {
     }
     
     // MARK: - Helper Methods
-    private func loadItems() {
+    private func loadItems(completion: @escaping (Bool, Error?) -> ()) {
         let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(searchTerm)"
         print(searchURL)
         guard let url = URL(string: searchURL) else { return }
@@ -44,26 +44,30 @@ final class ProductSearchViewController: UIViewController, ItemDelegate {
             do {
                 let itemInfo = try JSONDecoder().decode(ListItem.self, from: data)
                 for item in itemInfo.items {
-                    let newItem = ItemObject()
-                    newItem.name = item.name
-                    newItem.salePrice = item.salePrice
-                    newItem.shortDescription = item.shortDescription
                     guard let imageURL = URL(string: item.largeImage) else { return }
                     do {
-                        newItem.thumbnailImage = try Data(contentsOf: imageURL)
+                        let newItem = ItemObject(name: item.name, salePrice: item.salePrice, shortDescription: item.shortDescription, thumbnailImage: try Data(contentsOf: imageURL), availableOnline: item.availableOnline, isPurchased: false)
+                        self?.products.append(newItem)
                     } catch let error {
                         print(error)
                     }
-                    newItem.availableOnline = item.availableOnline
-                    self?.products.append(newItem)
                 }
+                completion(true, nil)
                 DispatchQueue.main.async {
                     self?.collectionView.reloadData()
                 }
             } catch let error {
-                print(error)
+                completion(false, error)
             }
             }.resume()
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.dismiss(animated: true)
+        })
+        present(alert, animated: true)
     }
     
     // MARK: - Navigation
@@ -106,9 +110,28 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
 
 extension ProductSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .whiteLarge
+        activityIndicator.color = UIColor.darkGray
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.center = CGPoint(x: view.bounds.width / 2, y: view.bounds.width / 2)
+        collectionView.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         guard let text = searchBar.text else { return }
-        searchTerm = text.replacingOccurrences(of: " ", with: "%20")
+        searchTerm = text.replacingOccurrences(of: " ", with: "%20").lowercased()
         searchBar.resignFirstResponder()
-        loadItems()
+        loadItems { [weak self] success, error in
+            if success {
+                DispatchQueue.main.async {
+                    activityIndicator.stopAnimating()
+                }
+            } else {
+                guard let _ = error else { return }
+                DispatchQueue.main.async {
+                    activityIndicator.stopAnimating()
+                    self?.displayAlert(title: "Loading Error", message: "There are no items in our stores that match your search. Please try again.")
+                }
+            }
+        }
     }
 }
