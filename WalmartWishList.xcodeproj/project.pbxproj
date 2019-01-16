@@ -16,7 +16,7 @@
 		6334957C21B86C3B00E8BA1E /* ItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6334957B21B86C3B00E8BA1E /* ItemObject.swift */; };
 		6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */; };
 		6344A0F521EFD27B006EB97C /* ProductDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */; };
-		6344A0F821EFD645006EB97C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F721EFD645006EB97C /* RoundedButton.swift */; };
+		6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F921EFE4FB006EB97C /* RoundedButton.swift */; };
 		634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634ADB7221B85B5400175B28 /* SearchItemCell.swift */; };
 		634AE74E21B5DE2600281FE4 /* Bogle-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */; };
 		634AE74F21B5DE2600281FE4 /* Bogle-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */; };
@@ -48,7 +48,7 @@
 		6334957B21B86C3B00E8BA1E /* ItemObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemObject.swift; sourceTree = "<group>"; };
 		6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductDetail.storyboard; sourceTree = "<group>"; };
-		6344A0F721EFD645006EB97C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		6344A0F921EFE4FB006EB97C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		634ADB7221B85B5400175B28 /* SearchItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
 		634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-Bold.otf"; sourceTree = "<group>"; };
 		634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		6344A0F621EFD62F006EB97C /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				6344A0F721EFD645006EB97C /* RoundedButton.swift */,
+				6344A0F921EFE4FB006EB97C /* RoundedButton.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -402,7 +402,7 @@
 				634F641E21EFA4BB00F2F360 /* ItemsViewController.swift in Sources */,
 				630BFEFB21B6B05600D30DE2 /* ListSelectionViewController.swift in Sources */,
 				630BFEFF21B6B1E300D30DE2 /* Person.swift in Sources */,
-				6344A0F821EFD645006EB97C /* RoundedButton.swift in Sources */,
+				6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */,
 				630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */,
 				63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */,
 			);
