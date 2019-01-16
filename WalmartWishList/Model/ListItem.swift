@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 struct ListItem: Codable {
     var items: [Item]

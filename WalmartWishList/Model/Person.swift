@@ -7,17 +7,17 @@
 //
 
 import Foundation
-import RealmSwift
 
-final class Person: Object {
-    @objc dynamic var name = ""
-    @objc dynamic var image = Data()
-    @objc dynamic var itemCount = 0
-    let items = List<ItemObject>()
+struct Person: Codable {
+    var name: String
+    var image: String
+    var itemCount: Int
+    var items: [ItemObject]
     
-    convenience required init(name: String, image: Data) {
-        self.init()
+    init(name: String, image: String, itemCount: Int, items: [ItemObject]) {
         self.name = name
         self.image = image
+        self.itemCount = itemCount
+        self.items = items
     }
 }

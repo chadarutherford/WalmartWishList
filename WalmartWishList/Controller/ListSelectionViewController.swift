@@ -7,17 +7,17 @@
 //
 
 import UIKit
-import RealmSwift
-import FirebaseDatabase
+import Firebase
+import CodableFirebase
 
-final class ListSelectionViewController: UIViewController, PersonDelegate {
+final class ListSelectionViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
-    private var people: [Person]?
-    private let realm = try? Realm()
+    private var people = [Person]()
+    
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -25,46 +25,23 @@ final class ListSelectionViewController: UIViewController, PersonDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         loadPeople()
-        // Database.database().reference().child("List").setValue(people)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
-    
-    // MARK: - PersonDelegate Methods
-    func convertInputToPerson(name: String, image: Data) {
-        let newPerson = Person(name: name, image: image)
-        do {
-            try realm?.write {
-                realm?.add(newPerson)
-            }
-        } catch let error {
-            print(error)
-        }
-        tableView.reloadData()
+        print(people)
     }
     
     // MARK: - Helper Methods
     private func loadPeople() {
-        guard let results = realm?.objects(Person.self) else { return }
-        people = Array(results)
-        tableView.reloadData()
-    }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case SegueConstant.addPersonSegue:
-            guard let destinationVC = segue.destination as? AddPersonViewController else { return }
-            destinationVC.delegate = self
-        case SegueConstant.itemsSegue:
-            guard let destinationVC = segue.destination as? ListItemViewController else { return }
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            destinationVC.selectedPerson = people?[indexPath.row]
-        default:
-            break
+        Firestore.firestore().collection("List").getDocuments { snapshot, error in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+            } else {
+                guard let snapshot = snapshot else { return }
+                for document in snapshot.documents {
+                    let personData = try! FirestoreDecoder().decode(Person.self, from: document.data())
+                    let newPerson = Person(name: personData.name, image: personData.image, itemCount: personData.itemCount, items: personData.items)
+                    self.people.append(newPerson)
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
 }
@@ -78,15 +55,12 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return people?.count ?? 0
+        return people.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.personCell, for: indexPath) as? PersonCell else { return UITableViewCell() }
-        if let person = people?[indexPath.row] {
-            guard let image = UIImage(data: person.image) else { fatalError() }
-            cell.configure(withImage: image, withName: person.name, withItemCount: person.itemCount)
-        }
+        cell.configure(withImage: people[indexPath.row].image, withName: people[indexPath.row].name, withItemCount: people[indexPath.row].itemCount)
         return cell
     }
     

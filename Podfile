@@ -6,9 +6,10 @@ target 'WalmartWishList' do
   use_frameworks!
 
   # Pods for WalmartWishList
-  pod 'RealmSwift'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
-  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'CodableFirebase'
 
 end

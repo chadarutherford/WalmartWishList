@@ -7,26 +7,19 @@
 //
 
 import Foundation
-import RealmSwift
-import Realm
 
-final class ItemObject: Object {
-    @objc dynamic var name = ""
-    @objc dynamic var salePrice = 0.0
-    @objc dynamic var shortDescription = ""
-    @objc dynamic var thumbnailImage = Data()
-    @objc dynamic var availableOnline = false
-    @objc dynamic var isAvailable = "No"
-    @objc dynamic var isPurchased = false
-    var parentPerson = LinkingObjects(fromType: Person.self, property: "items")
+final class ItemObject: Codable {
+    var name: String
+    var salePrice: Double
+    var shortDescription: String
+    var largeImage: Data
+    var availableOnline: Bool
     
-    convenience required init(name: String, salePrice: Double, shortDescription: String, thumbnailImage: Data, availableOnline: Bool, isPurchased: Bool) {
-        self.init()
+    init(name: String, salePrice: Double, shortDescription: String, largeImage: Data, availableOnline: Bool) {
         self.name = name
         self.salePrice = salePrice
         self.shortDescription = shortDescription
-        self.thumbnailImage = thumbnailImage
+        self.largeImage = largeImage
         self.availableOnline = availableOnline
-        self.isPurchased = isPurchased
     }
 }

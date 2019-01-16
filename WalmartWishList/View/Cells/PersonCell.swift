@@ -14,8 +14,10 @@ final class PersonCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var itemCountLabel: UILabel!
     
-    func configure(withImage image: UIImage, withName name: String, withItemCount itemCount: Int) {
-        personImageView.image = image
+    func configure(withImage image: String, withName name: String, withItemCount itemCount: Int) {
+        guard let url = URL(string: image) else { return }
+        guard let imageData = try? Data(contentsOf: url) else { return }
+        personImageView.image = UIImage(data: imageData)
         nameLabel.text = name
         itemCountLabel.text = "Items: \(itemCount)"
     }
