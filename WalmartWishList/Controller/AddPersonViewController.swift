@@ -11,18 +11,21 @@ import Firebase
 import CodableFirebase
 import PhotosUI
 
-final class AddPersonViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class AddPersonViewController: UIViewController {
     
+    // MARK: - Outlets
     @IBOutlet weak var personImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var popupView: UIView!
     
+    // MARK: - Properties
     private var imagePicker = UIImagePickerController()
     private var imageData = Data()
     private var imageURL = ""
     
+    // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         popupView.layer.cornerRadius = 10
@@ -31,33 +34,7 @@ final class AddPersonViewController: UIViewController, UIImagePickerControllerDe
         profileImageButton.isEnabled = true
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let status = PHPhotoLibrary.authorizationStatus()
-        switch status {
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { newStatus in
-                switch newStatus {
-                case .authorized:
-                    break
-                default:
-                    break
-                }
-            }
-        case .restricted, .denied:
-            displayAlert(title: "Photo Library Access Error", message: "Please check settings and enable Photo Library acces")
-        case .authorized:
-            break
-        }
-        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            personImageView.image = pickedImage 
-            imageContainerView.isHidden = true
-            if let data = pickedImage.jpegData(compressionQuality: 0.75) {
-                imageData = data
-            }
-        }
-        dismiss(animated: true)
-    }
-    
+    // MARK: - Helper Methods
     func storeImageAsUrl(name: String) {
         let imageRef = Storage.storage().reference().child("/userImages/\(name).jpg")
         let metaData = StorageMetadata()
@@ -98,6 +75,7 @@ final class AddPersonViewController: UIViewController, UIImagePickerControllerDe
         present(alert, animated: true)
     }
     
+    // MARK: - Actions
     @IBAction func profileImageButtonTapped(_ sender: UIButton) {
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -112,6 +90,37 @@ final class AddPersonViewController: UIViewController, UIImagePickerControllerDe
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+}
+
+// MARK: - View Controller Extension
+extension AddPersonViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // MARK: - UIImagePickerController Delegate Methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { newStatus in
+                switch newStatus {
+                case .authorized:
+                    break
+                default:
+                    break
+                }
+            }
+        case .restricted, .denied:
+            displayAlert(title: "Photo Library Access Error", message: "Please check settings and enable Photo Library acces")
+        case .authorized:
+            break
+        }
+        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            personImageView.image = pickedImage
+            imageContainerView.isHidden = true
+            if let data = pickedImage.jpegData(compressionQuality: 0.75) {
+                imageData = data
+            }
+        }
         dismiss(animated: true)
     }
 }

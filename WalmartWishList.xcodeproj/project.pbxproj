@@ -14,6 +14,9 @@
 		630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFF0021B6B2C200D30DE2 /* ListItem.swift */; };
 		630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFF0221B6D52600D30DE2 /* PersonCell.swift */; };
 		6334957C21B86C3B00E8BA1E /* ItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6334957B21B86C3B00E8BA1E /* ItemObject.swift */; };
+		6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */; };
+		6344A0F521EFD27B006EB97C /* ProductDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */; };
+		6344A0F821EFD645006EB97C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F721EFD645006EB97C /* RoundedButton.swift */; };
 		634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634ADB7221B85B5400175B28 /* SearchItemCell.swift */; };
 		634AE74E21B5DE2600281FE4 /* Bogle-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */; };
 		634AE74F21B5DE2600281FE4 /* Bogle-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */; };
@@ -43,6 +46,9 @@
 		630BFF0021B6B2C200D30DE2 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		630BFF0221B6D52600D30DE2 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		6334957B21B86C3B00E8BA1E /* ItemObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemObject.swift; sourceTree = "<group>"; };
+		6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductDetail.storyboard; sourceTree = "<group>"; };
+		6344A0F721EFD645006EB97C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		634ADB7221B85B5400175B28 /* SearchItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
 		634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-Bold.otf"; sourceTree = "<group>"; };
 		634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -80,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6344A0F621EFD62F006EB97C /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				6344A0F721EFD645006EB97C /* RoundedButton.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		634AE74721B5DDFC00281FE4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +163,7 @@
 			children = (
 				634F642121EFAEFF00F2F360 /* Items.storyboard */,
 				6383C92721EFB4A900AC6FBA /* ProductSearch.storyboard */,
+				6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */,
 				63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */,
 				634F641F21EFA90A00F2F360 /* AddPerson.storyboard */,
 				63CA9EBC21B5D8BB00DF7E70 /* Main.storyboard */,
@@ -163,6 +178,7 @@
 				630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */,
 				634F641D21EFA4BB00F2F360 /* ItemsViewController.swift */,
 				6383C92921EFB67000AC6FBA /* ProductSearchViewController.swift */,
+				6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -170,6 +186,7 @@
 		63CA9ECD21B5D91600DF7E70 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6344A0F621EFD62F006EB97C /* Custom Views */,
 				637E703221B83B54008A09D4 /* Cells */,
 				63CA9ECB21B5D8FE00DF7E70 /* Storyboards */,
 			);
@@ -270,6 +287,7 @@
 				634AE75021B5DE2600281FE4 /* Bogle-Black.otf in Resources */,
 				634AE75321B5DE2600281FE4 /* Bogle-RegularItalic.otf in Resources */,
 				634AE74F21B5DE2600281FE4 /* Bogle-BlackItalic.otf in Resources */,
+				6344A0F521EFD27B006EB97C /* ProductDetail.storyboard in Resources */,
 				6383C92821EFB4A900AC6FBA /* ProductSearch.storyboard in Resources */,
 				63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */,
 				634AE75121B5DE2600281FE4 /* Bogle-BoldItalic.otf in Resources */,
@@ -377,12 +395,14 @@
 				6334957C21B86C3B00E8BA1E /* ItemObject.swift in Sources */,
 				6383C92A21EFB67000AC6FBA /* ProductSearchViewController.swift in Sources */,
 				634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */,
+				6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */,
 				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
 				630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */,
 				63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */,
 				634F641E21EFA4BB00F2F360 /* ItemsViewController.swift in Sources */,
 				630BFEFB21B6B05600D30DE2 /* ListSelectionViewController.swift in Sources */,
 				630BFEFF21B6B1E300D30DE2 /* Person.swift in Sources */,
+				6344A0F821EFD645006EB97C /* RoundedButton.swift in Sources */,
 				630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */,
 				63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */,
 			);

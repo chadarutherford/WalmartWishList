@@ -10,9 +10,11 @@ import UIKit
 
 class ItemsViewController: UIViewController {
     
+    // MARK: - Properties
     var person: Person?
     var items = [ItemObject]()
-
+    
+    // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let person = person else { return }
@@ -20,6 +22,7 @@ class ItemsViewController: UIViewController {
     }
 }
 
+// MARK: - View Controller Extensions
 extension ItemsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

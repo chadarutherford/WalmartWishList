@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8YT-qd-Nyg">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Bogle-Bold.otf">
+            <string>Bogle-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Product Detail View Controller-->
+        <scene sceneID="GYZ-Nk-ldj">
+            <objects>
+                <viewController id="8YT-qd-Nyg" customClass="ProductDetailViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3OL-tH-ECA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pjl-FD-BM8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAk-cO-CEB">
+                                        <rect key="frame" x="121" y="40" width="133.5" height="38"/>
+                                        <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4H-8x-ihV">
+                                        <rect key="frame" x="4" y="44" width="55" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="&lt;- Back">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="8YT-qd-Nyg" eventType="touchUpInside" id="eut-nZ-ALe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0058627240359999996" green="0.1180563048" blue="0.25512742999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="aAk-cO-CEB" firstAttribute="centerX" secondItem="Pjl-FD-BM8" secondAttribute="centerX" id="1JK-X1-Imb"/>
+                                    <constraint firstAttribute="bottom" secondItem="aAk-cO-CEB" secondAttribute="bottom" constant="12" id="8IU-FA-1VY"/>
+                                    <constraint firstAttribute="height" constant="90" id="KRm-rs-ypA"/>
+                                    <constraint firstItem="aAk-cO-CEB" firstAttribute="top" secondItem="Pjl-FD-BM8" secondAttribute="top" constant="40" id="mrI-tn-CPf"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FfI-f1-7SW">
+                                <rect key="frame" x="67.5" y="98" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="e76-YU-uNj"/>
+                                    <constraint firstAttribute="width" secondItem="FfI-f1-7SW" secondAttribute="height" multiplier="1:1" id="znf-XA-Rpf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone XS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="6rP-Ij-DpP">
+                                <rect key="frame" x="20" y="346" width="335" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EPp-WE-wTT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price: $999.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyX-fL-Des">
+                                <rect key="frame" x="121" y="414" width="133.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DJM-dD-ze6">
+                                <rect key="frame" x="20" y="472" width="335" height="139"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">iPod touch is the perfect way to carry your music collection in your pocket. Now in 5 stunning colors. Listen to your favorite songs from Apple Music1 and iTunes. iPod touch offers the ultimate mobile gaming experience. Take great photos and videos with the new 8MP iSight camera and make video calls with the improved FaceTime HD camera.2 And stay connected with Messages and the most popular social networking apps. All on a 4-inch Retina display.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tos-dr-4cj" customClass="RoundedButton" customModule="WalmartWishList" customModuleProvider="target">
+                                <rect key="frame" x="112.5" y="617" width="150" height="30"/>
+                                <color key="backgroundColor" red="0.99051028490066528" green="0.72959601879119873" blue="0.19339314103126526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="EBV-XV-u3Y"/>
+                                    <constraint firstAttribute="width" constant="150" id="wBc-cb-EVF"/>
+                                </constraints>
+                                <state key="normal" title="Add to WishList">
+                                    <color key="titleColor" red="0.0018376935040578246" green="0.1180630549788475" blue="0.2551361620426178" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Online: Yes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kO-cn-Gle">
+                                <rect key="frame" x="117" y="446" width="141" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DJM-dD-ze6" firstAttribute="leading" secondItem="uHZ-xg-bo8" secondAttribute="leading" constant="20" id="0AZ-fA-udO"/>
+                            <constraint firstAttribute="trailing" secondItem="Pjl-FD-BM8" secondAttribute="trailing" id="0g6-8e-SoK"/>
+                            <constraint firstItem="uHZ-xg-bo8" firstAttribute="trailing" secondItem="6rP-Ij-DpP" secondAttribute="trailing" constant="20" id="2fV-52-T6h"/>
+                            <constraint firstItem="uHZ-xg-bo8" firstAttribute="trailing" secondItem="DJM-dD-ze6" secondAttribute="trailing" constant="20" id="8sl-Uo-MIn"/>
+                            <constraint firstItem="7kO-cn-Gle" firstAttribute="top" secondItem="qyX-fL-Des" secondAttribute="bottom" constant="8" id="BVe-bH-kja"/>
+                            <constraint firstItem="Pjl-FD-BM8" firstAttribute="top" secondItem="3OL-tH-ECA" secondAttribute="top" id="Bf3-cP-gpv"/>
+                            <constraint firstItem="Tos-dr-4cj" firstAttribute="centerX" secondItem="uHZ-xg-bo8" secondAttribute="centerX" id="DqH-HI-qYF"/>
+                            <constraint firstItem="Pjl-FD-BM8" firstAttribute="leading" secondItem="3OL-tH-ECA" secondAttribute="leading" id="FGP-Yz-JtO"/>
+                            <constraint firstItem="6rP-Ij-DpP" firstAttribute="leading" secondItem="uHZ-xg-bo8" secondAttribute="leading" constant="20" id="FU9-aA-2C5"/>
+                            <constraint firstItem="FfI-f1-7SW" firstAttribute="centerX" secondItem="uHZ-xg-bo8" secondAttribute="centerX" id="FpX-bT-dxF"/>
+                            <constraint firstItem="qyX-fL-Des" firstAttribute="top" secondItem="6rP-Ij-DpP" secondAttribute="bottom" constant="8" id="Hiq-JL-Q17"/>
+                            <constraint firstItem="qyX-fL-Des" firstAttribute="centerX" secondItem="uHZ-xg-bo8" secondAttribute="centerX" id="KwP-yV-Npt"/>
+                            <constraint firstItem="6rP-Ij-DpP" firstAttribute="top" secondItem="FfI-f1-7SW" secondAttribute="bottom" constant="8" id="MKQ-Qo-UFP"/>
+                            <constraint firstItem="7kO-cn-Gle" firstAttribute="centerX" secondItem="uHZ-xg-bo8" secondAttribute="centerX" id="SJt-D6-1qb"/>
+                            <constraint firstItem="DJM-dD-ze6" firstAttribute="top" secondItem="7kO-cn-Gle" secondAttribute="bottom" constant="8" id="WEs-48-a7a"/>
+                            <constraint firstItem="uHZ-xg-bo8" firstAttribute="bottom" secondItem="Tos-dr-4cj" secondAttribute="bottom" constant="20" id="caL-UO-qug"/>
+                            <constraint firstItem="FfI-f1-7SW" firstAttribute="top" secondItem="Pjl-FD-BM8" secondAttribute="bottom" constant="8" id="gZR-NW-hZP"/>
+                            <constraint firstItem="Tos-dr-4cj" firstAttribute="top" secondItem="DJM-dD-ze6" secondAttribute="bottom" constant="6" id="zrA-N4-t9p"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uHZ-xg-bo8"/>
+                    </view>
+                    <connections>
+                        <outlet property="productAvailableLabel" destination="7kO-cn-Gle" id="qHU-lr-B1J"/>
+                        <outlet property="productDescriptionTextView" destination="DJM-dD-ze6" id="vUN-ys-It4"/>
+                        <outlet property="productImageView" destination="FfI-f1-7SW" id="zEM-J1-okt"/>
+                        <outlet property="productNameLabel" destination="6rP-Ij-DpP" id="DKu-MX-S4L"/>
+                        <outlet property="productPriceLabel" destination="qyX-fL-Des" id="xee-tC-bGR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1YG-lB-ZGU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1540" y="132.68365817091455"/>
+        </scene>
+    </scenes>
+</document>

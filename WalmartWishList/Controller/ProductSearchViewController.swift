@@ -8,14 +8,18 @@
 
 import UIKit
 
-class ProductSearchViewController: UIViewController {
+class ProductSearchViewController: UIViewController, ItemDelegate {
     
+    // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    // MARK: - Properties
     var products = [ItemObject]()
     private var searchTerm = ""
-
+    var item: ItemObject?
+    
+    // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -23,6 +27,7 @@ class ProductSearchViewController: UIViewController {
         collectionView.dataSource = self
     }
     
+    // MARK: - Helper Methods
     private func loadItems(completion: @escaping (Bool, Error?) -> ()) {
         let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(searchTerm)"
         guard let url = URL(string: searchURL) else { return }
@@ -51,9 +56,28 @@ class ProductSearchViewController: UIViewController {
         })
         present(alert, animated: true)
     }
+    
+    // MARK: - Actions
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case SegueConstant.detailSegue:
+            guard let productDetailVC = segue.destination as? ProductDetailViewController else { return }
+            productDetailVC.delegate = self
+        default:
+            break
+        }
+    }
 }
 
+// MARK: - View Controller Extensions
 extension ProductSearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    // MARK: - CollectionView Delegate Methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -68,6 +92,12 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
         guard let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) else { return UICollectionViewCell() }
         cell.configure(withImage: image, withName: products[indexPath.item].name, withPrice: products[indexPath.item].salePrice, withAvailability: products[indexPath.item].availableOnline)
         return cell
+    }
+    
+    // MARK: - CollectionView Delegate Methods
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        item = ItemObject(name: products[indexPath.item].name, salePrice: products[indexPath.item].salePrice, shortDescription: products[indexPath.item].shortDescription, largeImage: products[indexPath.item].largeImage, availableOnline: products[indexPath.item].availableOnline)
+        performSegue(withIdentifier: SegueConstant.detailSegue, sender: self)
     }
 }
 
