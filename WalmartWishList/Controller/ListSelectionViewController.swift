@@ -16,6 +16,7 @@ final class ListSelectionViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
+    private var person: Person?
     private var people = [Person]()
     
     
@@ -44,6 +45,18 @@ final class ListSelectionViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case SegueConstant.itemsSegue:
+            guard let itemsViewController = segue.destination as? ItemsViewController else { return }
+            guard let person = person else { return }
+            itemsViewController.person = person
+        default:
+            break
+        }
+    }
 }
 
 // MARK: - TableViewExtension
@@ -66,6 +79,8 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
     
     // MARK: - TableViewDelegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        person = people[indexPath.row]
+        performSegue(withIdentifier: SegueConstant.itemsSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

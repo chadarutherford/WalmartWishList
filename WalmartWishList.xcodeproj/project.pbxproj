@@ -21,7 +21,12 @@
 		634AE75121B5DE2600281FE4 /* Bogle-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74B21B5DE2600281FE4 /* Bogle-BoldItalic.otf */; };
 		634AE75221B5DE2600281FE4 /* Bogle-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74C21B5DE2600281FE4 /* Bogle-Regular.otf */; };
 		634AE75321B5DE2600281FE4 /* Bogle-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74D21B5DE2600281FE4 /* Bogle-RegularItalic.otf */; };
+		634F641E21EFA4BB00F2F360 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F641D21EFA4BB00F2F360 /* ItemsViewController.swift */; };
+		634F642021EFA90A00F2F360 /* AddPerson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634F641F21EFA90A00F2F360 /* AddPerson.storyboard */; };
+		634F642221EFAEFF00F2F360 /* Items.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634F642121EFAEFF00F2F360 /* Items.storyboard */; };
 		637E703621B846B5008A09D4 /* ItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E703521B846B5008A09D4 /* ItemsCell.swift */; };
+		6383C92821EFB4A900AC6FBA /* ProductSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6383C92721EFB4A900AC6FBA /* ProductSearch.storyboard */; };
+		6383C92A21EFB67000AC6FBA /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383C92921EFB67000AC6FBA /* ProductSearchViewController.swift */; };
 		639226E521ECE351007B410D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 639226E421ECE351007B410D /* GoogleService-Info.plist */; };
 		63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */; };
 		63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9EB821B5D8BB00DF7E70 /* AppDelegate.swift */; };
@@ -45,7 +50,12 @@
 		634AE74B21B5DE2600281FE4 /* Bogle-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-BoldItalic.otf"; sourceTree = "<group>"; };
 		634AE74C21B5DE2600281FE4 /* Bogle-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-Regular.otf"; sourceTree = "<group>"; };
 		634AE74D21B5DE2600281FE4 /* Bogle-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-RegularItalic.otf"; sourceTree = "<group>"; };
+		634F641D21EFA4BB00F2F360 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		634F641F21EFA90A00F2F360 /* AddPerson.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddPerson.storyboard; sourceTree = "<group>"; };
+		634F642121EFAEFF00F2F360 /* Items.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Items.storyboard; sourceTree = "<group>"; };
 		637E703521B846B5008A09D4 /* ItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCell.swift; sourceTree = "<group>"; };
+		6383C92721EFB4A900AC6FBA /* ProductSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductSearch.storyboard; sourceTree = "<group>"; };
+		6383C92921EFB67000AC6FBA /* ProductSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
 		639226E421ECE351007B410D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
 		63CA9EB521B5D8BB00DF7E70 /* WalmartWishList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalmartWishList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,7 +147,10 @@
 		63CA9ECB21B5D8FE00DF7E70 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				634F642121EFAEFF00F2F360 /* Items.storyboard */,
+				6383C92721EFB4A900AC6FBA /* ProductSearch.storyboard */,
 				63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */,
+				634F641F21EFA90A00F2F360 /* AddPerson.storyboard */,
 				63CA9EBC21B5D8BB00DF7E70 /* Main.storyboard */,
 			);
 			path = Storyboards;
@@ -148,6 +161,8 @@
 			children = (
 				63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */,
 				630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */,
+				634F641D21EFA4BB00F2F360 /* ItemsViewController.swift */,
+				6383C92921EFB67000AC6FBA /* ProductSearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -255,10 +270,13 @@
 				634AE75021B5DE2600281FE4 /* Bogle-Black.otf in Resources */,
 				634AE75321B5DE2600281FE4 /* Bogle-RegularItalic.otf in Resources */,
 				634AE74F21B5DE2600281FE4 /* Bogle-BlackItalic.otf in Resources */,
+				6383C92821EFB4A900AC6FBA /* ProductSearch.storyboard in Resources */,
 				63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */,
 				634AE75121B5DE2600281FE4 /* Bogle-BoldItalic.otf in Resources */,
 				63CA9EC021B5D8BC00DF7E70 /* Assets.xcassets in Resources */,
 				63CA9EBE21B5D8BB00DF7E70 /* Main.storyboard in Resources */,
+				634F642221EFAEFF00F2F360 /* Items.storyboard in Resources */,
+				634F642021EFA90A00F2F360 /* AddPerson.storyboard in Resources */,
 				639226E521ECE351007B410D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,10 +375,12 @@
 			files = (
 				637E703621B846B5008A09D4 /* ItemsCell.swift in Sources */,
 				6334957C21B86C3B00E8BA1E /* ItemObject.swift in Sources */,
+				6383C92A21EFB67000AC6FBA /* ProductSearchViewController.swift in Sources */,
 				634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */,
 				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
 				630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */,
 				63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */,
+				634F641E21EFA4BB00F2F360 /* ItemsViewController.swift in Sources */,
 				630BFEFB21B6B05600D30DE2 /* ListSelectionViewController.swift in Sources */,
 				630BFEFF21B6B1E300D30DE2 /* Person.swift in Sources */,
 				630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */,

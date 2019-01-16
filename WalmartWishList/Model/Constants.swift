@@ -20,7 +20,6 @@ struct SegueConstant {
     static let searchSegue = "goToSearch"
     static let detailSegue = "goToDetail"
     static let unwindToListItem = "unwindToListItemVC"
-    static let itemsDetailSegue = "goToItemsDetail"
 }
 
 struct NetworkingConstants {

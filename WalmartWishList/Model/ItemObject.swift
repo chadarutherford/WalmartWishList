@@ -12,10 +12,10 @@ final class ItemObject: Codable {
     var name: String
     var salePrice: Double
     var shortDescription: String
-    var largeImage: Data
+    var largeImage: String
     var availableOnline: Bool
     
-    init(name: String, salePrice: Double, shortDescription: String, largeImage: Data, availableOnline: Bool) {
+    init(name: String, salePrice: Double, shortDescription: String, largeImage: String, availableOnline: Bool) {
         self.name = name
         self.salePrice = salePrice
         self.shortDescription = shortDescription
