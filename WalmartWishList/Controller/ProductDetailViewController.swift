@@ -69,7 +69,6 @@ final class ProductDetailViewController: UIViewController, ItemDelegate {
             guard let itemsVC = segue.destination as? ListItemViewController else { return }
             itemsVC.delegate = self
             guard let item = item else { return }
-            print(item)
             itemsVC.selectedPerson?.items.append(item)
         default:
             break

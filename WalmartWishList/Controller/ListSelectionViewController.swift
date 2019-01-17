@@ -25,10 +25,65 @@ final class ListSelectionViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        loadPeople()
+        checkForChange()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     // MARK: - Helper Methods
+    private func checkForChange() {
+        Firestore.firestore().collection("List").addSnapshotListener { snapshot, error in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+            }
+            snapshot?.documentChanges.forEach({ change in
+                let data = change.document.data()
+                var person: Person
+                do {
+                    person = try FirestoreDecoder().decode(Person.self, from: data)
+                    person.documentID = change.document.documentID
+                } catch let error {
+                    debugPrint(error.localizedDescription)
+                    return
+                }
+                switch change.type {
+                case .added:
+                    self.onPersonAdded(change: change, person: person)
+                case .modified:
+                    self.onPersonModified(change: change, person: person)
+                case .removed:
+                    self.onPersonRemoved(change: change)
+                }
+            })
+        }
+    }
+    
+    private func onPersonAdded(change: DocumentChange, person: Person) {
+        let newIndex = Int(change.newIndex)
+        people.insert(person, at: newIndex)
+        tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .automatic)
+    }
+    
+    private func onPersonModified(change: DocumentChange, person: Person) {
+        if change.oldIndex == change.newIndex {
+            let index = Int(change.oldIndex)
+            people[index] = person
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        } else {
+            people.remove(at: Int(change.oldIndex))
+            people.insert(person, at: Int(change.newIndex))
+            tableView.moveRow(at: IndexPath(row: Int(change.oldIndex), section: 0), to: IndexPath(row: Int(change.newIndex), section: 0))
+            tableView.reloadRows(at: [IndexPath(row: Int(change.newIndex), section: 0), IndexPath(row: Int(change.oldIndex), section: 0)], with: .automatic)
+        }
+    }
+    
+    private func onPersonRemoved(change: DocumentChange) {
+        people.remove(at: Int(change.oldIndex))
+        tableView.deleteRows(at: [IndexPath(row: Int(change.oldIndex), section: 0)], with: .automatic)
+    }
+    
     private func loadPeople() {
         Firestore.firestore().collection("List").getDocuments { snapshot, error in
             if let error = error {
@@ -37,7 +92,9 @@ final class ListSelectionViewController: UIViewController {
                 guard let snapshot = snapshot else { return }
                 for document in snapshot.documents {
                     let personData = try! FirestoreDecoder().decode(Person.self, from: document.data())
-                    let newPerson = Person(name: personData.name, image: personData.image, itemCount: personData.itemCount, items: personData.items)
+                    var newPerson = Person(name: personData.name, image: personData.image, itemCount: personData.itemCount, items: personData.items)
+                    newPerson.documentID = document.documentID
+                    print(newPerson)
                     self.people.append(newPerson)
                     self.tableView.reloadData()
                 }

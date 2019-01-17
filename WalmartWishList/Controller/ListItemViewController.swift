@@ -22,6 +22,8 @@ final class ListItemViewController: UIViewController, ItemDelegate {
         didSet {
             saveItemsFromDelegate()
             loadItems()
+            guard let items = items else { return }
+            selectedPerson?.itemCount = items.count
         }
     }
     var delegate: ItemDelegate?
@@ -45,9 +47,10 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let name = selectedPerson?.name else { return }
-        guard let docData = try? FirestoreEncoder().encode(items) else { return }
-        Firestore.firestore().collection("List").whereField("name", isEqualTo: name).setValue(docData, forKey: "items")
+        guard let person = selectedPerson else { return }
+        let documentID = person.documentID
+        guard let docData = try? FirestoreEncoder().encode(selectedPerson) else { return }
+        Firestore.firestore().collection("List").document(documentID).updateData(docData)
     }
     
     private func saveItemsFromDelegate() {
@@ -87,10 +90,12 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.itemsCell, for: indexPath) as? ItemsCell else { return UITableViewCell() }
-//        if let item = items?[indexPath.row] {
-//            guard let image = UIImage(data: item.largeImage) else { fatalError() }
-//            cell.configure(withImage: image, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
-//        }
+        if let item = items?[indexPath.row] {
+            guard let imageURL = URL(string: item.largeImage) else { return UITableViewCell() }
+            guard let imageData = try? Data(contentsOf: imageURL) else { return UITableViewCell() }
+            guard let image = UIImage(data: imageData) else { return UITableViewCell() }
+            cell.configure(withImage: image, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
+        }
         return cell
     }
 }
