@@ -36,7 +36,7 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
             do {
                 let itemInfo = try JSONDecoder().decode(ListItem.self, from: data)
                 for item in itemInfo.items {
-                    let newItem = ItemObject(name: item.name, salePrice: item.salePrice, shortDescription: item.shortDescription, largeImage: item.largeImage, availableOnline: item.availableOnline)
+                    let newItem = ItemObject(name: item.name, salePrice: item.salePrice, shortDescription: item.shortDescription, largeImage: item.largeImage, availableOnline: item.availableOnline, isPurchased: false)
                     self?.products.append(newItem)
                 }
                 completion(true, nil)
@@ -96,7 +96,7 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
     
     // MARK: - CollectionView Delegate Methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        item = ItemObject(name: products[indexPath.item].name, salePrice: products[indexPath.item].salePrice, shortDescription: products[indexPath.item].shortDescription, largeImage: products[indexPath.item].largeImage, availableOnline: products[indexPath.item].availableOnline)
+        item = ItemObject(name: products[indexPath.item].name, salePrice: products[indexPath.item].salePrice, shortDescription: products[indexPath.item].shortDescription, largeImage: products[indexPath.item].largeImage, availableOnline: products[indexPath.item].availableOnline, isPurchased: false)
         performSegue(withIdentifier: SegueConstant.detailSegue, sender: self)
     }
 }

@@ -53,26 +53,58 @@ final class ListItemViewController: UIViewController, ItemDelegate {
         Firestore.firestore().collection("List").document(documentID).updateData(docData)
     }
     
+    // MARK: - Helper Methods
     private func saveItemsFromDelegate() {
         guard let name = delegate?.item?.name else { return }
         guard let price = delegate?.item?.salePrice else { return }
         guard let productDescription = delegate?.item?.shortDescription else { return }
         guard let image = delegate?.item?.largeImage else { return }
         guard let available = delegate?.item?.availableOnline else { return }
-        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, largeImage: image, availableOnline: available)
+        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, largeImage: image, availableOnline: available, isPurchased: false)
         tableView.reloadData()
     }
     
-    func loadItems() {
+    private func loadItems() {
         items = selectedPerson?.items
     }
     
+    private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+            guard let person = self?.selectedPerson else { return }
+            let documentID = person.documentID
+            var deletedItemPerson = person
+            deletedItemPerson.items.remove(at: indexPath.row)
+            self?.items?.remove(at: indexPath.row)
+            deletedItemPerson.itemCount = deletedItemPerson.items.count
+            guard let docData = try? FirestoreEncoder().encode(deletedItemPerson) else { return }
+            Firestore.firestore().collection("List").document(documentID).updateData(docData)
+            self?.tableView.reloadData()
+            completionHandler(true)
+        }
+        action.backgroundColor = UIColor.red
+        return action
+    }
+    
+    private func contextualCompleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Purchased") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+            guard let person = self?.selectedPerson else { return }
+            let documentID = person.documentID
+            person.items[indexPath.row].isPurchased = !person.items[indexPath.row].isPurchased
+            guard let docData = try? FirestoreEncoder().encode(self?.selectedPerson) else { return }
+            Firestore.firestore().collection("List").document(documentID).updateData(docData)
+            self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
+        }
+        action.backgroundColor = UIColor.green
+        return action
+    }
+    
     // MARK: - Actions
-    @IBAction func backButtonPressed(_ sender: UIButton) {
+    @IBAction private func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
-    @IBAction func unwindToListItemVC(_ segue: UIStoryboardSegue) {
+    @IBAction private func unwindToListItemVC(_ segue: UIStoryboardSegue) {
     }
 }
 
@@ -95,8 +127,16 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
             guard let imageData = try? Data(contentsOf: imageURL) else { return UITableViewCell() }
             guard let image = UIImage(data: imageData) else { return UITableViewCell() }
             cell.configure(withImage: image, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
+            cell.accessoryType = item.isPurchased ? .checkmark : .none
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let completeAction = contextualCompleteAction(forRowAtIndexPath: indexPath)
+        let deleteAction = contextualDeleteAction(forRowAtIndexPath: indexPath)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction, completeAction])
+        return swipeConfig
     }
 }
 

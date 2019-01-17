@@ -102,6 +102,17 @@ final class ListSelectionViewController: UIViewController {
         }
     }
     
+    private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+            guard let person = self?.people[indexPath.row] else { return }
+            let documentID = person.documentID
+            Firestore.firestore().collection("List").document(documentID).delete()
+            completionHandler(true)
+        }
+        action.backgroundColor = UIColor.red
+        return action
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -138,5 +149,11 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
         person = people[indexPath.row]
         performSegue(withIdentifier: SegueConstant.itemsSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = contextualDeleteAction(forRowAtIndexPath: indexPath)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
     }
 }

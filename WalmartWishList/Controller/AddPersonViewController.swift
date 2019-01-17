@@ -60,8 +60,6 @@ final class AddPersonViewController: UIViewController {
         Firestore.firestore().collection("List").addDocument(data: docData) { error in
             if let error = error {
                 debugPrint(error.localizedDescription)
-            } else {
-                print("Person saved!")
             }
         }
     }

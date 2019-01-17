@@ -50,7 +50,7 @@ final class ProductDetailViewController: UIViewController, ItemDelegate {
         productDescriptionTextView.text = "Description:\n \(productDescription)"
         productAvailableLabel.text = "Available Online: \(available ? "Yes" : "No")"
         
-        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, largeImage: image, availableOnline: available)
+        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, largeImage: image, availableOnline: available, isPurchased: false)
     }
     
     // MARK: - Actions
