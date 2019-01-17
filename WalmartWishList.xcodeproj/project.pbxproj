@@ -24,7 +24,7 @@
 		634AE75121B5DE2600281FE4 /* Bogle-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74B21B5DE2600281FE4 /* Bogle-BoldItalic.otf */; };
 		634AE75221B5DE2600281FE4 /* Bogle-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74C21B5DE2600281FE4 /* Bogle-Regular.otf */; };
 		634AE75321B5DE2600281FE4 /* Bogle-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74D21B5DE2600281FE4 /* Bogle-RegularItalic.otf */; };
-		634F641E21EFA4BB00F2F360 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F641D21EFA4BB00F2F360 /* ItemsViewController.swift */; };
+		634F641E21EFA4BB00F2F360 /* ListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F641D21EFA4BB00F2F360 /* ListItemViewController.swift */; };
 		634F642021EFA90A00F2F360 /* AddPerson.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634F641F21EFA90A00F2F360 /* AddPerson.storyboard */; };
 		634F642221EFAEFF00F2F360 /* Items.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634F642121EFAEFF00F2F360 /* Items.storyboard */; };
 		637E703621B846B5008A09D4 /* ItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E703521B846B5008A09D4 /* ItemsCell.swift */; };
@@ -56,7 +56,7 @@
 		634AE74B21B5DE2600281FE4 /* Bogle-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-BoldItalic.otf"; sourceTree = "<group>"; };
 		634AE74C21B5DE2600281FE4 /* Bogle-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-Regular.otf"; sourceTree = "<group>"; };
 		634AE74D21B5DE2600281FE4 /* Bogle-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-RegularItalic.otf"; sourceTree = "<group>"; };
-		634F641D21EFA4BB00F2F360 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		634F641D21EFA4BB00F2F360 /* ListItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemViewController.swift; sourceTree = "<group>"; };
 		634F641F21EFA90A00F2F360 /* AddPerson.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddPerson.storyboard; sourceTree = "<group>"; };
 		634F642121EFAEFF00F2F360 /* Items.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Items.storyboard; sourceTree = "<group>"; };
 		637E703521B846B5008A09D4 /* ItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCell.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			children = (
 				63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */,
 				630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */,
-				634F641D21EFA4BB00F2F360 /* ItemsViewController.swift */,
+				634F641D21EFA4BB00F2F360 /* ListItemViewController.swift */,
 				6383C92921EFB67000AC6FBA /* ProductSearchViewController.swift */,
 				6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */,
 			);
@@ -399,7 +399,7 @@
 				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
 				630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */,
 				63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */,
-				634F641E21EFA4BB00F2F360 /* ItemsViewController.swift in Sources */,
+				634F641E21EFA4BB00F2F360 /* ListItemViewController.swift in Sources */,
 				630BFEFB21B6B05600D30DE2 /* ListSelectionViewController.swift in Sources */,
 				630BFEFF21B6B1E300D30DE2 /* Person.swift in Sources */,
 				6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */,

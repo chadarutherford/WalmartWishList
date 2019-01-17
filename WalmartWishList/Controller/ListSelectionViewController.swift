@@ -26,7 +26,6 @@ final class ListSelectionViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         loadPeople()
-        print(people)
     }
     
     // MARK: - Helper Methods
@@ -50,9 +49,9 @@ final class ListSelectionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case SegueConstant.itemsSegue:
-            guard let itemsViewController = segue.destination as? ItemsViewController else { return }
+            guard let listItemViewController = segue.destination as? ListItemViewController else { return }
             guard let person = person else { return }
-            itemsViewController.person = person
+            listItemViewController.selectedPerson = person
         default:
             break
         }

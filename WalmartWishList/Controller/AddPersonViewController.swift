@@ -17,7 +17,6 @@ final class AddPersonViewController: UIViewController {
     @IBOutlet weak var personImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var profileImageButton: UIButton!
-    @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var popupView: UIView!
     
     // MARK: - Properties
@@ -28,15 +27,13 @@ final class AddPersonViewController: UIViewController {
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        popupView.layer.cornerRadius = 10
-        popupView.layer.masksToBounds = true
-        imageContainerView.isHidden = false
+        profileImageButton.isHidden = false
         profileImageButton.isEnabled = true
     }
     
     // MARK: - Helper Methods
     func storeImageAsUrl(name: String) {
-        let imageRef = Storage.storage().reference().child("/userImages/\(name).jpg")
+        let imageRef = Storage.storage().reference().child("/WishList/\(name)/userImages/\(name).jpg")
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
@@ -116,7 +113,7 @@ extension AddPersonViewController: UIImagePickerControllerDelegate, UINavigation
         }
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             personImageView.image = pickedImage
-            imageContainerView.isHidden = true
+            profileImageButton.isHidden = true
             if let data = pickedImage.jpegData(compressionQuality: 0.75) {
                 imageData = data
             }
