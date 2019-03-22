@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0FDB54B9AF451DEF15F08A95 /* Pods_WalmartWishList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7416D87F2C912E1D3AE7490 /* Pods_WalmartWishList.framework */; };
-		630BFEFB21B6B05600D30DE2 /* ListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */; };
+		630BFEFB21B6B05600D30DE2 /* ListViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFA21B6B05600D30DE2 /* ListViewViewController.swift */; };
 		630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFC21B6B17700D30DE2 /* Constants.swift */; };
 		630BFEFF21B6B1E300D30DE2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFE21B6B1E300D30DE2 /* Person.swift */; };
 		630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFF0021B6B2C200D30DE2 /* ListItem.swift */; };
 		630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFF0221B6D52600D30DE2 /* PersonCell.swift */; };
 		6327AE2622450740004B1BEF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6327AE2522450740004B1BEF /* LoginViewController.swift */; };
 		6327AE282245074B004B1BEF /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6327AE272245074B004B1BEF /* SignupViewController.swift */; };
+		6327AE2A22451F08004B1BEF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6327AE2922451F08004B1BEF /* User.swift */; };
+		6327AE2C22452014004B1BEF /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6327AE2B22452014004B1BEF /* List.swift */; };
 		6334957C21B86C3B00E8BA1E /* ItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6334957B21B86C3B00E8BA1E /* ItemObject.swift */; };
 		6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */; };
 		6344A0F521EFD27B006EB97C /* ProductDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */; };
@@ -38,17 +40,20 @@
 		63CA9EBE21B5D8BB00DF7E70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EBC21B5D8BB00DF7E70 /* Main.storyboard */; };
 		63CA9EC021B5D8BC00DF7E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */; };
 		63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */; };
+		63F678EA2245460000DF066F /* ListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F678E92245460000DF066F /* ListSelectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00191382129C065425F5A961 /* Pods-WalmartWishList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalmartWishList.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList.release.xcconfig"; sourceTree = "<group>"; };
-		630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewController.swift; sourceTree = "<group>"; };
+		630BFEFA21B6B05600D30DE2 /* ListViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewViewController.swift; sourceTree = "<group>"; };
 		630BFEFC21B6B17700D30DE2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		630BFEFE21B6B1E300D30DE2 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		630BFF0021B6B2C200D30DE2 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		630BFF0221B6D52600D30DE2 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		6327AE2522450740004B1BEF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6327AE272245074B004B1BEF /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		6327AE2922451F08004B1BEF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6327AE2B22452014004B1BEF /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		6334957B21B86C3B00E8BA1E /* ItemObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemObject.swift; sourceTree = "<group>"; };
 		6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductDetail.storyboard; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 		63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63CA9EC221B5D8BC00DF7E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63CA9EC421B5D8BC00DF7E70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63F678E92245460000DF066F /* ListSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewController.swift; sourceTree = "<group>"; };
 		F73FA41137072B987E5F84F3 /* Pods-WalmartWishList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalmartWishList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList.debug.xcconfig"; sourceTree = "<group>"; };
 		F7416D87F2C912E1D3AE7490 /* Pods_WalmartWishList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalmartWishList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -179,12 +185,13 @@
 			isa = PBXGroup;
 			children = (
 				63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */,
-				630BFEFA21B6B05600D30DE2 /* ListSelectionViewController.swift */,
+				630BFEFA21B6B05600D30DE2 /* ListViewViewController.swift */,
 				634F641D21EFA4BB00F2F360 /* ListItemViewController.swift */,
 				6383C92921EFB67000AC6FBA /* ProductSearchViewController.swift */,
 				6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */,
 				6327AE2522450740004B1BEF /* LoginViewController.swift */,
 				6327AE272245074B004B1BEF /* SignupViewController.swift */,
+				63F678E92245460000DF066F /* ListSelectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -206,6 +213,8 @@
 				6334957B21B86C3B00E8BA1E /* ItemObject.swift */,
 				630BFF0021B6B2C200D30DE2 /* ListItem.swift */,
 				630BFEFE21B6B1E300D30DE2 /* Person.swift */,
+				6327AE2922451F08004B1BEF /* User.swift */,
+				6327AE2B22452014004B1BEF /* List.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,15 +391,18 @@
 				634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */,
 				6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */,
 				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
+				6327AE2A22451F08004B1BEF /* User.swift in Sources */,
 				630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */,
 				63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */,
 				634F641E21EFA4BB00F2F360 /* ListItemViewController.swift in Sources */,
 				6327AE282245074B004B1BEF /* SignupViewController.swift in Sources */,
-				630BFEFB21B6B05600D30DE2 /* ListSelectionViewController.swift in Sources */,
+				630BFEFB21B6B05600D30DE2 /* ListViewViewController.swift in Sources */,
 				630BFEFF21B6B1E300D30DE2 /* Person.swift in Sources */,
 				6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */,
 				630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */,
 				63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */,
+				6327AE2C22452014004B1BEF /* List.swift in Sources */,
+				63F678EA2245460000DF066F /* ListSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@ struct CellConstant {
     static let personCell = "PersonCell"
     static let searchItemCell = "SearchItemCell"
     static let itemsCell = "ItemsCell"
+    static let listCell = "ListCell"
 }
 
 struct StoryboardIDs {
@@ -27,6 +28,7 @@ struct SegueConstant {
     static let unwindToListItem = "unwindToListItemVC"
     static let loggedIn = "LoggedIn"
     static let signedUp = "SignedUp"
+    static let listSelected = "listSelected"
 }
 
 struct NetworkingConstants {
