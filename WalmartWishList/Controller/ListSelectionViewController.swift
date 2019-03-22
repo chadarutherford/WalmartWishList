@@ -2,25 +2,24 @@
 //  ListSelectionViewController.swift
 //  WalmartWishList
 //
-//  Created by Chad Rutherford on 12/4/18.
-//  Copyright © 2018 Chad A. Rutherford. All rights reserved.
+//  Created by Chad Rutherford on 3/22/19.
+//  Copyright © 2019 Chad A. Rutherford. All rights reserved.
 //
 
 import UIKit
 import Firebase
 import CodableFirebase
 
-final class ListSelectionViewController: UIViewController {
+class ListSelectionViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
-    private var person: Person?
-    private var people = [Person]()
+    var lists = [List]()
+    var list: List?
     
-    
-    // MARK: - ViewController Life Cycle
+    // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -28,134 +27,113 @@ final class ListSelectionViewController: UIViewController {
         checkForChange()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     // MARK: - Helper Methods
-    private func checkForChange() {
-        Firestore.firestore().collection("List").addSnapshotListener { snapshot, error in
+    func checkForChange() {
+        DatabaseRefs.wishlists.addSnapshotListener { snapshot, error in
             if let error = error {
                 debugPrint(error.localizedDescription)
             }
-            snapshot?.documentChanges.forEach({ change in
+            snapshot?.documentChanges.forEach { change in
                 let data = change.document.data()
-                var person: Person
+                var list: List
                 do {
-                    person = try FirestoreDecoder().decode(Person.self, from: data)
-                    person.documentID = change.document.documentID
+                    list = try FirestoreDecoder().decode(List.self, from: data)
                 } catch let error {
                     debugPrint(error.localizedDescription)
                     return
                 }
                 switch change.type {
                 case .added:
-                    self.onPersonAdded(change: change, person: person)
+                    self.onListAdded(change: change, list: list)
                 case .modified:
-                    self.onPersonModified(change: change, person: person)
+                    self.onListModified(change: change, list: list)
                 case .removed:
-                    self.onPersonRemoved(change: change)
+                    self.onListRemoved(change: change)
                 default:
                     break
-                }
-            })
-        }
-    }
-    
-    private func onPersonAdded(change: DocumentChange, person: Person) {
-        let newIndex = Int(change.newIndex)
-        people.insert(person, at: newIndex)
-        tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .automatic)
-    }
-    
-    private func onPersonModified(change: DocumentChange, person: Person) {
-        if change.oldIndex == change.newIndex {
-            let index = Int(change.oldIndex)
-            people[index] = person
-            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-        } else {
-            people.remove(at: Int(change.oldIndex))
-            people.insert(person, at: Int(change.newIndex))
-            tableView.moveRow(at: IndexPath(row: Int(change.oldIndex), section: 0), to: IndexPath(row: Int(change.newIndex), section: 0))
-            tableView.reloadRows(at: [IndexPath(row: Int(change.newIndex), section: 0), IndexPath(row: Int(change.oldIndex), section: 0)], with: .automatic)
-        }
-    }
-    
-    private func onPersonRemoved(change: DocumentChange) {
-        people.remove(at: Int(change.oldIndex))
-        tableView.deleteRows(at: [IndexPath(row: Int(change.oldIndex), section: 0)], with: .automatic)
-    }
-    
-    private func loadPeople() {
-        Firestore.firestore().collection("List").getDocuments { snapshot, error in
-            if let error = error {
-                debugPrint(error.localizedDescription)
-            } else {
-                guard let snapshot = snapshot else { return }
-                for document in snapshot.documents {
-                    let personData = try! FirestoreDecoder().decode(Person.self, from: document.data())
-                    var newPerson = Person(name: personData.name, image: personData.image, itemCount: personData.itemCount, items: personData.items)
-                    newPerson.documentID = document.documentID
-                    print(newPerson)
-                    self.people.append(newPerson)
-                    self.tableView.reloadData()
                 }
             }
         }
     }
     
-    private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
-            guard let person = self?.people[indexPath.row] else { return }
-            let documentID = person.documentID
-            Firestore.firestore().collection("List").document(documentID).delete()
-            completionHandler(true)
+    func onListAdded(change: DocumentChange, list: List) {
+        let newIndex = Int(change.newIndex)
+        lists.insert(list, at: newIndex)
+        tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .automatic)
+    }
+    
+    func onListModified(change: DocumentChange, list: List) {
+        if change.oldIndex == change.newIndex {
+            let index = Int(change.oldIndex)
+            lists[index] = list
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        } else {
+            lists.remove(at: Int(change.oldIndex))
+            lists.insert(list, at: Int(change.newIndex))
+            tableView.moveRow(at: IndexPath(row: Int(change.oldIndex), section: 0), to: IndexPath(row: Int(change.newIndex), section: 0))
+            tableView.reloadRows(at: [IndexPath(row: Int(change.newIndex), section: 0), IndexPath(row: Int(change.oldIndex), section: 0)], with: .automatic)
         }
-        action.backgroundColor = UIColor.red
-        return action
+    }
+    
+    func onListRemoved(change: DocumentChange) {
+        lists.remove(at: Int(change.oldIndex))
+        tableView.deleteRows(at: [IndexPath(row: Int(change.oldIndex), section: 0)], with: .automatic)
+    }
+    
+    // MARK: - Actions
+    @IBAction func logoutTapped(_ sender: UIButton) {
+        try? Auth.auth().signOut()
+        let storyboard = UIStoryboard(name: Storyboard.main, bundle: nil)
+        guard let loginVC = storyboard.instantiateViewController(withIdentifier: StoryboardIDs.login) as? LoginViewController else { return }
+        present(loginVC, animated: true)
+    }
+    @IBAction func addTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Add a list", message: nil, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] action in
+            guard let text = alert.textFields?.first?.text else { return }
+            self?.list = List(title: text, people: [])
+            let docData = try? FirebaseEncoder().encode(self?.list)
+            DatabaseRefs.wishlists.addDocument(data: docData as! [String : Any]) { error in
+                if let error = error {
+                    debugPrint(error.localizedDescription)
+                }
+            }
+        })
+        present(alert, animated: true)
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case SegueConstant.itemsSegue:
-            guard let listItemViewController = segue.destination as? ListItemViewController else { return }
-            guard let person = person else { return }
-            listItemViewController.selectedPerson = person
+        case SegueConstant.listSelected:
+            guard let listViewVC = segue.destination as? ListViewViewController else { return }
+            listViewVC.list = list
         default:
             break
         }
     }
 }
 
-// MARK: - TableViewExtension
 extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    // MARK: - TableView DataSource Methods
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return people.count
+        return lists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.personCell, for: indexPath) as? PersonCell else { return UITableViewCell() }
-        cell.configure(withImage: people[indexPath.row].image, withName: people[indexPath.row].name, withItemCount: people[indexPath.row].itemCount)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.listCell, for: indexPath)
+        let list = lists[indexPath.row]
+        cell.textLabel?.text = list.title
         return cell
     }
     
-    // MARK: - TableViewDelegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        person = people[indexPath.row]
-        performSegue(withIdentifier: SegueConstant.itemsSegue, sender: self)
+        list = lists[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = contextualDeleteAction(forRowAtIndexPath: indexPath)
-        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
-        return swipeConfig
+        performSegue(withIdentifier: SegueConstant.listSelected, sender: self)
     }
 }
