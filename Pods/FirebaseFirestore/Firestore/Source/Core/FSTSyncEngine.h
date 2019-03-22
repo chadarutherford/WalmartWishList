@@ -16,19 +16,18 @@
 
 #import <Foundation/Foundation.h>
 
+#include <vector>
+
 #import "Firestore/Source/Core/FSTTypes.h"
-#import "Firestore/Source/Remote/FSTRemoteStore.h"
 
 #include "Firestore/core/src/firebase/firestore/auth/user.h"
 #include "Firestore/core/src/firebase/firestore/model/types.h"
+#include "Firestore/core/src/firebase/firestore/remote/remote_store.h"
+#include "Firestore/core/src/firebase/firestore/util/async_queue.h"
 
-@class FSTDispatchQueue;
 @class FSTLocalStore;
 @class FSTMutation;
 @class FSTQuery;
-@class FSTRemoteEvent;
-@class FSTRemoteStore;
-@class FSTViewSnapshot;
 
 using firebase::firestore::model::OnlineState;
 
@@ -41,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  * new view snapshots or errors.
  */
 @protocol FSTSyncEngineDelegate
-- (void)handleViewSnapshots:(NSArray<FSTViewSnapshot *> *)viewSnapshots;
+- (void)handleViewSnapshots:(std::vector<firebase::firestore::core::ViewSnapshot> &&)viewSnapshots;
 - (void)handleError:(NSError *)error forQuery:(FSTQuery *)query;
 - (void)applyChangedOnlineState:(OnlineState)onlineState;
 @end
@@ -58,13 +57,13 @@ NS_ASSUME_NONNULL_BEGIN
  *    sending to the backend.
  *
  * The SyncEngine’s methods should only ever be called by methods running on our own worker
- * dispatch queue.
+ * queue.
  */
 @interface FSTSyncEngine : NSObject <FSTRemoteSyncer>
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithLocalStore:(FSTLocalStore *)localStore
-                       remoteStore:(FSTRemoteStore *)remoteStore
+                       remoteStore:(firebase::firestore::remote::RemoteStore *)remoteStore
                        initialUser:(const firebase::firestore::auth::User &)user
     NS_DESIGNATED_INITIALIZER;
 
@@ -75,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Initiates a new listen. The FSTLocalStore will be queried for initial data and the listen will
- * be sent to the FSTRemoteStore to get remote data. The registered FSTSyncEngineDelegate will be
+ * be sent to the `RemoteStore` to get remote data. The registered FSTSyncEngineDelegate will be
  * notified of resulting view snapshots and/or listen errors.
  *
  * @return the target ID assigned to the query.
@@ -91,18 +90,19 @@ NS_ASSUME_NONNULL_BEGIN
  * write caused. The provided completion block will be called once the write has been acked or
  * rejected by the backend (or failed locally for any other reason).
  */
-- (void)writeMutations:(NSArray<FSTMutation *> *)mutations completion:(FSTVoidErrorBlock)completion;
+- (void)writeMutations:(std::vector<FSTMutation *> &&)mutations
+            completion:(FSTVoidErrorBlock)completion;
 
 /**
  * Runs the given transaction block up to retries times and then calls completion.
  *
  * @param retries The number of times to try before giving up.
- * @param workerDispatchQueue The queue to dispatch sync engine calls to.
+ * @param workerQueue The queue to dispatch sync engine calls to.
  * @param updateBlock The block to call to execute the user's transaction.
  * @param completion The block to call when the transaction is finished or failed.
  */
 - (void)transactionWithRetries:(int)retries
-           workerDispatchQueue:(FSTDispatchQueue *)workerDispatchQueue
+                   workerQueue:(firebase::firestore::util::AsyncQueue *)workerQueue
                    updateBlock:(FSTTransactionBlock)updateBlock
                     completion:(FSTVoidIDErrorBlock)completion;
 

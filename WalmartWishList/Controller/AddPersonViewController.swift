@@ -108,6 +108,8 @@ extension AddPersonViewController: UIImagePickerControllerDelegate, UINavigation
             displayAlert(title: "Photo Library Access Error", message: "Please check settings and enable Photo Library acces")
         case .authorized:
             break
+        default:
+            break
         }
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             personImageView.image = pickedImage

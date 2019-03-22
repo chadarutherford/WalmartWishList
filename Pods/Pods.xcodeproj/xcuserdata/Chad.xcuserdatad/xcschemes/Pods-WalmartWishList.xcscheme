@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "38DC765B0CFB642A0C403FF6795CA4E9"
+               BlueprintIdentifier = "42E4EC41A454C101B2BCD0801E8DE1C7"
                BuildableName = "Pods_WalmartWishList.framework"
                BlueprintName = "Pods-WalmartWishList"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "38DC765B0CFB642A0C403FF6795CA4E9"
+            BlueprintIdentifier = "42E4EC41A454C101B2BCD0801E8DE1C7"
             BuildableName = "Pods_WalmartWishList.framework"
             BlueprintName = "Pods-WalmartWishList"
             ReferencedContainer = "container:Pods.xcodeproj">

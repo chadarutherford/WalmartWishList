@@ -14,12 +14,19 @@ struct CellConstant {
     static let itemsCell = "ItemsCell"
 }
 
+struct StoryboardIDs {
+    static let login = "LoginVC"
+    static let listSelection = "ListSelectionVC"
+}
+
 struct SegueConstant {
     static let addPersonSegue = "addPerson"
     static let itemsSegue = "goToItems"
     static let searchSegue = "goToSearch"
     static let detailSegue = "goToDetail"
     static let unwindToListItem = "unwindToListItemVC"
+    static let loggedIn = "LoggedIn"
+    static let signedUp = "SignedUp"
 }
 
 struct NetworkingConstants {

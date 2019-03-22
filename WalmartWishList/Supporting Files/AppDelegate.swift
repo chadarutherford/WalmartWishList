@@ -20,8 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let db = Firestore.firestore()
         let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let _ = Auth.auth().currentUser {
+            guard let listSelectionVC = storyboard.instantiateViewController(withIdentifier: StoryboardIDs.listSelection) as? ListSelectionViewController else { return false }
+            window?.rootViewController = listSelectionVC
+            window?.makeKeyAndVisible()
+        } else {
+            guard let loginVC = storyboard.instantiateViewController(withIdentifier: StoryboardIDs.login) as? LoginViewController else { return false }
+            window?.rootViewController = loginVC
+            window?.makeKeyAndVisible()
+        }
         
         return true
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="jbo-sY-fHb">
             <objects>
-                <viewController id="ZiB-ty-Kgv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="ZiB-ty-Kgv" customClass="LoginViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Opi-We-qru">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,67 +42,180 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZhQ-a6-KgG">
-                                <rect key="frame" x="20" y="107" width="335" height="30"/>
+                                <rect key="frame" x="20" y="107" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ps8-UV-bip"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TfJ-EG-qNm">
-                                <rect key="frame" x="20" y="168" width="335" height="30"/>
+                                <rect key="frame" x="20" y="178" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="oFW-bR-05N"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRz-hP-O6u">
-                                <rect key="frame" x="160.5" y="221" width="54" height="30"/>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRz-hP-O6u" customClass="RoundedButton" customModule="WalmartWishList" customModuleProvider="target">
+                                <rect key="frame" x="83" y="241" width="210" height="42"/>
+                                <color key="backgroundColor" red="0.99051028490000004" green="0.72959601880000002" blue="0.19339314099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="sDf-dG-i1n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="21"/>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" red="0.001837693504" green="0.118063055" blue="0.255136162" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginPressedWithSender:" destination="ZiB-ty-Kgv" eventType="touchUpInside" id="62y-pG-GMz"/>
+                                </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="ry7-Ot-GYH">
-                                <rect key="frame" x="63" y="259" width="249" height="30"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xu6-pM-Uii">
-                                        <rect key="frame" x="0.0" y="0.0" width="196" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ur6-eI-Mep">
-                                        <rect key="frame" x="207" y="0.0" width="42" height="30"/>
-                                        <state key="normal" title="Log In">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ur6-eI-Mep" customClass="RoundedButton" customModule="WalmartWishList" customModuleProvider="target">
+                                <rect key="frame" x="83" y="300" width="210" height="42"/>
+                                <color key="backgroundColor" red="0.99051028490000004" green="0.72959601880000002" blue="0.19339314099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="21"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.001837693504" green="0.118063055" blue="0.255136162" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="HEN-tS-Y3A" kind="show" id="QXC-RF-N1V"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="knj-4z-tbl">
+                                <rect key="frame" x="169" y="350" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0018376935040578246" green="0.1180630549788475" blue="0.2551361620426178" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="RRz-hP-O6u" firstAttribute="leading" secondItem="qYw-EI-SbA" secondAttribute="leading" constant="83" id="01R-4p-Dmn"/>
+                            <constraint firstItem="qYw-EI-SbA" firstAttribute="trailing" secondItem="Ur6-eI-Mep" secondAttribute="trailing" constant="82" id="0gb-sd-Wbf"/>
                             <constraint firstItem="qYw-EI-SbA" firstAttribute="trailing" secondItem="ZhQ-a6-KgG" secondAttribute="trailing" constant="20" id="2vG-gv-oRt"/>
-                            <constraint firstItem="RRz-hP-O6u" firstAttribute="centerX" secondItem="qYw-EI-SbA" secondAttribute="centerX" id="4Az-9y-PC8"/>
-                            <constraint firstItem="ry7-Ot-GYH" firstAttribute="top" secondItem="RRz-hP-O6u" secondAttribute="bottom" constant="8" id="HPK-rT-LhC"/>
-                            <constraint firstItem="ry7-Ot-GYH" firstAttribute="centerX" secondItem="qYw-EI-SbA" secondAttribute="centerX" id="Y1L-UL-Hsv"/>
+                            <constraint firstItem="Ur6-eI-Mep" firstAttribute="leading" secondItem="qYw-EI-SbA" secondAttribute="leading" constant="83" id="9Fn-ER-Xvd"/>
+                            <constraint firstItem="knj-4z-tbl" firstAttribute="top" secondItem="Ur6-eI-Mep" secondAttribute="bottom" constant="8" id="Ny0-jX-MaQ"/>
+                            <constraint firstItem="qYw-EI-SbA" firstAttribute="trailing" secondItem="RRz-hP-O6u" secondAttribute="trailing" constant="82" id="XzP-UO-koB"/>
                             <constraint firstItem="qYw-EI-SbA" firstAttribute="trailing" secondItem="TfJ-EG-qNm" secondAttribute="trailing" constant="20" id="cyr-7z-cbR"/>
+                            <constraint firstItem="knj-4z-tbl" firstAttribute="centerX" secondItem="qYw-EI-SbA" secondAttribute="centerX" id="fc5-R9-EGn"/>
                             <constraint firstItem="ybD-sd-Y2m" firstAttribute="centerX" secondItem="qYw-EI-SbA" secondAttribute="centerX" id="hbl-Q8-nL8"/>
                             <constraint firstItem="ybD-sd-Y2m" firstAttribute="top" secondItem="qYw-EI-SbA" secondAttribute="top" constant="20" id="kMj-KN-MML"/>
+                            <constraint firstItem="Ur6-eI-Mep" firstAttribute="top" secondItem="RRz-hP-O6u" secondAttribute="bottom" constant="17" id="kcN-2h-i6p"/>
                             <constraint firstItem="ZhQ-a6-KgG" firstAttribute="top" secondItem="HiV-sj-N4n" secondAttribute="bottom" constant="37" id="kzs-6W-cWE"/>
                             <constraint firstItem="RRz-hP-O6u" firstAttribute="top" secondItem="TfJ-EG-qNm" secondAttribute="bottom" constant="23" id="mov-C8-ebh"/>
+                            <constraint firstItem="Ur6-eI-Mep" firstAttribute="width" secondItem="RRz-hP-O6u" secondAttribute="width" id="s4N-bx-hKC"/>
                             <constraint firstItem="TfJ-EG-qNm" firstAttribute="top" secondItem="ZhQ-a6-KgG" secondAttribute="bottom" constant="31" id="wGo-Gj-tGj"/>
                             <constraint firstItem="TfJ-EG-qNm" firstAttribute="leading" secondItem="qYw-EI-SbA" secondAttribute="leading" constant="20" id="wuG-67-Pbt"/>
                             <constraint firstItem="ZhQ-a6-KgG" firstAttribute="leading" secondItem="qYw-EI-SbA" secondAttribute="leading" constant="20" id="xRe-0u-45C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qYw-EI-SbA"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="ZhQ-a6-KgG" id="ini-Ej-ma5"/>
+                        <outlet property="passwordTextField" destination="TfJ-EG-qNm" id="WAm-M6-kMf"/>
+                        <outlet property="spinner" destination="knj-4z-tbl" id="Rct-TM-IzL"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="LoggedIn" id="eh5-ss-4Gc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20v-rn-DvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-916" y="142.57871064467767"/>
+            <point key="canvasLocation" x="-951" y="-145"/>
+        </scene>
+        <!--Signup View Controller-->
+        <scene sceneID="Bw1-g0-5qs">
+            <objects>
+                <viewController id="HEN-tS-Y3A" customClass="SignupViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gb6-eE-7qc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="vrf-Jn-kJ0">
+                                <rect key="frame" x="68" y="40" width="239.5" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walmart Wish List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDV-DC-76t">
+                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walmart_spark" translatesAutoresizingMaskIntoConstraints="NO" id="Nt0-gd-LiM">
+                                        <rect key="frame" x="209.5" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Nkj-ya-Zh1"/>
+                                            <constraint firstAttribute="width" secondItem="Nt0-gd-LiM" secondAttribute="height" multiplier="1:1" id="fDg-7t-ID6"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bPp-a6-0hN">
+                                <rect key="frame" x="20" y="107" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fpF-xV-Dra"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="email"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38T-vE-h5J">
+                                <rect key="frame" x="20" y="178" width="335" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Z95-ty-w5k"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otj-E5-bfc" customClass="RoundedButton" customModule="WalmartWishList" customModuleProvider="target">
+                                <rect key="frame" x="82" y="241" width="210" height="42"/>
+                                <color key="backgroundColor" red="0.99051028490000004" green="0.72959601880000002" blue="0.19339314099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="NKV-Ci-1Pa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="21"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.001837693504" green="0.118063055" blue="0.255136162" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpTapped:" destination="HEN-tS-Y3A" eventType="touchUpInside" id="SGe-ch-BtF"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nTs-ih-L5P">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.001837693504" green="0.118063055" blue="0.255136162" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vrf-Jn-kJ0" firstAttribute="centerX" secondItem="VsA-DN-2AE" secondAttribute="centerX" id="BDQ-bF-jnW"/>
+                            <constraint firstItem="38T-vE-h5J" firstAttribute="top" secondItem="bPp-a6-0hN" secondAttribute="bottom" constant="31" id="Hja-O3-w1K"/>
+                            <constraint firstItem="bPp-a6-0hN" firstAttribute="top" secondItem="eDV-DC-76t" secondAttribute="bottom" constant="37" id="Khw-Ee-JzT"/>
+                            <constraint firstItem="Otj-E5-bfc" firstAttribute="leading" secondItem="VsA-DN-2AE" secondAttribute="leading" constant="82" id="QZG-hG-ZFr"/>
+                            <constraint firstItem="VsA-DN-2AE" firstAttribute="trailing" secondItem="38T-vE-h5J" secondAttribute="trailing" constant="20" id="S8j-AJ-kXZ"/>
+                            <constraint firstItem="nTs-ih-L5P" firstAttribute="top" secondItem="Otj-E5-bfc" secondAttribute="bottom" constant="32" id="Uzk-eL-5Wm"/>
+                            <constraint firstItem="Otj-E5-bfc" firstAttribute="top" secondItem="38T-vE-h5J" secondAttribute="bottom" constant="23" id="a9l-5F-r4R"/>
+                            <constraint firstItem="bPp-a6-0hN" firstAttribute="leading" secondItem="VsA-DN-2AE" secondAttribute="leading" constant="20" id="bRS-U0-SuJ"/>
+                            <constraint firstItem="VsA-DN-2AE" firstAttribute="trailing" secondItem="Otj-E5-bfc" secondAttribute="trailing" constant="83" id="c2B-v3-c56"/>
+                            <constraint firstItem="nTs-ih-L5P" firstAttribute="centerX" secondItem="VsA-DN-2AE" secondAttribute="centerX" id="g41-31-iC2"/>
+                            <constraint firstItem="vrf-Jn-kJ0" firstAttribute="top" secondItem="VsA-DN-2AE" secondAttribute="top" constant="20" id="hff-pC-sjj"/>
+                            <constraint firstItem="VsA-DN-2AE" firstAttribute="trailing" secondItem="bPp-a6-0hN" secondAttribute="trailing" constant="20" id="lYS-81-Z8M"/>
+                            <constraint firstItem="38T-vE-h5J" firstAttribute="leading" secondItem="VsA-DN-2AE" secondAttribute="leading" constant="20" id="oX6-46-1tH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VsA-DN-2AE"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="bPp-a6-0hN" id="j6S-W0-rlp"/>
+                        <outlet property="passwordTextField" destination="38T-vE-h5J" id="1iG-vM-Y0D"/>
+                        <outlet property="spinner" destination="nTs-ih-L5P" id="lc8-Tc-uoA"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="SignedUp" id="DSu-zd-mvC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0aC-YQ-lMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-951" y="537"/>
         </scene>
         <!--List Selection View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ListSelectionViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListSelectionVC" id="BYZ-38-t0r" customClass="ListSelectionViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,6 +353,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="walmart_spark" width="106" height="118.71572113037109"/>
+        <image name="walmart_spark" width="440" height="493"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="DSu-zd-mvC"/>
+    </inferredMetricsTieBreakers>
 </document>

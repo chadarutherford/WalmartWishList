@@ -55,6 +55,8 @@ final class ListSelectionViewController: UIViewController {
                     self.onPersonModified(change: change, person: person)
                 case .removed:
                     self.onPersonRemoved(change: change)
+                default:
+                    break
                 }
             })
         }
