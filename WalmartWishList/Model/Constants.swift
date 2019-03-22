@@ -7,12 +7,18 @@
 //
 
 import Foundation
+import Firebase
 
 struct CellConstant {
     static let personCell = "PersonCell"
     static let searchItemCell = "SearchItemCell"
     static let itemsCell = "ItemsCell"
     static let listCell = "ListCell"
+}
+
+struct Storyboard {
+    static let listSelection = "ListSelection"
+    static let main = "Main"
 }
 
 struct StoryboardIDs {
@@ -29,10 +35,15 @@ struct SegueConstant {
     static let loggedIn = "LoggedIn"
     static let signedUp = "SignedUp"
     static let listSelected = "listSelected"
+    static let logout = "logout"
 }
 
 struct NetworkingConstants {
     static let baseURL = "https://api.walmartlabs.com/v1/search?"
     static let apiKey = "apiKey=5cjczkw7a8ghwxduvgwrhk4v"
     static let finalUrl = "&query="
+}
+
+struct DatabaseRefs {
+    static let wishlists = Firestore.firestore().collection("WishLists")
 }

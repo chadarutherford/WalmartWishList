@@ -65,7 +65,9 @@ class SignupViewController: UIViewController {
         spinner.startAnimating()
         signUpUser { [weak self] success, error in
             if success {
-                self?.performSegue(withIdentifier: SegueConstant.signedUp, sender: self)
+                let storyboard = UIStoryboard(name: Storyboard.listSelection, bundle: nil)
+                guard let listSelectionVC = storyboard.instantiateViewController(withIdentifier: StoryboardIDs.listSelection) as? ListSelectionViewController else { return }
+                self?.present(listSelectionVC, animated: true)
                 self?.spinner.stopAnimating()
             }
         }

@@ -41,6 +41,8 @@
 		63CA9EC021B5D8BC00DF7E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */; };
 		63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */; };
 		63F678EA2245460000DF066F /* ListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F678E92245460000DF066F /* ListSelectionViewController.swift */; };
+		63F678EC2245508700DF066F /* ListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F678EB2245508700DF066F /* ListView.storyboard */; };
+		63F678EE224550D300DF066F /* ListSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F678ED224550D300DF066F /* ListSelection.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		63CA9EC221B5D8BC00DF7E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63CA9EC421B5D8BC00DF7E70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63F678E92245460000DF066F /* ListSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewController.swift; sourceTree = "<group>"; };
+		63F678EB2245508700DF066F /* ListView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListView.storyboard; sourceTree = "<group>"; };
+		63F678ED224550D300DF066F /* ListSelection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListSelection.storyboard; sourceTree = "<group>"; };
 		F73FA41137072B987E5F84F3 /* Pods-WalmartWishList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalmartWishList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList.debug.xcconfig"; sourceTree = "<group>"; };
 		F7416D87F2C912E1D3AE7490 /* Pods_WalmartWishList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalmartWishList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -171,6 +175,8 @@
 		63CA9ECB21B5D8FE00DF7E70 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				63F678ED224550D300DF066F /* ListSelection.storyboard */,
+				63F678EB2245508700DF066F /* ListView.storyboard */,
 				634F642121EFAEFF00F2F360 /* Items.storyboard */,
 				6383C92721EFB4A900AC6FBA /* ProductSearch.storyboard */,
 				6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */,
@@ -298,12 +304,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				634AE75221B5DE2600281FE4 /* Bogle-Regular.otf in Resources */,
+				63F678EE224550D300DF066F /* ListSelection.storyboard in Resources */,
 				634AE74E21B5DE2600281FE4 /* Bogle-Bold.otf in Resources */,
 				634AE75021B5DE2600281FE4 /* Bogle-Black.otf in Resources */,
 				634AE75321B5DE2600281FE4 /* Bogle-RegularItalic.otf in Resources */,
 				634AE74F21B5DE2600281FE4 /* Bogle-BlackItalic.otf in Resources */,
 				6344A0F521EFD27B006EB97C /* ProductDetail.storyboard in Resources */,
 				6383C92821EFB4A900AC6FBA /* ProductSearch.storyboard in Resources */,
+				63F678EC2245508700DF066F /* ListView.storyboard in Resources */,
 				63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */,
 				634AE75121B5DE2600281FE4 /* Bogle-BoldItalic.otf in Resources */,
 				63CA9EC021B5D8BC00DF7E70 /* Assets.xcassets in Resources */,

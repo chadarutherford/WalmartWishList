@@ -116,6 +116,12 @@ final class ListViewViewController: UIViewController {
         return action
     }
     
+    // MARK: - Actions
+    @IBAction func backTapped(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
