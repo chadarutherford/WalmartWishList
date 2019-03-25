@@ -46,5 +46,6 @@ struct NetworkingConstants {
 
 struct DatabaseRefs {
     static let wishlists = Firestore.firestore().collection("WishLists")
+    static let users = Firestore.firestore().collection("Users")
     static let photos = Storage.storage().reference()
 }

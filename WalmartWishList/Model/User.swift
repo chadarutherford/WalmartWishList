@@ -15,9 +15,9 @@ struct User: Codable {
         return "\(firstName) \(lastName)"
     }
     let email: String
-    let lists: [List]
+    let lists: [String]
     
-    init(firstName: String, lastName: String, email: String, lists: [List]) {
+    init(firstName: String, lastName: String, email: String, lists: [String]) {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email

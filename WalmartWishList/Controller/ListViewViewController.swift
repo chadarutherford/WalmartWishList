@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import CodableFirebase
 
 final class ListViewViewController: UIViewController {
     
@@ -16,9 +14,6 @@ final class ListViewViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
-    var list: List?
-    var person: Person?
-    var index = 0
     
     
     // MARK: - ViewController Life Cycle
@@ -26,37 +21,14 @@ final class ListViewViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        checkForChange()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    func checkForChange() {
-        DatabaseRefs.wishlists.addSnapshotListener { [weak self] snapshot, error in
-            if let error = error {
-                debugPrint(error.localizedDescription)
-            }
-            snapshot?.documentChanges.forEach { change in
-                let data = change.document.data()
-                do {
-                    let newList = try FirestoreDecoder().decode(List.self, from: data)
-                    self?.list = newList
-                    self?.tableView.reloadData()
-                } catch let error {
-                    debugPrint(error.localizedDescription)
-                    return
-                }
-            }
-        }
-    }
-    
     private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
-            guard let documentID = self?.list?.documentID else { return }
-            DatabaseRefs.wishlists.document(documentID).delete()
-            completionHandler(true)
         }
         action.backgroundColor = UIColor.red
         return action
@@ -74,20 +46,6 @@ final class ListViewViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case SegueConstant.itemsSegue:
-            guard let listItemViewController = segue.destination as? ListItemViewController else { return }
-            guard let list = list else { return }
-            guard let person = person else { return }
-            listItemViewController.selectedPerson = person
-            listItemViewController.list = list
-            listItemViewController.index = index
-        case SegueConstant.addPersonSegue:
-            guard let addPersonViewController = segue.destination as? AddPersonViewController else { return }
-            addPersonViewController.list = list
-        default:
-            break
-        }
     }
 }
 
@@ -101,21 +59,16 @@ extension ListViewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let list = list else { return 0 }
-        return list.people.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.personCell, for: indexPath) as? PersonCell else { return UITableViewCell() }
-        guard let person = list?.people[indexPath.row] else { return UITableViewCell() }
-        cell.configure(withImage: person.image, withName: person.name, withItemCount: person.itemCount)
         return cell
     }
     
     // MARK: - TableViewDelegate Methods
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let list = list else { return }
-        person = list.people[indexPath.row]
-        index = indexPath.row
         performSegue(withIdentifier: SegueConstant.itemsSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }

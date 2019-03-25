@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import CodableFirebase
 import PhotosUI
 
 final class AddPersonViewController: UIViewController {
@@ -23,7 +21,6 @@ final class AddPersonViewController: UIViewController {
     private var imagePicker = UIImagePickerController()
     private var imageData = Data()
     private var imageURL = ""
-    var list: List?
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -36,39 +33,7 @@ final class AddPersonViewController: UIViewController {
     
     // MARK: - Helper Methods
     func storeImageAsUrl(name: String) {
-        let imageRef = DatabaseRefs.photos.child("/WishList/\(name)/userImages/\(name).jpg")
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
         
-        imageRef.putData(imageData, metadata: metaData) { metaData, error in
-            if let error = error {
-                debugPrint(error.localizedDescription)
-                return
-            }
-            
-            imageRef.downloadURL { url, error in
-                if let error = error {
-                    debugPrint(error.localizedDescription)
-                    return
-                }
-                guard let url = url else { return }
-                self.uploadDocument(name: name, url: url.absoluteString)
-            }
-        }
-    }
-    
-    func uploadDocument(name: String, url: String) {
-        let person = Person(name: name, image: url, itemCount: 0, items: [])
-        list?.people.append(person)
-        let docData = try! FirestoreEncoder().encode(list)
-        guard let list = list else { return }
-        DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
-    }
-    
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
     
     // MARK: - Actions
@@ -80,9 +45,7 @@ final class AddPersonViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        guard let name = nameTextField.text else { return }
-        storeImageAsUrl(name: name)
-        dismiss(animated: true)
+        
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {

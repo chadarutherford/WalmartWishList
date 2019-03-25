@@ -42,7 +42,7 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZhQ-a6-KgG">
-                                <rect key="frame" x="20" y="131" width="374" height="40"/>
+                                <rect key="frame" x="20" y="134" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ps8-UV-bip"/>
                                 </constraints>
@@ -51,7 +51,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TfJ-EG-qNm">
-                                <rect key="frame" x="20" y="202" width="374" height="40"/>
+                                <rect key="frame" x="20" y="204" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="oFW-bR-05N"/>
                                 </constraints>
@@ -60,7 +60,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRz-hP-O6u" customClass="RoundedButton" customModule="WalmartWishList" customModuleProvider="target">
-                                <rect key="frame" x="83" y="265" width="249" height="42"/>
+                                <rect key="frame" x="83" y="264" width="249" height="42"/>
                                 <color key="backgroundColor" red="0.99051028490000004" green="0.72959601880000002" blue="0.19339314099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="sDf-dG-i1n"/>
@@ -74,7 +74,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ur6-eI-Mep" customClass="RoundedButton" customModule="WalmartWishList" customModuleProvider="target">
-                                <rect key="frame" x="83" y="324" width="249" height="42"/>
+                                <rect key="frame" x="83" y="326" width="249" height="42"/>
                                 <color key="backgroundColor" red="0.99051028490000004" green="0.72959601880000002" blue="0.19339314099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="21"/>
                                 <state key="normal" title="Sign Up">
@@ -85,7 +85,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="knj-4z-tbl">
-                                <rect key="frame" x="188.5" y="374" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="376" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0018376935040578246" green="0.1180630549788475" blue="0.2551361620426178" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,11 +100,11 @@
                             <constraint firstItem="knj-4z-tbl" firstAttribute="centerX" secondItem="qYw-EI-SbA" secondAttribute="centerX" id="fc5-R9-EGn"/>
                             <constraint firstItem="ybD-sd-Y2m" firstAttribute="centerX" secondItem="qYw-EI-SbA" secondAttribute="centerX" id="hbl-Q8-nL8"/>
                             <constraint firstItem="ybD-sd-Y2m" firstAttribute="top" secondItem="qYw-EI-SbA" secondAttribute="top" constant="20" id="kMj-KN-MML"/>
-                            <constraint firstItem="Ur6-eI-Mep" firstAttribute="top" secondItem="RRz-hP-O6u" secondAttribute="bottom" constant="17" id="kcN-2h-i6p"/>
-                            <constraint firstItem="ZhQ-a6-KgG" firstAttribute="top" secondItem="HiV-sj-N4n" secondAttribute="bottom" constant="37" id="kzs-6W-cWE"/>
-                            <constraint firstItem="RRz-hP-O6u" firstAttribute="top" secondItem="TfJ-EG-qNm" secondAttribute="bottom" constant="23" id="mov-C8-ebh"/>
+                            <constraint firstItem="Ur6-eI-Mep" firstAttribute="top" secondItem="RRz-hP-O6u" secondAttribute="bottom" constant="20" id="kcN-2h-i6p"/>
+                            <constraint firstItem="ZhQ-a6-KgG" firstAttribute="top" secondItem="HiV-sj-N4n" secondAttribute="bottom" constant="40" id="kzs-6W-cWE"/>
+                            <constraint firstItem="RRz-hP-O6u" firstAttribute="top" secondItem="TfJ-EG-qNm" secondAttribute="bottom" constant="20" id="mov-C8-ebh"/>
                             <constraint firstItem="Ur6-eI-Mep" firstAttribute="width" secondItem="RRz-hP-O6u" secondAttribute="width" id="s4N-bx-hKC"/>
-                            <constraint firstItem="TfJ-EG-qNm" firstAttribute="top" secondItem="ZhQ-a6-KgG" secondAttribute="bottom" constant="31" id="wGo-Gj-tGj"/>
+                            <constraint firstItem="TfJ-EG-qNm" firstAttribute="top" secondItem="ZhQ-a6-KgG" secondAttribute="bottom" constant="30" id="wGo-Gj-tGj"/>
                             <constraint firstItem="TfJ-EG-qNm" firstAttribute="leading" secondItem="qYw-EI-SbA" secondAttribute="leading" constant="20" id="wuG-67-Pbt"/>
                             <constraint firstItem="ZhQ-a6-KgG" firstAttribute="leading" secondItem="qYw-EI-SbA" secondAttribute="leading" constant="20" id="xRe-0u-45C"/>
                         </constraints>
@@ -146,8 +146,8 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bPp-a6-0hN">
-                                <rect key="frame" x="20" y="131" width="374" height="40"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bPp-a6-0hN">
+                                <rect key="frame" x="20" y="134" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="fpF-xV-Dra"/>
                                 </constraints>
@@ -155,8 +155,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38T-vE-h5J">
-                                <rect key="frame" x="20" y="202" width="374" height="40"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38T-vE-h5J">
+                                <rect key="frame" x="20" y="204" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Z95-ty-w5k"/>
                                 </constraints>
@@ -164,8 +164,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="auf-D7-Tzu">
+                                <rect key="frame" x="20" y="274" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bYc-D7-lYe"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fKy-jY-BKn">
+                                <rect key="frame" x="20" y="344" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="b5I-CU-nkO"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nTs-ih-L5P">
+                                <rect key="frame" x="188.5" y="478" width="37" height="37"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otj-E5-bfc" customClass="RoundedButton" customModule="WalmartWishList" customModuleProvider="target">
-                                <rect key="frame" x="82" y="265" width="249" height="42"/>
+                                <rect key="frame" x="82" y="404" width="249" height="42"/>
                                 <color key="backgroundColor" red="0.99051028490000004" green="0.72959601880000002" blue="0.19339314099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="210" id="NKV-Ci-1Pa"/>
@@ -178,31 +199,36 @@
                                     <action selector="signUpTapped:" destination="HEN-tS-Y3A" eventType="touchUpInside" id="SGe-ch-BtF"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nTs-ih-L5P">
-                                <rect key="frame" x="188.5" y="339" width="37" height="37"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.001837693504" green="0.118063055" blue="0.255136162" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="fKy-jY-BKn" firstAttribute="leading" secondItem="VsA-DN-2AE" secondAttribute="leading" constant="20" id="5t8-qZ-1Pg"/>
+                            <constraint firstItem="VsA-DN-2AE" firstAttribute="trailing" secondItem="auf-D7-Tzu" secondAttribute="trailing" constant="20" id="6wF-It-M1B"/>
                             <constraint firstItem="vrf-Jn-kJ0" firstAttribute="centerX" secondItem="VsA-DN-2AE" secondAttribute="centerX" id="BDQ-bF-jnW"/>
-                            <constraint firstItem="38T-vE-h5J" firstAttribute="top" secondItem="bPp-a6-0hN" secondAttribute="bottom" constant="31" id="Hja-O3-w1K"/>
-                            <constraint firstItem="bPp-a6-0hN" firstAttribute="top" secondItem="eDV-DC-76t" secondAttribute="bottom" constant="37" id="Khw-Ee-JzT"/>
+                            <constraint firstItem="38T-vE-h5J" firstAttribute="top" secondItem="bPp-a6-0hN" secondAttribute="bottom" constant="30" id="Hja-O3-w1K"/>
+                            <constraint firstItem="bPp-a6-0hN" firstAttribute="top" secondItem="eDV-DC-76t" secondAttribute="bottom" constant="40" id="Khw-Ee-JzT"/>
                             <constraint firstItem="Otj-E5-bfc" firstAttribute="leading" secondItem="VsA-DN-2AE" secondAttribute="leading" constant="82" id="QZG-hG-ZFr"/>
                             <constraint firstItem="VsA-DN-2AE" firstAttribute="trailing" secondItem="38T-vE-h5J" secondAttribute="trailing" constant="20" id="S8j-AJ-kXZ"/>
                             <constraint firstItem="nTs-ih-L5P" firstAttribute="top" secondItem="Otj-E5-bfc" secondAttribute="bottom" constant="32" id="Uzk-eL-5Wm"/>
-                            <constraint firstItem="Otj-E5-bfc" firstAttribute="top" secondItem="38T-vE-h5J" secondAttribute="bottom" constant="23" id="a9l-5F-r4R"/>
+                            <constraint firstItem="fKy-jY-BKn" firstAttribute="top" secondItem="auf-D7-Tzu" secondAttribute="bottom" constant="30" id="VA6-CO-tHS"/>
+                            <constraint firstItem="auf-D7-Tzu" firstAttribute="leading" secondItem="VsA-DN-2AE" secondAttribute="leading" constant="20" id="VUP-WW-MC7"/>
                             <constraint firstItem="bPp-a6-0hN" firstAttribute="leading" secondItem="VsA-DN-2AE" secondAttribute="leading" constant="20" id="bRS-U0-SuJ"/>
                             <constraint firstItem="VsA-DN-2AE" firstAttribute="trailing" secondItem="Otj-E5-bfc" secondAttribute="trailing" constant="83" id="c2B-v3-c56"/>
                             <constraint firstItem="nTs-ih-L5P" firstAttribute="centerX" secondItem="VsA-DN-2AE" secondAttribute="centerX" id="g41-31-iC2"/>
                             <constraint firstItem="vrf-Jn-kJ0" firstAttribute="top" secondItem="VsA-DN-2AE" secondAttribute="top" constant="20" id="hff-pC-sjj"/>
+                            <constraint firstItem="Otj-E5-bfc" firstAttribute="top" secondItem="fKy-jY-BKn" secondAttribute="bottom" constant="20" id="kQf-hA-iRq"/>
                             <constraint firstItem="VsA-DN-2AE" firstAttribute="trailing" secondItem="bPp-a6-0hN" secondAttribute="trailing" constant="20" id="lYS-81-Z8M"/>
                             <constraint firstItem="38T-vE-h5J" firstAttribute="leading" secondItem="VsA-DN-2AE" secondAttribute="leading" constant="20" id="oX6-46-1tH"/>
+                            <constraint firstItem="auf-D7-Tzu" firstAttribute="top" secondItem="38T-vE-h5J" secondAttribute="bottom" constant="30" id="qoY-QC-QAl"/>
+                            <constraint firstItem="VsA-DN-2AE" firstAttribute="trailing" secondItem="fKy-jY-BKn" secondAttribute="trailing" constant="20" id="x0U-DT-a1D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VsA-DN-2AE"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="bPp-a6-0hN" id="j6S-W0-rlp"/>
-                        <outlet property="passwordTextField" destination="38T-vE-h5J" id="1iG-vM-Y0D"/>
+                        <outlet property="emailTextField" destination="auf-D7-Tzu" id="KBv-MX-5cY"/>
+                        <outlet property="firstNameTextField" destination="bPp-a6-0hN" id="0ar-lS-shW"/>
+                        <outlet property="lastNameTextField" destination="38T-vE-h5J" id="PAD-M6-ZnX"/>
+                        <outlet property="passwordTextField" destination="fKy-jY-BKn" id="5QU-Td-3PN"/>
                         <outlet property="spinner" destination="nTs-ih-L5P" id="lc8-Tc-uoA"/>
                     </connections>
                 </viewController>

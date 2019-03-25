@@ -16,25 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-        
-        let db = Firestore.firestore()
-        let settings = db.settings
-        db.settings = settings
-        
-        
-        if let _ = Auth.auth().currentUser {
-            let storyboard = UIStoryboard(name: Storyboard.listSelection, bundle: nil)
-            guard let listSelectionVC = storyboard.instantiateViewController(withIdentifier: StoryboardIDs.listSelection) as? ListSelectionViewController else { return false }
-            window?.rootViewController = listSelectionVC
-            window?.makeKeyAndVisible()
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let loginVC = storyboard.instantiateViewController(withIdentifier: StoryboardIDs.login) as? LoginViewController else { return false }
-            window?.rootViewController = loginVC
-            window?.makeKeyAndVisible()
-        }
-        
         return true
     }
 

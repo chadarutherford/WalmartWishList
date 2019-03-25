@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import Firebase
 
 class SignupViewController: UIViewController {
     
     // MARK: - Outlets
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -24,52 +25,7 @@ class SignupViewController: UIViewController {
     }
     
     // MARK: - Helper Methods
-    func showError(message: String) {
-        let alert = UIAlertController(title: "Login Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-    
-    func signUpUser(completion: @escaping (Bool, Error?) -> ()) {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
-            if let _ = result {
-                self?.loginUser { success, error in
-                    completion(true, nil)
-                }
-            } else {
-                guard let error = error else { return }
-                self?.showError(message: error.localizedDescription)
-                completion(false, error)
-            }
-        }
-    }
-    
-    func loginUser(completion: @escaping (Bool, Error?) -> ()) {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-            if let _ = result {
-                completion(true, nil)
-            } else {
-                guard let error = error else { return }
-                self?.showError(message: error.localizedDescription)
-                completion(false, error)
-            }
-        }
-    }
-    
     // MARK: - Actions
     @IBAction func signUpTapped(_ sender: UIButton) {
-        spinner.startAnimating()
-        signUpUser { [weak self] success, error in
-            if success {
-                let storyboard = UIStoryboard(name: Storyboard.listSelection, bundle: nil)
-                guard let listSelectionVC = storyboard.instantiateViewController(withIdentifier: StoryboardIDs.listSelection) as? ListSelectionViewController else { return }
-                self?.present(listSelectionVC, animated: true)
-                self?.spinner.stopAnimating()
-            }
-        }
     }
 }

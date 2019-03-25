@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import CodableFirebase
 
 final class ListItemViewController: UIViewController, ItemDelegate {
     
@@ -50,8 +48,6 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard let list = list else { return }
-        guard let docData = try? FirestoreEncoder().encode(list) else { return }
-        DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
         
     }
     
@@ -67,8 +63,6 @@ final class ListItemViewController: UIViewController, ItemDelegate {
             deletedItemPerson.items.remove(at: indexPath.row)
             self?.items?.remove(at: indexPath.row)
             deletedItemPerson.itemCount = deletedItemPerson.items.count
-            guard let docData = try? FirestoreEncoder().encode(deletedItemPerson) else { return }
-            DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
             self?.tableView.reloadData()
             completionHandler(true)
         }
@@ -81,8 +75,6 @@ final class ListItemViewController: UIViewController, ItemDelegate {
             guard let person = self?.selectedPerson else { return }
             guard let list = self?.list else { return }
             person.items[indexPath.row].isPurchased = !person.items[indexPath.row].isPurchased
-            guard let docData = try? FirestoreEncoder().encode(self?.selectedPerson) else { return }
-            DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
             self?.tableView.reloadRows(at: [indexPath], with: .automatic)
             completionHandler(true)
         }

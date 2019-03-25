@@ -103,6 +103,8 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
 
 extension ProductSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        products.removeAll(keepingCapacity: false)
+        collectionView.reloadData()
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.style = .whiteLarge
         activityIndicator.color = UIColor.darkGray
