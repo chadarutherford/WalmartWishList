@@ -10,10 +10,12 @@ import Foundation
 
 struct List: Codable {
     let title: String
-    let people: [Person]
+    var people: [Person]
+    var documentID: String
     
-    init(title: String, people: [Person]) {
+    init(title: String, people: [Person], documentID: String) {
         self.title = title
         self.people = people
+        self.documentID = documentID
     }
 }

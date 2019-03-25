@@ -38,6 +38,10 @@ class ListSelectionViewController: UIViewController {
                 var list: List
                 do {
                     list = try FirestoreDecoder().decode(List.self, from: data)
+                    list.documentID = change.document.documentID
+                    let list = List(title: list.title, people: list.people, documentID: list.documentID)
+                    guard let docData = try? FirestoreEncoder().encode(list) else { return }
+                    DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
                 } catch let error {
                     debugPrint(error.localizedDescription)
                     return
@@ -92,7 +96,7 @@ class ListSelectionViewController: UIViewController {
         alert.addTextField(configurationHandler: nil)
         alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] action in
             guard let text = alert.textFields?.first?.text else { return }
-            self?.list = List(title: text, people: [])
+            self?.list = List(title: text, people: [], documentID: "")
             let docData = try? FirebaseEncoder().encode(self?.list)
             DatabaseRefs.wishlists.addDocument(data: docData as! [String : Any]) { error in
                 if let error = error {
@@ -100,6 +104,7 @@ class ListSelectionViewController: UIViewController {
                 }
             }
         })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alert, animated: true)
     }
     

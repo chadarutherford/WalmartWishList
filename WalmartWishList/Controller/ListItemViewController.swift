@@ -18,12 +18,14 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     // MARK: - Properties
     private var items: [ItemObject]?
+    var list: List?
+    var index = 0
     var selectedPerson: Person? {
         didSet {
-            saveItemsFromDelegate()
             loadItems()
             guard let items = items else { return }
-            selectedPerson?.itemCount = items.count
+            list?.people[index].items = items
+            list?.people[index].itemCount = items.count
         }
     }
     var delegate: ItemDelegate?
@@ -47,21 +49,10 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let person = selectedPerson else { return }
-        let documentID = person.documentID
-        guard let docData = try? FirestoreEncoder().encode(selectedPerson) else { return }
-        Firestore.firestore().collection("List").document(documentID).updateData(docData)
-    }
-    
-    // MARK: - Helper Methods
-    private func saveItemsFromDelegate() {
-        guard let name = delegate?.item?.name else { return }
-        guard let price = delegate?.item?.salePrice else { return }
-        guard let productDescription = delegate?.item?.shortDescription else { return }
-        guard let image = delegate?.item?.largeImage else { return }
-        guard let available = delegate?.item?.availableOnline else { return }
-        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, largeImage: image, availableOnline: available, isPurchased: false)
-        tableView.reloadData()
+        guard let list = list else { return }
+        guard let docData = try? FirestoreEncoder().encode(list) else { return }
+        DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
+        
     }
     
     private func loadItems() {
@@ -71,13 +62,13 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
             guard let person = self?.selectedPerson else { return }
-            let documentID = person.documentID
+            guard let list = self?.list else { return }
             var deletedItemPerson = person
             deletedItemPerson.items.remove(at: indexPath.row)
             self?.items?.remove(at: indexPath.row)
             deletedItemPerson.itemCount = deletedItemPerson.items.count
             guard let docData = try? FirestoreEncoder().encode(deletedItemPerson) else { return }
-            Firestore.firestore().collection("List").document(documentID).updateData(docData)
+            DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
             self?.tableView.reloadData()
             completionHandler(true)
         }
@@ -88,10 +79,10 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     private func contextualCompleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Purchased") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
             guard let person = self?.selectedPerson else { return }
-            let documentID = person.documentID
+            guard let list = self?.list else { return }
             person.items[indexPath.row].isPurchased = !person.items[indexPath.row].isPurchased
             guard let docData = try? FirestoreEncoder().encode(self?.selectedPerson) else { return }
-            Firestore.firestore().collection("List").document(documentID).updateData(docData)
+            DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
             self?.tableView.reloadRows(at: [indexPath], with: .automatic)
             completionHandler(true)
         }

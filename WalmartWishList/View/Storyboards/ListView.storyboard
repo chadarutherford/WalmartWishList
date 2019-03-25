@@ -33,7 +33,7 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="Haj-gB-PsI" kind="presentation" identifier="addPerson" id="g6h-dd-EF1"/>
+                                            <action selector="addTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3rh-yq-45Z"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkc-T3-4rT">
@@ -154,6 +154,7 @@
                     <connections>
                         <outlet property="tableView" destination="hQb-3f-rxf" id="nkd-oA-b88"/>
                         <segue destination="eKH-tx-Zyt" kind="show" identifier="goToItems" id="xb9-aX-NgY"/>
+                        <segue destination="Haj-gB-PsI" kind="presentation" identifier="addPerson" id="V52-WJ-Mm3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,7 +167,7 @@
                 <viewControllerPlaceholder storyboardName="AddPerson" id="Haj-gB-PsI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2i-va-rG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="179"/>
+            <point key="canvasLocation" x="1275" y="173"/>
         </scene>
         <!--Items-->
         <scene sceneID="mou-fD-knx">

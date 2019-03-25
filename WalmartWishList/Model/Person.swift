@@ -9,7 +9,6 @@
 import Foundation
 
 struct Person: Codable {
-    var documentID = ""
     var name: String
     var image: String
     var itemCount: Int

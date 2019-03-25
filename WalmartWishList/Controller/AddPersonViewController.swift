@@ -23,17 +23,20 @@ final class AddPersonViewController: UIViewController {
     private var imagePicker = UIImagePickerController()
     private var imageData = Data()
     private var imageURL = ""
+    var list: List?
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImageButton.isHidden = false
         profileImageButton.isEnabled = true
+        popupView.layer.cornerRadius = 10
+        popupView.layer.masksToBounds = true
     }
     
     // MARK: - Helper Methods
     func storeImageAsUrl(name: String) {
-        let imageRef = Storage.storage().reference().child("/WishList/\(name)/userImages/\(name).jpg")
+        let imageRef = DatabaseRefs.photos.child("/WishList/\(name)/userImages/\(name).jpg")
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
@@ -56,12 +59,10 @@ final class AddPersonViewController: UIViewController {
     
     func uploadDocument(name: String, url: String) {
         let person = Person(name: name, image: url, itemCount: 0, items: [])
-        let docData = try! FirestoreEncoder().encode(person)
-        Firestore.firestore().collection("List").addDocument(data: docData) { error in
-            if let error = error {
-                debugPrint(error.localizedDescription)
-            }
-        }
+        list?.people.append(person)
+        let docData = try! FirestoreEncoder().encode(list)
+        guard let list = list else { return }
+        DatabaseRefs.wishlists.document(list.documentID).updateData(docData)
     }
     
     func displayAlert(title: String, message: String) {
