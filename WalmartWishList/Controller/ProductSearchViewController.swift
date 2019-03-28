@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductSearchViewController: UIViewController, ItemDelegate {
+class ProductSearchViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -18,6 +18,7 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
     var products = [ItemObject]()
     private var searchTerm = ""
     var item: ItemObject?
+    var dataController: DataController!
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -31,15 +32,27 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
     private func loadItems(completion: @escaping (Bool, Error?) -> ()) {
         let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(searchTerm)"
         guard let url = URL(string: searchURL) else { return }
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        URLSession.shared.dataTask(with: url) { [unowned self] data, response, error in
             guard let data = data else { return }
             do {
                 let itemInfo = try JSONDecoder().decode(ListItem.self, from: data)
                 for item in itemInfo.items {
+                    let context = self.dataController.viewContext
+                    let newItem = ItemObject(context: context)
+                    newItem.name = item.name
+                    newItem.salePrice = item.salePrice
+                    guard let url = URL(string: item.largeImage) else { return }
+                    guard let imageData = try? Data(contentsOf: url) else { return }
+                    let image = UIImage(data: imageData)
+                    newItem.largeImage = image?.jpegData(compressionQuality: 0.75)
+                    newItem.shortDesc = item.shortDescription
+                    newItem.availableOnline = item.availableOnline
+                    newItem.isPurchased = false
+                    self.products.append(newItem)
                 }
                 completion(true, nil)
                 DispatchQueue.main.async {
-                    self?.collectionView.reloadData()
+                    self.collectionView.reloadData()
                 }
             } catch let error {
                 completion(false, error)
@@ -55,6 +68,10 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
         present(alert, animated: true)
     }
     
+    private func item(at indexPath: IndexPath) -> ItemObject {
+        return products[indexPath.row]
+    }
+    
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
@@ -65,7 +82,8 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
         switch segue.identifier {
         case SegueConstant.detailSegue:
             guard let productDetailVC = segue.destination as? ProductDetailViewController else { return }
-            productDetailVC.delegate = self
+                productDetailVC.dataController = dataController
+                productDetailVC.item = item
         default:
             break
         }
@@ -86,11 +104,16 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstant.searchItemCell, for: indexPath) as? SearchItemCell else { return UICollectionViewCell() }
+        let item = products[indexPath.row]
+        guard let name = item.name else { return UICollectionViewCell() }
+        guard let imageData = item.largeImage else { return UICollectionViewCell() }
+        cell.configure(withImage: imageData, withName: name, withPrice: item.salePrice, withAvailability: item.availableOnline)
         return cell
     }
     
     // MARK: - CollectionView Delegate Methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        item = products[indexPath.row]
         performSegue(withIdentifier: SegueConstant.detailSegue, sender: self)
     }
 }

@@ -16,8 +16,8 @@ final class ItemsCell: UITableViewCell {
     @IBOutlet weak var itemPriceLabel: UILabel!
     @IBOutlet weak var itemAvailableLabel: UILabel!
     
-    func configure(withImage image: UIImage, withName name: String, withPrice price: Double, withAvailability availability: Bool) {
-        itemImageView.image = image
+    func configure(withImage imageData: Data, withName name: String, withPrice price: Double, withAvailability availability: Bool) {
+        itemImageView.image = UIImage(data: imageData)
         itemNameLabel.text = name
         itemPriceLabel.text = String(format: "$%.2f", price)
         itemAvailableLabel.text = "Available Online: \(availability ? "Yes" : "No")"

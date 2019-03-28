@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+import Seam3
 
 final class ListItemViewController: UIViewController {
     
@@ -33,20 +35,46 @@ final class ListItemViewController: UIViewController {
         if let person = person {
             pageTitleLabel.text = person.name
         }
+        loadData()
+        NotificationCenter.default.addObserver(forName: Notification.Name(rawValue:SMStoreNotification.SyncDidFinish), object: nil, queue: nil) { [unowned self] notification in
+            if notification.userInfo != nil {
+                self.dataController.smStore?.triggerSync(complete: true)
+            }
+            self.dataController.viewContext.refreshAllObjects()
+            DispatchQueue.main.async {
+                self.loadData()
+            }
+        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    // MARK: - Helper Methods
+    private func loadData() {
+        let fetchRequest = NSFetchRequest<ItemObject>(entityName: "ItemObject")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            items = result
+            tableView.reloadData()
+        }
     }
     
-    private func loadItems() {
+    private func item(at indexPath: IndexPath) -> ItemObject {
+        return items[indexPath.row]
     }
     
     private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
-            self?.items.remove(at: indexPath.row)
-            self?.tableView.reloadData()
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+            let itemToDelete = self.item(at: indexPath)
+            self.dataController.viewContext.delete(itemToDelete)
+            do {
+                try self.dataController.viewContext.save()
+            } catch {
+                let alert = UIAlertController(title: "Error", message: "There was a problem deleting your record: \(error.localizedDescription)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
+            self.items.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completionHandler(true)
         }
         action.backgroundColor = UIColor.red
@@ -54,8 +82,17 @@ final class ListItemViewController: UIViewController {
     }
     
     private func contextualCompleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "Purchased") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
-            self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+        let action = UIContextualAction(style: .normal, title: "Purchased") { [unowned self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+            let itemToCheck = self.item(at: indexPath)
+            itemToCheck.isPurchased = !itemToCheck.isPurchased
+            do {
+                try self.dataController.viewContext.save()
+            } catch {
+                let alert = UIAlertController(title: "Error", message: "There was a problem changing your record: \(error.localizedDescription)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
             completionHandler(true)
         }
         action.backgroundColor = UIColor.green
@@ -66,8 +103,22 @@ final class ListItemViewController: UIViewController {
     @IBAction private func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }
+    @IBAction func addTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: SegueConstant.searchSegue, sender: self)
+    }
     
     @IBAction private func unwindToListItemVC(_ segue: UIStoryboardSegue) {
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case SegueConstant.searchSegue:
+            guard let productSearchVC = segue.destination as? ProductSearchViewController else { return }
+            productSearchVC.dataController = dataController
+        default:
+            break
+        }
     }
 }
 
@@ -85,6 +136,10 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.itemsCell, for: indexPath) as? ItemsCell else { return UITableViewCell() }
+        let item = items[indexPath.row]
+        guard let name = item.name else { return UITableViewCell() }
+        guard let imageData = item.largeImage else { return UITableViewCell() }
+        cell.configure(withImage: imageData, withName: name, withPrice: item.salePrice, withAvailability: item.availableOnline)
         return cell
     }
     

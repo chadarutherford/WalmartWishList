@@ -53,7 +53,19 @@ final class ListViewViewController: UIViewController {
     }
     
     private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
+            let personToDelete = self.person(at: indexPath)
+            self.dataController.viewContext.delete(personToDelete)
+            do {
+                try self.dataController.viewContext.save()
+            } catch {
+                let alert = UIAlertController(title: "Error", message: "There was a problem deleting your record: \(error.localizedDescription)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
+            self.people.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
         }
         action.backgroundColor = UIColor.red
         return action

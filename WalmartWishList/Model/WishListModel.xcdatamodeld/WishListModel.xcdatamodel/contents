@@ -3,7 +3,7 @@
     <entity name="ItemObject" representedClassName=".ItemObject" syncable="YES" codeGenerationType="class">
         <attribute name="availableOnline" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isPurchased" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="largeImage" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="largeImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="salePrice" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="shortDesc" optional="YES" attributeType="String" syncable="YES"/>

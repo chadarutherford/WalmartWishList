@@ -8,11 +8,7 @@
 
 import UIKit
 
-protocol ItemDelegate {
-    var item: ItemObject? { get set }
-}
-
-final class ProductDetailViewController: UIViewController, ItemDelegate {
+final class ProductDetailViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var productImageView: UIImageView!
@@ -23,18 +19,27 @@ final class ProductDetailViewController: UIViewController, ItemDelegate {
     @IBOutlet weak var wishListButton: UIButton!
     
     // MARK: - Properties
-    var delegate: ItemDelegate?
     var item: ItemObject?
+    var dataController: DataController!
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadProduct()
     }
     
     // MARK: - Helper Methods
     private func loadProduct() {
+        guard let name = item?.name else { return }
+        guard let price = item?.salePrice else { return }
+        guard let productDescription = item?.shortDesc else { return }
+        guard let image = item?.largeImage else { return }
+        guard let available = item?.availableOnline else { return }
+        productImageView.image = UIImage(data: image)
+        productNameLabel.text = name
+        productPriceLabel.text = "Price: \(String(format: "$%.2f", price))"
+        productDescriptionTextView.text = "Description:\n \(productDescription)"
+        productAvailableLabel.text = "Available Online: \(available ? "Yes" : "No")"
     }
     
     // MARK: - Actions
