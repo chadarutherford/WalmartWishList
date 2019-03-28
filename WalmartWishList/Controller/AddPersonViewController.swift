@@ -69,7 +69,7 @@ extension AddPersonViewController: UIImagePickerControllerDelegate, UINavigation
                 }
             }
         case .restricted, .denied:
-            displayAlert(title: "Photo Library Access Error", message: "Please check settings and enable Photo Library acces")
+            break
         case .authorized:
             break
         default:

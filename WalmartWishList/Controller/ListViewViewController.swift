@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+import Seam3
 
 final class ListViewViewController: UIViewController {
     
@@ -14,7 +16,9 @@ final class ListViewViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
-    
+    var dataController: DataController!
+    var list: List!
+    var people = [Person]()
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -46,6 +50,12 @@ final class ListViewViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case SegueConstant.addPersonSegue:
+            guard let addPersonVC = segue.destination as? AddPersonViewController else { return }
+        default:
+            break
+        }
     }
 }
 
@@ -58,8 +68,7 @@ extension ListViewViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let list = list else { return 0 }
-        return 1
+        return people.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

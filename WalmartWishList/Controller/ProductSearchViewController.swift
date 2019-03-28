@@ -36,8 +36,6 @@ class ProductSearchViewController: UIViewController, ItemDelegate {
             do {
                 let itemInfo = try JSONDecoder().decode(ListItem.self, from: data)
                 for item in itemInfo.items {
-                    let newItem = ItemObject(name: item.name, salePrice: item.salePrice, shortDescription: item.shortDescription, largeImage: item.largeImage, availableOnline: item.availableOnline, isPurchased: false)
-                    self?.products.append(newItem)
                 }
                 completion(true, nil)
                 DispatchQueue.main.async {
@@ -88,15 +86,11 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstant.searchItemCell, for: indexPath) as? SearchItemCell else { return UICollectionViewCell() }
-        guard let url = URL(string: products[indexPath.item].largeImage) else { return UICollectionViewCell() }
-        guard let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) else { return UICollectionViewCell() }
-        cell.configure(withImage: image, withName: products[indexPath.item].name, withPrice: products[indexPath.item].salePrice, withAvailability: products[indexPath.item].availableOnline)
         return cell
     }
     
     // MARK: - CollectionView Delegate Methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        item = ItemObject(name: products[indexPath.item].name, salePrice: products[indexPath.item].salePrice, shortDescription: products[indexPath.item].shortDescription, largeImage: products[indexPath.item].largeImage, availableOnline: products[indexPath.item].availableOnline, isPurchased: false)
         performSegue(withIdentifier: SegueConstant.detailSegue, sender: self)
     }
 }

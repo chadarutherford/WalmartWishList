@@ -35,22 +35,6 @@ final class ProductDetailViewController: UIViewController, ItemDelegate {
     
     // MARK: - Helper Methods
     private func loadProduct() {
-        guard let name = delegate?.item?.name else { return }
-        guard let price = delegate?.item?.salePrice else { return }
-        guard let productDescription = delegate?.item?.shortDescription else { return }
-        guard let image = delegate?.item?.largeImage else { return }
-        guard let available = delegate?.item?.availableOnline else { return }
-        
-        guard let url = URL(string: image) else { return }
-        guard let imageData = try? Data(contentsOf: url) else { return }
-        
-        productImageView.image = UIImage(data: imageData)
-        productNameLabel.text = name
-        productPriceLabel.text = "Price: \(String(format: "$%.2f", price))"
-        productDescriptionTextView.text = "Description:\n \(productDescription)"
-        productAvailableLabel.text = "Available Online: \(available ? "Yes" : "No")"
-        
-        item = ItemObject(name: name, salePrice: price, shortDescription: productDescription, largeImage: image, availableOnline: available, isPurchased: false)
     }
     
     // MARK: - Actions
@@ -69,7 +53,6 @@ final class ProductDetailViewController: UIViewController, ItemDelegate {
             guard let itemsVC = segue.destination as? ListItemViewController else { return }
             itemsVC.delegate = self
             guard let item = item else { return }
-            itemsVC.selectedPerson?.items.append(item)
         default:
             break
         }

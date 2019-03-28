@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7x6-DK-0qJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7x6-DK-0qJ">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -49,21 +49,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lwj-2c-8EY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2F-d3-4VK">
-                                        <rect key="frame" x="18" y="44" width="60" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="E03-3P-5zi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Log Out">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logoutTapped:" destination="7x6-DK-0qJ" eventType="touchUpInside" id="YmY-6c-AtU"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walmart Wish List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSd-fP-wKg">
-                                        <rect key="frame" x="108" y="45" width="158" height="28"/>
+                                        <rect key="frame" x="128" y="45" width="158" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="158" id="fn0-wr-1PI"/>
                                         </constraints>
@@ -72,7 +59,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walmart_spark" translatesAutoresizingMaskIntoConstraints="NO" id="vjk-9k-sVq">
-                                        <rect key="frame" x="266" y="47" width="25" height="25"/>
+                                        <rect key="frame" x="286" y="47" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="2qJ-Cz-cf9"/>
                                             <constraint firstAttribute="height" constant="25" id="ABB-nV-pbS"/>
@@ -96,17 +83,14 @@
                                 <color key="backgroundColor" red="0.0058627240359999996" green="0.1180563048" blue="0.25512742999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="iSd-fP-wKg" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="45" id="5Uj-2p-VjQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="d2F-d3-4VK" secondAttribute="bottom" constant="16" id="6MK-7C-sKm"/>
+                                    <constraint firstItem="iSd-fP-wKg" firstAttribute="centerX" secondItem="Lwj-2c-8EY" secondAttribute="centerX" id="8Fr-wI-w0G"/>
                                     <constraint firstItem="YZ7-5l-rij" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="48" id="ETj-1v-nSd"/>
-                                    <constraint firstItem="iSd-fP-wKg" firstAttribute="leading" secondItem="d2F-d3-4VK" secondAttribute="trailing" constant="30" id="Eo7-ys-ORq"/>
-                                    <constraint firstItem="d2F-d3-4VK" firstAttribute="leading" secondItem="Lwj-2c-8EY" secondAttribute="leading" constant="18" id="FUR-wS-1MI"/>
                                     <constraint firstAttribute="bottom" secondItem="vjk-9k-sVq" secondAttribute="bottom" constant="18" id="HBT-zN-LxP"/>
                                     <constraint firstAttribute="trailing" secondItem="YZ7-5l-rij" secondAttribute="trailing" constant="20" id="Pks-d3-ePT"/>
                                     <constraint firstAttribute="height" constant="90" id="Wl6-mz-MkV"/>
                                     <constraint firstAttribute="bottom" secondItem="YZ7-5l-rij" secondAttribute="bottom" constant="20" id="aWJ-gO-Ld5"/>
                                     <constraint firstAttribute="bottom" secondItem="iSd-fP-wKg" secondAttribute="bottom" constant="17" id="gi8-Bt-NW5"/>
                                     <constraint firstItem="vjk-9k-sVq" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="47" id="hKn-SV-L1d"/>
-                                    <constraint firstItem="d2F-d3-4VK" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="44" id="kcL-6l-qcH"/>
                                     <constraint firstItem="vjk-9k-sVq" firstAttribute="leading" secondItem="iSd-fP-wKg" secondAttribute="trailing" id="neK-ot-l8O"/>
                                 </constraints>
                             </view>
@@ -126,11 +110,20 @@
                     <connections>
                         <outlet property="tableView" destination="ebM-Aa-Rg3" id="WhP-wU-dqB"/>
                         <segue destination="vzK-zF-jBd" kind="show" identifier="listSelected" id="5lW-Cy-flW"/>
+                        <segue destination="3uF-uq-sFg" kind="presentation" identifier="AddList" id="mx4-Hl-4m2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MAm-wk-dMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-123.18840579710145" y="198.88392857142856"/>
+        </scene>
+        <!--AddList-->
+        <scene sceneID="SL7-J8-ip8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddList" id="3uF-uq-sFg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kHm-UA-GSU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="386" y="31"/>
         </scene>
         <!--ListView-->
         <scene sceneID="LGq-UC-Arj">

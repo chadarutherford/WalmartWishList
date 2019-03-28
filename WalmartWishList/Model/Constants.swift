@@ -7,23 +7,12 @@
 //
 
 import Foundation
-import Firebase
 
 struct CellConstant {
     static let personCell = "PersonCell"
     static let searchItemCell = "SearchItemCell"
     static let itemsCell = "ItemsCell"
     static let listCell = "ListCell"
-}
-
-struct Storyboard {
-    static let listSelection = "ListSelection"
-    static let main = "Main"
-}
-
-struct StoryboardIDs {
-    static let login = "LoginVC"
-    static let listSelection = "ListSelectionVC"
 }
 
 struct SegueConstant {
@@ -36,6 +25,7 @@ struct SegueConstant {
     static let signedUp = "SignedUp"
     static let listSelected = "listSelected"
     static let logout = "logout"
+    static let addList = "AddList"
 }
 
 struct NetworkingConstants {
@@ -44,8 +34,6 @@ struct NetworkingConstants {
     static let finalUrl = "&query="
 }
 
-struct DatabaseRefs {
-    static let wishlists = Firestore.firestore().collection("WishLists")
-    static let users = Firestore.firestore().collection("Users")
-    static let photos = Storage.storage().reference()
+struct DatabaseConstants {
+    
 }

@@ -21,9 +21,6 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     var selectedPerson: Person? {
         didSet {
             loadItems()
-            guard let items = items else { return }
-            list?.people[index].items = items
-            list?.people[index].itemCount = items.count
         }
     }
     var delegate: ItemDelegate?
@@ -47,22 +44,15 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let list = list else { return }
         
     }
     
     private func loadItems() {
-        items = selectedPerson?.items
     }
     
     private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
-            guard let person = self?.selectedPerson else { return }
-            guard let list = self?.list else { return }
-            var deletedItemPerson = person
-            deletedItemPerson.items.remove(at: indexPath.row)
             self?.items?.remove(at: indexPath.row)
-            deletedItemPerson.itemCount = deletedItemPerson.items.count
             self?.tableView.reloadData()
             completionHandler(true)
         }
@@ -72,9 +62,6 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     private func contextualCompleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Purchased") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
-            guard let person = self?.selectedPerson else { return }
-            guard let list = self?.list else { return }
-            person.items[indexPath.row].isPurchased = !person.items[indexPath.row].isPurchased
             self?.tableView.reloadRows(at: [indexPath], with: .automatic)
             completionHandler(true)
         }
@@ -105,13 +92,6 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.itemsCell, for: indexPath) as? ItemsCell else { return UITableViewCell() }
-        if let item = items?[indexPath.row] {
-            guard let imageURL = URL(string: item.largeImage) else { return UITableViewCell() }
-            guard let imageData = try? Data(contentsOf: imageURL) else { return UITableViewCell() }
-            guard let image = UIImage(data: imageData) else { return UITableViewCell() }
-            cell.configure(withImage: image, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
-            cell.accessoryType = item.isPurchased ? .checkmark : .none
-        }
         return cell
     }
     

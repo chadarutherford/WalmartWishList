@@ -7,17 +7,30 @@
 //
 
 import UIKit
-import Firebase
+import CoreData
+import CloudKit
+import Seam3
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let dataController = DataController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let container = dataController.persistentContainer
+        let listSelectionVC = self.window?.rootViewController as! ListSelectionViewController
+        listSelectionVC.dataController = dataController
+        application.registerForRemoteNotifications()
+        dataController.smStore = container.persistentStoreCoordinator.persistentStores.first as? SMStore
+        dataController.validateCloudKitAndSync() { }
+        dataController.autoSaveViewContext()
         return true
     }
+    
+    
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -39,8 +52,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        dataController.saveContext()
     }
-
-
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Received push!")
+        dataController.smStore?.handlePush(userInfo: userInfo) { result in
+            completionHandler(result.uiBackgroundFetchResult)
+        }
+    }
 }
+
+
+
+
 
