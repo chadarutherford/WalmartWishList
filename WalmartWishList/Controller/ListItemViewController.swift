@@ -8,25 +8,18 @@
 
 import UIKit
 
-final class ListItemViewController: UIViewController, ItemDelegate {
+final class ListItemViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pageTitleLabel: UILabel!
     
     // MARK: - Properties
-    private var items: [ItemObject]?
-    var list: List?
-    var index = 0
-    var selectedPerson: Person? {
-        didSet {
-            loadItems()
-        }
-    }
-    var delegate: ItemDelegate?
+    var dataController: DataController!
+    var person: Person!
+    var items = [ItemObject]()
     
-    // MARK: - Item Delegate
-    var item: ItemObject?
+    
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -37,9 +30,9 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let name = selectedPerson?.name else { return }
-        pageTitleLabel.text = name
-        tableView.reloadData()
+        if let person = person {
+            pageTitleLabel.text = person.name
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,7 +45,7 @@ final class ListItemViewController: UIViewController, ItemDelegate {
     
     private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
-            self?.items?.remove(at: indexPath.row)
+            self?.items.remove(at: indexPath.row)
             self?.tableView.reloadData()
             completionHandler(true)
         }
@@ -87,7 +80,7 @@ extension ListItemViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items?.count ?? 1
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

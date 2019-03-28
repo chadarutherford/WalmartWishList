@@ -27,8 +27,29 @@ final class ListViewViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+        NotificationCenter.default.addObserver(forName: Notification.Name(SMStoreNotification.SyncDidFinish), object: nil, queue: nil) { [unowned self] notification in
+            if notification.userInfo != nil {
+                self.dataController.smStore?.triggerSync(complete: true)
+            }
+            self.dataController.viewContext.refreshAllObjects()
+            DispatchQueue.main.async {
+                self.loadData()
+            }
+        }
+    }
+    
+    // MARK: - Helper Methods
+    func loadData() {
+        let fetchRequest = NSFetchRequest<Person>(entityName: "Person")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            people = result
+            tableView.reloadData()
+        }
     }
     
     private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
@@ -36,6 +57,10 @@ final class ListViewViewController: UIViewController {
         }
         action.backgroundColor = UIColor.red
         return action
+    }
+    
+    func person(at indexPath: IndexPath) -> Person {
+        return people[indexPath.row]
     }
     
     // MARK: - Actions
@@ -53,6 +78,13 @@ final class ListViewViewController: UIViewController {
         switch segue.identifier {
         case SegueConstant.addPersonSegue:
             guard let addPersonVC = segue.destination as? AddPersonViewController else { return }
+            addPersonVC.dataController = dataController
+        case SegueConstant.itemsSegue:
+            guard let listItemVC = segue.destination as? ListItemViewController else { return }
+            if let indexPath = tableView.indexPathForSelectedRow {
+                listItemVC.dataController = dataController
+                listItemVC.person = person(at: indexPath)
+            }
         default:
             break
         }
@@ -73,6 +105,11 @@ extension ListViewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.personCell, for: indexPath) as? PersonCell else { return UITableViewCell() }
+        let person = people[indexPath.row]
+        guard let name = person.name else { return UITableViewCell() }
+        guard let count = person.items?.count else { return UITableViewCell() }
+        guard let imageData = person.image else { return UITableViewCell() }
+        cell.configure(withImage: imageData, withName: name, withItemCount: count)
         return cell
     }
     

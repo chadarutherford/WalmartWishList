@@ -51,7 +51,6 @@ final class ProductDetailViewController: UIViewController, ItemDelegate {
         switch segue.identifier {
         case SegueConstant.unwindToListItem:
             guard let itemsVC = segue.destination as? ListItemViewController else { return }
-            itemsVC.delegate = self
             guard let item = item else { return }
         default:
             break
