@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 import PhotosUI
 
-final class AddPersonViewController: UIViewController {
+final class AddPersonViewController: UIViewController, PersistentContainerRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var personImageView: UIImageView!
@@ -20,6 +21,7 @@ final class AddPersonViewController: UIViewController {
     // MARK: - Properties
     private var imagePicker = UIImagePickerController()
     private var imageData = Data()
+    var persistentContainer: NSPersistentContainer!
     var list: List!
     
     // MARK: - View Controller Life Cycle
@@ -42,7 +44,18 @@ final class AddPersonViewController: UIViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        guard let text = nameTextField.text else { return }
+        guard let name = nameTextField.text else { return }
+        let moc = persistentContainer.viewContext
+        moc.persist { [weak self] in
+            let person = Person.find(byName: name, orCreateIn: moc)
+            if person.name == nil || person.name?.isEmpty == true {
+                person.name = name
+            }
+            person.image = self?.imageData
+            let newPeople: Set<AnyHashable> = self?.list.people?.adding(person) ?? [person]
+            self?.list.people = NSSet(set: newPeople)
+        }
+        self.dismiss(animated: true)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {

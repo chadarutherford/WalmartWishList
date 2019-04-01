@@ -32,11 +32,16 @@
 		637E703621B846B5008A09D4 /* ItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E703521B846B5008A09D4 /* ItemsCell.swift */; };
 		6383C92821EFB4A900AC6FBA /* ProductSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6383C92721EFB4A900AC6FBA /* ProductSearch.storyboard */; };
 		6383C92A21EFB67000AC6FBA /* ProductSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383C92921EFB67000AC6FBA /* ProductSearchViewController.swift */; };
-		63A8A4EE224D1268001344CF /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A8A4ED224D1268001344CF /* DataController.swift */; };
 		63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */; };
 		63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9EB821B5D8BB00DF7E70 /* AppDelegate.swift */; };
 		63CA9EC021B5D8BC00DF7E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */; };
 		63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */; };
+		63E7DE9B225250FF00E086A9 /* NSManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DE9A225250FF00E086A9 /* NSManagedObjectContext.swift */; };
+		63E7DE9D225251F200E086A9 /* NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DE9C225251F200E086A9 /* NSPersistentContainer.swift */; };
+		63E7DEA02252559800E086A9 /* AddListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DE9F2252559800E086A9 /* AddListDelegate.swift */; };
+		63E7DEA422525E8400E086A9 /* PersistentContainerRequiring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DEA322525E8400E086A9 /* PersistentContainerRequiring.swift */; };
+		63E7DEA922526DB400E086A9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DEA822526DB400E086A9 /* Person.swift */; };
+		63E7DEAB225298AC00E086A9 /* ItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7DEAA225298AC00E086A9 /* ItemObject.swift */; };
 		63F678EA2245460000DF066F /* ListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F678E92245460000DF066F /* ListSelectionViewController.swift */; };
 		63F678EC2245508700DF066F /* ListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F678EB2245508700DF066F /* ListView.storyboard */; };
 		63F678EE224550D300DF066F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F678ED224550D300DF066F /* Main.storyboard */; };
@@ -69,13 +74,18 @@
 		637E703521B846B5008A09D4 /* ItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCell.swift; sourceTree = "<group>"; };
 		6383C92721EFB4A900AC6FBA /* ProductSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductSearch.storyboard; sourceTree = "<group>"; };
 		6383C92921EFB67000AC6FBA /* ProductSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchViewController.swift; sourceTree = "<group>"; };
-		63A8A4ED224D1268001344CF /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		63C0A81B21B70EFA00DF0156 /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
 		63CA9EB521B5D8BB00DF7E70 /* WalmartWishList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalmartWishList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63CA9EB821B5D8BB00DF7E70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63CA9EC221B5D8BC00DF7E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63CA9EC421B5D8BC00DF7E70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63E7DE9A225250FF00E086A9 /* NSManagedObjectContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContext.swift; sourceTree = "<group>"; };
+		63E7DE9C225251F200E086A9 /* NSPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentContainer.swift; sourceTree = "<group>"; };
+		63E7DE9F2252559800E086A9 /* AddListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListDelegate.swift; sourceTree = "<group>"; };
+		63E7DEA322525E8400E086A9 /* PersistentContainerRequiring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerRequiring.swift; sourceTree = "<group>"; };
+		63E7DEA822526DB400E086A9 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		63E7DEAA225298AC00E086A9 /* ItemObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemObject.swift; sourceTree = "<group>"; };
 		63F678E92245460000DF066F /* ListSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewController.swift; sourceTree = "<group>"; };
 		63F678EB2245508700DF066F /* ListView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListView.storyboard; sourceTree = "<group>"; };
 		63F678ED224550D300DF066F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -148,6 +158,8 @@
 				63CA9ECE21B5D91D00DF7E70 /* Model */,
 				63CA9ECD21B5D91600DF7E70 /* View */,
 				63CA9ECC21B5D90D00DF7E70 /* Controller */,
+				63E7DE99225250DD00E086A9 /* Extensions */,
+				63E7DE9E2252558100E086A9 /* Protocols */,
 				63CA9ECA21B5D8C500DF7E70 /* Supporting Files */,
 			);
 			path = WalmartWishList;
@@ -206,13 +218,40 @@
 		63CA9ECE21B5D91D00DF7E70 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63E7DEA722526D9B00E086A9 /* NSManagedObjectExtensions */,
 				630BFEFC21B6B17700D30DE2 /* Constants.swift */,
 				630BFF0021B6B2C200D30DE2 /* ListItem.swift */,
 				637C1341224CE9BC006EEFF8 /* WishListModel.xcdatamodeld */,
-				63A8A4ED224D1268001344CF /* DataController.swift */,
 				633DBF8A224E3C55004F79BF /* SearchItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		63E7DE99225250DD00E086A9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				63E7DE9A225250FF00E086A9 /* NSManagedObjectContext.swift */,
+				63E7DE9C225251F200E086A9 /* NSPersistentContainer.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		63E7DE9E2252558100E086A9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				63E7DE9F2252559800E086A9 /* AddListDelegate.swift */,
+				63E7DEA322525E8400E086A9 /* PersistentContainerRequiring.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		63E7DEA722526D9B00E086A9 /* NSManagedObjectExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				63E7DEA822526DB400E086A9 /* Person.swift */,
+				63E7DEAA225298AC00E086A9 /* ItemObject.swift */,
+			);
+			path = NSManagedObjectExtensions;
 			sourceTree = "<group>";
 		};
 		A6CF1BF64C31441CA9681612 /* Frameworks */ = {
@@ -318,17 +357,22 @@
 				637E703621B846B5008A09D4 /* ItemsCell.swift in Sources */,
 				637C1343224CE9BC006EEFF8 /* WishListModel.xcdatamodeld in Sources */,
 				6383C92A21EFB67000AC6FBA /* ProductSearchViewController.swift in Sources */,
+				63E7DEAB225298AC00E086A9 /* ItemObject.swift in Sources */,
+				63E7DEA922526DB400E086A9 /* Person.swift in Sources */,
 				634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */,
+				63E7DEA02252559800E086A9 /* AddListDelegate.swift in Sources */,
 				6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */,
 				63305A92224BB26000D4CF59 /* AddListViewController.swift in Sources */,
 				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
+				63E7DE9B225250FF00E086A9 /* NSManagedObjectContext.swift in Sources */,
 				630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */,
-				63A8A4EE224D1268001344CF /* DataController.swift in Sources */,
 				63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */,
+				63E7DEA422525E8400E086A9 /* PersistentContainerRequiring.swift in Sources */,
 				634F641E21EFA4BB00F2F360 /* ListItemViewController.swift in Sources */,
 				633DBF8B224E3C55004F79BF /* SearchItem.swift in Sources */,
 				630BFEFB21B6B05600D30DE2 /* ListViewViewController.swift in Sources */,
 				6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */,
+				63E7DE9D225251F200E086A9 /* NSPersistentContainer.swift in Sources */,
 				630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */,
 				63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */,
 				63F678EA2245460000DF066F /* ListSelectionViewController.swift in Sources */,

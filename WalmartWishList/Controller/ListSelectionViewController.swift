@@ -9,34 +9,45 @@
 import UIKit
 import CoreData
 
-class ListSelectionViewController: UIViewController {
+class ListSelectionViewController: UIViewController, AddListDelegate, PersistentContainerRequiring {
+    
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
-    
     // MARK: - Properties
-    var lists = [List]()
-    var listTitle: String?
+    var fetchedResultsController: NSFetchedResultsController<List>?
+    var persistentContainer: NSPersistentContainer!
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let moc = persistentContainer.viewContext
+        let request = NSFetchRequest<List>(entityName: "List")
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController?.delegate = self
+        do {
+            try fetchedResultsController?.performFetch()
+        } catch {
+            let alert = UIAlertController(title: "Error", message: "The request to load existing records failed.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // AddListDelegate Methods
+    func saveList(withTitle title: String) {
+        let moc = persistentContainer.viewContext
+        moc.persist {
+            let list = List(context: moc)
+            list.title = title
+        }
     }
     
     // MARK: - Helper Methods
-    func loadData() {
-    }
-    
-    func list(at indexPath: IndexPath) -> List {
-        return lists[indexPath.row]
-    }
-    
 //    private func prepareToShare(share: CKShare, record: CKRecord) {
 //        let sharingViewController = UICloudSharingController { (UICloudSharingController, handler: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
 //            let modRecordsList = CKModifyRecordsOperation(recordsToSave: [record, share], recordIDsToDelete: nil)
@@ -60,8 +71,13 @@ class ListSelectionViewController: UIViewController {
         switch segue.identifier {
         case SegueConstant.addList:
             guard let addListVC = segue.destination as? AddListViewController else { return }
+            addListVC.delegate = self
         case SegueConstant.listSelected:
             guard let listViewVC = segue.destination as? ListViewViewController else { return }
+            guard let selectedIndex = tableView.indexPathForSelectedRow else { return }
+            guard let list = fetchedResultsController?.object(at: selectedIndex) else { return }
+            listViewVC.persistentContainer = persistentContainer
+            listViewVC.list = list
         default:
             break
         }
@@ -74,16 +90,19 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return fetchedResultsController?.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.listCell, for: indexPath)
+        guard let list = fetchedResultsController?.object(at: indexPath) else { return UITableViewCell() }
+        cell.textLabel?.text = list.title
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: SegueConstant.listSelected, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -96,6 +115,10 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
+        persistentContainer.viewContext.persist { [weak self] in
+            guard let objectToDelete = self?.fetchedResultsController?.object(at: indexPath) else { return }
+            self?.persistentContainer.viewContext.delete(objectToDelete)
+        }
     }
 }
 
@@ -109,4 +132,33 @@ extension ListSelectionViewController: UICloudSharingControllerDelegate {
     }
     
     
+}
+
+extension ListSelectionViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            guard let insertIndex = newIndexPath else { return }
+            tableView.insertRows(at: [insertIndex], with: .automatic)
+        case .delete:
+            guard let deleteIndex = indexPath else { return }
+            tableView.deleteRows(at: [deleteIndex], with: .automatic)
+        case .move:
+            guard let fromIndex = indexPath, let toIndex = newIndexPath else { return }
+            tableView.moveRow(at: fromIndex, to: toIndex)
+        case .update:
+            guard let updateIndex = indexPath else { return }
+            tableView.reloadRows(at: [updateIndex], with: .automatic)
+        @unknown default:
+            break
+        }
+    }
 }

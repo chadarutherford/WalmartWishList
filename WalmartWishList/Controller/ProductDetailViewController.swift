@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-final class ProductDetailViewController: UIViewController {
+final class ProductDetailViewController: UIViewController, PersistentContainerRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var productImageView: UIImageView!
@@ -20,7 +21,9 @@ final class ProductDetailViewController: UIViewController {
     
     // MARK: - Properties
     var person: Person!
+    var persistentContainer: NSPersistentContainer!
     var item: SearchItem?
+    var newItem: ItemObject?
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -32,18 +35,18 @@ final class ProductDetailViewController: UIViewController {
     private func loadProduct() {
         guard let name = item?.name else { return }
         guard let price = item?.salePrice else { return }
-        guard let productDescription = item?.shortDesc else { return }
+        guard let productDescription = item?.shortDesc.removingPercentEncoding else { return }
         guard let image = item?.largeImage else { return }
         guard let available = item?.availableOnline else { return }
-        let context = dataController.viewContext
-        let newItem = ItemObject(context: context)
-        newItem.name = name
-        newItem.salePrice = price
-        newItem.largeImage = image
-        newItem.shortDesc = productDescription
-        newItem.availableOnline = available
-        newItem.isPurchased = false
-        newItem.person = person
+        let context = persistentContainer.viewContext
+        newItem = ItemObject(context: context)
+        newItem?.name = name
+        newItem?.salePrice = price
+        newItem?.largeImage = image
+        newItem?.shortDesc = productDescription
+        newItem?.availableOnline = available
+        newItem?.isPurchased = false
+        newItem?.person = person
         productImageView.image = UIImage(data: image)
         productNameLabel.text = name
         productPriceLabel.text = "Price: \(String(format: "$%.2f", price))"
@@ -53,6 +56,14 @@ final class ProductDetailViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func wishListButtonTapped(_ sender: UIButton) {
+        let moc = persistentContainer.viewContext
+        moc.persist {
+            var item = ItemObject.find(byName: self.newItem?.name ?? "", orCreateIn: moc)
+            item = self.newItem ?? ItemObject(context: moc)
+            
+            let newItems: Set<AnyHashable> = self.person.items?.adding(item) ?? [item]
+            self.person.items = NSSet(set: newItems)
+        }
         performSegue(withIdentifier: SegueConstant.unwindToListItem, sender: self)
     }
     

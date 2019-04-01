@@ -17,7 +17,9 @@ final class SearchItemCell: UICollectionViewCell {
     @IBOutlet weak var productAvailableLabel: UILabel!
     
     func configure(withImage imageData: Data, withName name: String, withPrice price: Double, withAvailability availability: Bool) {
-        productImageView.image = UIImage(data: imageData)
+        DispatchQueue.main.async { [weak self] in
+            self?.productImageView.image = UIImage(data: imageData)
+        }
         productNameLabel.text = name
         productPriceLabel.text = "Price: \(String(format: "$%.2f", price))"
         productAvailableLabel.text = "Available Online: \(availability ? "Yes" : "No")"

@@ -1,5 +1,5 @@
 //
-//  ListSelectionViewController.swift
+//  ListViewViewController.swift
 //  WalmartWishList
 //
 //  Created by Chad Rutherford on 12/4/18.
@@ -9,14 +9,15 @@
 import UIKit
 import CoreData
 
-final class ListViewViewController: UIViewController {
+final class ListViewViewController: UIViewController, PersistentContainerRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
+    var persistentContainer: NSPersistentContainer!
+    var fetchedResultsController: NSFetchedResultsController<Person>?
     var list: List!
-    var people = [Person]()
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -27,23 +28,20 @@ final class ListViewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
-    }
-    
-    // MARK: - Helper Methods
-    func loadData() {
-    }
-    
-    private func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> ()) in
-            
+        let moc = persistentContainer.viewContext
+        let request = NSFetchRequest<Person>(entityName: "Person")
+        let predicate = NSPredicate(format: "list == %@", list)
+        request.predicate = predicate
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController?.delegate = self
+        do {
+            try fetchedResultsController?.performFetch()
+        } catch {
+            let alert = UIAlertController(title: "Error", message: "The request to load existing records failed.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
         }
-        action.backgroundColor = UIColor.red
-        return action
-    }
-    
-    func person(at indexPath: IndexPath) -> Person {
-        return people[indexPath.row]
     }
     
     // MARK: - Actions
@@ -61,8 +59,14 @@ final class ListViewViewController: UIViewController {
         switch segue.identifier {
         case SegueConstant.addPersonSegue:
             guard let addPersonVC = segue.destination as? AddPersonViewController else { return }
+            addPersonVC.persistentContainer = persistentContainer
+            addPersonVC.list = list
         case SegueConstant.itemsSegue:
-            guard let listItemVC = segue.destination as? ListItemViewController else { return }        default:
+            guard let listItemVC = segue.destination as? ListItemViewController else { return }
+            listItemVC.persistentContainer = persistentContainer
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            listItemVC.person = fetchedResultsController?.object(at: indexPath)
+        default:
             break
         }
     }
@@ -77,11 +81,15 @@ extension ListViewViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return fetchedResultsController?.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.personCell, for: indexPath) as? PersonCell else { return UITableViewCell() }
+        guard let person = fetchedResultsController?.object(at: indexPath) else { return UITableViewCell() }
+        guard let imageData = person.image else { return UITableViewCell() }
+        guard let name = person.name else { return UITableViewCell() }
+        cell.configure(withImage: imageData, withName: name, withItemCount: Int(person.itemCount))
         return cell
     }
     
@@ -91,9 +99,44 @@ extension ListViewViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = contextualDeleteAction(forRowAtIndexPath: indexPath)
-        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
-        return swipeConfig
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        persistentContainer.viewContext.persist { [weak self] in
+            guard let personToDelete = self?.fetchedResultsController?.object(at: indexPath) else { return }
+            self?.persistentContainer.viewContext.delete(personToDelete)
+        }
+    }
+}
+
+extension ListViewViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            guard let insertIndex = newIndexPath else { return }
+            tableView.insertRows(at: [insertIndex], with: .automatic)
+        case .delete:
+            guard let deleteIndex = indexPath else { return }
+            tableView.deleteRows(at: [deleteIndex], with: .automatic)
+        case .move:
+            guard let fromIndex = indexPath, let toIndex = newIndexPath else { return }
+            tableView.moveRow(at: fromIndex, to: toIndex)
+        case .update:
+            guard let updateIndex = indexPath else { return }
+            tableView.reloadRows(at: [updateIndex], with: .automatic)
+        @unknown default:
+            break
+        }
     }
 }

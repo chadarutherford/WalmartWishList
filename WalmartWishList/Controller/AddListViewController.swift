@@ -14,6 +14,8 @@ class AddListViewController: UIViewController {
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     
+    var delegate: AddListDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         popupView.layer.cornerRadius = 10
@@ -21,10 +23,13 @@ class AddListViewController: UIViewController {
     }
     
     @IBAction func saveTapped(sender: UIButton) {
-        guard let text = titleTextField.text else { return }
+        guard let title = titleTextField.text else { return }
+        delegate?.saveList(withTitle: title)
+        self.dismiss(animated: true)
+        
     }
     
     @IBAction func cancel(sender: UIButton) {
-        dismiss(animated: true)
+        self.dismiss(animated: true)
     }
 }

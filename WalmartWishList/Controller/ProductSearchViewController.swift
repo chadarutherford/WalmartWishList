@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
-class ProductSearchViewController: UIViewController {
+class ProductSearchViewController: UIViewController, PersistentContainerRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Properties
+    var persistentContainer: NSPersistentContainer!
     var person: Person!
     var products = [SearchItem]()
     private var searchTerm = ""
@@ -30,7 +32,8 @@ class ProductSearchViewController: UIViewController {
     
     // MARK: - Helper Methods
     private func loadItems(completion: @escaping (Bool, Error?) -> ()) {
-        let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(searchTerm)"
+        guard let query = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(query)"
         guard let url = URL(string: searchURL) else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let data = data else { return }
@@ -39,10 +42,12 @@ class ProductSearchViewController: UIViewController {
                 for item in itemInfo.items {
                     guard let url = URL(string: item.largeImage) else { return }
                     guard let imageData = try? Data(contentsOf: url) else { return }
-                    let image = UIImage(data: imageData)
-                    guard let newImageData = image?.jpegData(compressionQuality: 0.75) else { return }
-                    let newItem = SearchItem(name: item.name, salePrice: item.salePrice, largeImage: newImageData, shortDesc: item.shortDescription, availableOnline: item.availableOnline, isPurchased: false)
-                    self?.products.append(newItem)
+                    DispatchQueue.main.async {
+                        let image = UIImage(data: imageData)
+                        guard let newImageData = image?.jpegData(compressionQuality: 0.75) else { return }
+                        let newItem = SearchItem(name: item.name, salePrice: item.salePrice, largeImage: newImageData, shortDesc: item.shortDescription, availableOnline: item.availableOnline, isPurchased: false)
+                        self?.products.append(newItem)
+                    }
                 }
                 completion(true, nil)
                 DispatchQueue.main.async {
@@ -62,10 +67,6 @@ class ProductSearchViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    private func item(at indexPath: IndexPath) -> SearchItem {
-        return products[indexPath.item]
-    }
-    
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
@@ -78,6 +79,7 @@ class ProductSearchViewController: UIViewController {
             guard let productDetailVC = segue.destination as? ProductDetailViewController else { return }
             productDetailVC.person = person
             productDetailVC.item = passedItem
+            productDetailVC.persistentContainer = persistentContainer
         default:
             break
         }
@@ -122,7 +124,7 @@ extension ProductSearchViewController: UISearchBarDelegate {
         collectionView.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         guard let text = searchBar.text else { return }
-        searchTerm = text.replacingOccurrences(of: " ", with: "%20").lowercased()
+        searchTerm = text
         searchBar.resignFirstResponder()
         loadItems { [weak self] success, error in
             if success {
