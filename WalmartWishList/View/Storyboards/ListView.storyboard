@@ -50,7 +50,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walmart Wish List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnn-zc-u48">
-                                        <rect key="frame" x="108" y="45" width="158" height="28"/>
+                                        <rect key="frame" x="128" y="45" width="158" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="158" id="JDA-VV-87x"/>
                                         </constraints>
@@ -59,7 +59,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walmart_spark" translatesAutoresizingMaskIntoConstraints="NO" id="FAp-fR-tU6">
-                                        <rect key="frame" x="266" y="47" width="25" height="25"/>
+                                        <rect key="frame" x="286" y="47" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="4ax-Ov-xkp"/>
                                             <constraint firstAttribute="height" constant="25" id="AXJ-TU-n4h"/>
@@ -69,10 +69,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0058627240359783173" green="0.11805630475282669" blue="0.2551274299621582" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="lnn-zc-u48" firstAttribute="centerX" secondItem="Y2l-s3-5Ns" secondAttribute="centerX" id="28Q-nB-S39"/>
                                     <constraint firstAttribute="bottom" secondItem="lkc-T3-4rT" secondAttribute="bottom" constant="16" id="3Cg-la-hUL"/>
                                     <constraint firstItem="FAp-fR-tU6" firstAttribute="top" secondItem="Y2l-s3-5Ns" secondAttribute="top" constant="47" id="Acc-Gk-yCF"/>
                                     <constraint firstItem="FAp-fR-tU6" firstAttribute="leading" secondItem="lnn-zc-u48" secondAttribute="trailing" id="EoB-Pf-wiw"/>
-                                    <constraint firstItem="lnn-zc-u48" firstAttribute="leading" secondItem="lkc-T3-4rT" secondAttribute="trailing" constant="30" id="Fow-gl-rSu"/>
                                     <constraint firstItem="lkc-T3-4rT" firstAttribute="leading" secondItem="Y2l-s3-5Ns" secondAttribute="leading" constant="18" id="H5T-Oa-T8l"/>
                                     <constraint firstAttribute="bottom" secondItem="FAp-fR-tU6" secondAttribute="bottom" constant="18" id="JGB-VV-klo"/>
                                     <constraint firstItem="lnn-zc-u48" firstAttribute="top" secondItem="Y2l-s3-5Ns" secondAttribute="top" constant="45" id="Si4-ye-niS"/>

@@ -13,6 +13,7 @@
 		630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFF0221B6D52600D30DE2 /* PersonCell.swift */; };
 		63305A90224BA9B400D4CF59 /* AddList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63305A8F224BA9B400D4CF59 /* AddList.storyboard */; };
 		63305A92224BB26000D4CF59 /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63305A91224BB26000D4CF59 /* AddListViewController.swift */; };
+		633DBF8B224E3C55004F79BF /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633DBF8A224E3C55004F79BF /* SearchItem.swift */; };
 		6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */; };
 		6344A0F521EFD27B006EB97C /* ProductDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */; };
 		6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F921EFE4FB006EB97C /* RoundedButton.swift */; };
@@ -36,11 +37,9 @@
 		63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA9EB821B5D8BB00DF7E70 /* AppDelegate.swift */; };
 		63CA9EC021B5D8BC00DF7E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */; };
 		63CA9EC321B5D8BC00DF7E70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63CA9EC121B5D8BC00DF7E70 /* LaunchScreen.storyboard */; };
-		63CEEC48224A9AC700453527 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC47224A9AC700453527 /* DatabaseHelper.swift */; };
 		63F678EA2245460000DF066F /* ListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F678E92245460000DF066F /* ListSelectionViewController.swift */; };
 		63F678EC2245508700DF066F /* ListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F678EB2245508700DF066F /* ListView.storyboard */; };
 		63F678EE224550D300DF066F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F678ED224550D300DF066F /* Main.storyboard */; };
-		CC4DD3302751C651B9A2A3AD /* Pods_WalmartWishList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56D9AE61B6C21AB564DA68B /* Pods_WalmartWishList.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +50,7 @@
 		630D798122495CD000A08CBD /* WalmartWishList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WalmartWishList.entitlements; sourceTree = "<group>"; };
 		63305A8F224BA9B400D4CF59 /* AddList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddList.storyboard; sourceTree = "<group>"; };
 		63305A91224BB26000D4CF59 /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
+		633DBF8A224E3C55004F79BF /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductDetail.storyboard; sourceTree = "<group>"; };
 		6344A0F921EFE4FB006EB97C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -76,13 +76,9 @@
 		63CA9EBF21B5D8BC00DF7E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63CA9EC221B5D8BC00DF7E70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63CA9EC421B5D8BC00DF7E70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63CEEC47224A9AC700453527 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		63F678E92245460000DF066F /* ListSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewController.swift; sourceTree = "<group>"; };
 		63F678EB2245508700DF066F /* ListView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListView.storyboard; sourceTree = "<group>"; };
 		63F678ED224550D300DF066F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		961EBE5E0670439BB0E1CFEA /* Pods-WalmartWishList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalmartWishList.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList.release.xcconfig"; sourceTree = "<group>"; };
-		D16C2BB2F972E619846471C1 /* Pods-WalmartWishList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalmartWishList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList.debug.xcconfig"; sourceTree = "<group>"; };
-		E56D9AE61B6C21AB564DA68B /* Pods_WalmartWishList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalmartWishList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +87,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				637D09CB22495DBF009422BA /* CloudKit.framework in Frameworks */,
-				CC4DD3302751C651B9A2A3AD /* Pods_WalmartWishList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +130,6 @@
 				63CA9EB721B5D8BB00DF7E70 /* WalmartWishList */,
 				63CA9EB621B5D8BB00DF7E70 /* Products */,
 				A6CF1BF64C31441CA9681612 /* Frameworks */,
-				A18DC066F7F9F63F959D1DD4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,27 +208,17 @@
 			children = (
 				630BFEFC21B6B17700D30DE2 /* Constants.swift */,
 				630BFF0021B6B2C200D30DE2 /* ListItem.swift */,
-				63CEEC47224A9AC700453527 /* DatabaseHelper.swift */,
 				637C1341224CE9BC006EEFF8 /* WishListModel.xcdatamodeld */,
 				63A8A4ED224D1268001344CF /* DataController.swift */,
+				633DBF8A224E3C55004F79BF /* SearchItem.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		A18DC066F7F9F63F959D1DD4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D16C2BB2F972E619846471C1 /* Pods-WalmartWishList.debug.xcconfig */,
-				961EBE5E0670439BB0E1CFEA /* Pods-WalmartWishList.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		A6CF1BF64C31441CA9681612 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				637D09CA22495DBF009422BA /* CloudKit.framework */,
-				E56D9AE61B6C21AB564DA68B /* Pods_WalmartWishList.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,11 +230,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63CA9EC721B5D8BC00DF7E70 /* Build configuration list for PBXNativeTarget "WalmartWishList" */;
 			buildPhases = (
-				147C00DED450270B3FF2278C /* [CP] Check Pods Manifest.lock */,
 				63CA9EB121B5D8BB00DF7E70 /* Sources */,
 				63CA9EB221B5D8BB00DF7E70 /* Frameworks */,
 				63CA9EB321B5D8BB00DF7E70 /* Resources */,
-				71BFB085A7940C1B81B3D95A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -328,45 +310,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		147C00DED450270B3FF2278C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WalmartWishList-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		71BFB085A7940C1B81B3D95A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Seam3/Seam3.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Seam3.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalmartWishList/Pods-WalmartWishList-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		63CA9EB121B5D8BB00DF7E70 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -380,10 +323,10 @@
 				63305A92224BB26000D4CF59 /* AddListViewController.swift in Sources */,
 				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
 				630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */,
-				63CEEC48224A9AC700453527 /* DatabaseHelper.swift in Sources */,
 				63A8A4EE224D1268001344CF /* DataController.swift in Sources */,
 				63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */,
 				634F641E21EFA4BB00F2F360 /* ListItemViewController.swift in Sources */,
+				633DBF8B224E3C55004F79BF /* SearchItem.swift in Sources */,
 				630BFEFB21B6B05600D30DE2 /* ListViewViewController.swift in Sources */,
 				6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */,
 				630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */,
@@ -524,7 +467,6 @@
 		};
 		63CA9EC821B5D8BC00DF7E70 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D16C2BB2F972E619846471C1 /* Pods-WalmartWishList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WalmartWishList/WalmartWishList.entitlements;
@@ -544,7 +486,6 @@
 		};
 		63CA9EC921B5D8BC00DF7E70 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 961EBE5E0670439BB0E1CFEA /* Pods-WalmartWishList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WalmartWishList/WalmartWishList.entitlements;

@@ -20,7 +20,7 @@ final class AddPersonViewController: UIViewController {
     // MARK: - Properties
     private var imagePicker = UIImagePickerController()
     private var imageData = Data()
-    var dataController: DataController!
+    var list: List!
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -43,18 +43,6 @@ final class AddPersonViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         guard let text = nameTextField.text else { return }
-        let context = dataController.viewContext
-        let newPerson = Person(context: context)
-        newPerson.name = text
-        newPerson.image = personImageView.image?.jpegData(compressionQuality: 0.75)
-        do {
-            try context.save()
-        } catch {
-            let alert = UIAlertController(title: "Error", message: "There was an error creating a person: \(error.localizedDescription)", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alert, animated: true)
-        }
-        self.dismiss(animated: true)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {

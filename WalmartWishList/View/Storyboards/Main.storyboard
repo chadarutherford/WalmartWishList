@@ -27,15 +27,15 @@
                                 <rect key="frame" x="0.0" y="90" width="414" height="772"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListCell" textLabel="Phj-uK-dTA" style="IBUITableViewCellStyleDefault" id="SyC-FX-I37">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListCell" textLabel="Phj-uK-dTA" style="IBUITableViewCellStyleDefault" id="SyC-FX-I37">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SyC-FX-I37" id="K25-nv-z6N">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Phj-uK-dTA">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="322" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -83,7 +83,6 @@
                                 <color key="backgroundColor" red="0.0058627240359999996" green="0.1180563048" blue="0.25512742999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="iSd-fP-wKg" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="45" id="5Uj-2p-VjQ"/>
-                                    <constraint firstItem="iSd-fP-wKg" firstAttribute="centerX" secondItem="Lwj-2c-8EY" secondAttribute="centerX" id="8Fr-wI-w0G"/>
                                     <constraint firstItem="YZ7-5l-rij" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="48" id="ETj-1v-nSd"/>
                                     <constraint firstAttribute="bottom" secondItem="vjk-9k-sVq" secondAttribute="bottom" constant="18" id="HBT-zN-LxP"/>
                                     <constraint firstAttribute="trailing" secondItem="YZ7-5l-rij" secondAttribute="trailing" constant="20" id="Pks-d3-ePT"/>
@@ -92,6 +91,7 @@
                                     <constraint firstAttribute="bottom" secondItem="iSd-fP-wKg" secondAttribute="bottom" constant="17" id="gi8-Bt-NW5"/>
                                     <constraint firstItem="vjk-9k-sVq" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="47" id="hKn-SV-L1d"/>
                                     <constraint firstItem="vjk-9k-sVq" firstAttribute="leading" secondItem="iSd-fP-wKg" secondAttribute="trailing" id="neK-ot-l8O"/>
+                                    <constraint firstItem="iSd-fP-wKg" firstAttribute="centerX" secondItem="Lwj-2c-8EY" secondAttribute="centerX" id="xla-0I-eC4"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -15,10 +15,10 @@ class ProductSearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Properties
-    var products = [ItemObject]()
+    var person: Person!
+    var products = [SearchItem]()
     private var searchTerm = ""
-    var item: ItemObject?
-    var dataController: DataController!
+    var passedItem: SearchItem?
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -32,27 +32,21 @@ class ProductSearchViewController: UIViewController {
     private func loadItems(completion: @escaping (Bool, Error?) -> ()) {
         let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(searchTerm)"
         guard let url = URL(string: searchURL) else { return }
-        URLSession.shared.dataTask(with: url) { [unowned self] data, response, error in
+        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let data = data else { return }
             do {
                 let itemInfo = try JSONDecoder().decode(ListItem.self, from: data)
                 for item in itemInfo.items {
-                    let context = self.dataController.viewContext
-                    let newItem = ItemObject(context: context)
-                    newItem.name = item.name
-                    newItem.salePrice = item.salePrice
                     guard let url = URL(string: item.largeImage) else { return }
                     guard let imageData = try? Data(contentsOf: url) else { return }
                     let image = UIImage(data: imageData)
-                    newItem.largeImage = image?.jpegData(compressionQuality: 0.75)
-                    newItem.shortDesc = item.shortDescription
-                    newItem.availableOnline = item.availableOnline
-                    newItem.isPurchased = false
-                    self.products.append(newItem)
+                    guard let newImageData = image?.jpegData(compressionQuality: 0.75) else { return }
+                    let newItem = SearchItem(name: item.name, salePrice: item.salePrice, largeImage: newImageData, shortDesc: item.shortDescription, availableOnline: item.availableOnline, isPurchased: false)
+                    self?.products.append(newItem)
                 }
                 completion(true, nil)
                 DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                    self?.collectionView.reloadData()
                 }
             } catch let error {
                 completion(false, error)
@@ -68,8 +62,8 @@ class ProductSearchViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    private func item(at indexPath: IndexPath) -> ItemObject {
-        return products[indexPath.row]
+    private func item(at indexPath: IndexPath) -> SearchItem {
+        return products[indexPath.item]
     }
     
     // MARK: - Actions
@@ -82,8 +76,8 @@ class ProductSearchViewController: UIViewController {
         switch segue.identifier {
         case SegueConstant.detailSegue:
             guard let productDetailVC = segue.destination as? ProductDetailViewController else { return }
-                productDetailVC.dataController = dataController
-                productDetailVC.item = item
+            productDetailVC.person = person
+            productDetailVC.item = passedItem
         default:
             break
         }
@@ -105,15 +99,13 @@ extension ProductSearchViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstant.searchItemCell, for: indexPath) as? SearchItemCell else { return UICollectionViewCell() }
         let item = products[indexPath.row]
-        guard let name = item.name else { return UICollectionViewCell() }
-        guard let imageData = item.largeImage else { return UICollectionViewCell() }
-        cell.configure(withImage: imageData, withName: name, withPrice: item.salePrice, withAvailability: item.availableOnline)
+        cell.configure(withImage: item.largeImage, withName: item.name, withPrice: item.salePrice, withAvailability: item.availableOnline)
         return cell
     }
     
     // MARK: - CollectionView Delegate Methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        item = products[indexPath.row]
+        passedItem = products[indexPath.row]
         performSegue(withIdentifier: SegueConstant.detailSegue, sender: self)
     }
 }

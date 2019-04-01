@@ -19,8 +19,8 @@ final class ProductDetailViewController: UIViewController {
     @IBOutlet weak var wishListButton: UIButton!
     
     // MARK: - Properties
-    var item: ItemObject?
-    var dataController: DataController!
+    var person: Person!
+    var item: SearchItem?
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -35,6 +35,15 @@ final class ProductDetailViewController: UIViewController {
         guard let productDescription = item?.shortDesc else { return }
         guard let image = item?.largeImage else { return }
         guard let available = item?.availableOnline else { return }
+        let context = dataController.viewContext
+        let newItem = ItemObject(context: context)
+        newItem.name = name
+        newItem.salePrice = price
+        newItem.largeImage = image
+        newItem.shortDesc = productDescription
+        newItem.availableOnline = available
+        newItem.isPurchased = false
+        newItem.person = person
         productImageView.image = UIImage(data: image)
         productNameLabel.text = name
         productPriceLabel.text = "Price: \(String(format: "$%.2f", price))"
@@ -49,17 +58,6 @@ final class ProductDetailViewController: UIViewController {
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)
-    }
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case SegueConstant.unwindToListItem:
-            guard let itemsVC = segue.destination as? ListItemViewController else { return }
-            guard let item = item else { return }
-        default:
-            break
-        }
     }
 }
 
