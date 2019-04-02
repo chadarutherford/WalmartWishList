@@ -17,6 +17,11 @@
 		6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */; };
 		6344A0F521EFD27B006EB97C /* ProductDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */; };
 		6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344A0F921EFE4FB006EB97C /* RoundedButton.swift */; };
+		6346284B225371E2009E7E37 /* CloudStoreRequiring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346284A225371E2009E7E37 /* CloudStoreRequiring.swift */; };
+		6346284D22537212009E7E37 /* CloudStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346284C22537211009E7E37 /* CloudStore.swift */; };
+		6346284F225373AC009E7E37 /* CKRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346284E225373AC009E7E37 /* CKRecord.swift */; };
+		6346285122537409009E7E37 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346285022537409009E7E37 /* UserDefaults.swift */; };
+		63462853225387A9009E7E37 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63462852225387A9009E7E37 /* List.swift */; };
 		634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634ADB7221B85B5400175B28 /* SearchItemCell.swift */; };
 		634AE74E21B5DE2600281FE4 /* Bogle-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */; };
 		634AE74F21B5DE2600281FE4 /* Bogle-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */; };
@@ -59,6 +64,11 @@
 		6344A0F221EFCF6A006EB97C /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		6344A0F421EFD27B006EB97C /* ProductDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductDetail.storyboard; sourceTree = "<group>"; };
 		6344A0F921EFE4FB006EB97C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		6346284A225371E2009E7E37 /* CloudStoreRequiring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStoreRequiring.swift; sourceTree = "<group>"; };
+		6346284C22537211009E7E37 /* CloudStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStore.swift; sourceTree = "<group>"; };
+		6346284E225373AC009E7E37 /* CKRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKRecord.swift; sourceTree = "<group>"; };
+		6346285022537409009E7E37 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		63462852225387A9009E7E37 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		634ADB7221B85B5400175B28 /* SearchItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
 		634AE74821B5DE2500281FE4 /* Bogle-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-Bold.otf"; sourceTree = "<group>"; };
 		634AE74921B5DE2500281FE4 /* Bogle-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bogle-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -223,6 +233,7 @@
 				630BFF0021B6B2C200D30DE2 /* ListItem.swift */,
 				637C1341224CE9BC006EEFF8 /* WishListModel.xcdatamodeld */,
 				633DBF8A224E3C55004F79BF /* SearchItem.swift */,
+				6346284C22537211009E7E37 /* CloudStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,6 +243,8 @@
 			children = (
 				63E7DE9A225250FF00E086A9 /* NSManagedObjectContext.swift */,
 				63E7DE9C225251F200E086A9 /* NSPersistentContainer.swift */,
+				6346284E225373AC009E7E37 /* CKRecord.swift */,
+				6346285022537409009E7E37 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -241,6 +254,7 @@
 			children = (
 				63E7DE9F2252559800E086A9 /* AddListDelegate.swift */,
 				63E7DEA322525E8400E086A9 /* PersistentContainerRequiring.swift */,
+				6346284A225371E2009E7E37 /* CloudStoreRequiring.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -250,6 +264,7 @@
 			children = (
 				63E7DEA822526DB400E086A9 /* Person.swift */,
 				63E7DEAA225298AC00E086A9 /* ItemObject.swift */,
+				63462852225387A9009E7E37 /* List.swift */,
 			);
 			path = NSManagedObjectExtensions;
 			sourceTree = "<group>";
@@ -358,6 +373,7 @@
 				637C1343224CE9BC006EEFF8 /* WishListModel.xcdatamodeld in Sources */,
 				6383C92A21EFB67000AC6FBA /* ProductSearchViewController.swift in Sources */,
 				63E7DEAB225298AC00E086A9 /* ItemObject.swift in Sources */,
+				6346285122537409009E7E37 /* UserDefaults.swift in Sources */,
 				63E7DEA922526DB400E086A9 /* Person.swift in Sources */,
 				634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */,
 				63E7DEA02252559800E086A9 /* AddListDelegate.swift in Sources */,
@@ -365,17 +381,21 @@
 				63305A92224BB26000D4CF59 /* AddListViewController.swift in Sources */,
 				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
 				63E7DE9B225250FF00E086A9 /* NSManagedObjectContext.swift in Sources */,
+				6346284F225373AC009E7E37 /* CKRecord.swift in Sources */,
 				630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */,
 				63CA9EB921B5D8BB00DF7E70 /* AppDelegate.swift in Sources */,
 				63E7DEA422525E8400E086A9 /* PersistentContainerRequiring.swift in Sources */,
 				634F641E21EFA4BB00F2F360 /* ListItemViewController.swift in Sources */,
+				63462853225387A9009E7E37 /* List.swift in Sources */,
 				633DBF8B224E3C55004F79BF /* SearchItem.swift in Sources */,
 				630BFEFB21B6B05600D30DE2 /* ListViewViewController.swift in Sources */,
 				6344A0FA21EFE4FB006EB97C /* RoundedButton.swift in Sources */,
 				63E7DE9D225251F200E086A9 /* NSPersistentContainer.swift in Sources */,
+				6346284B225371E2009E7E37 /* CloudStoreRequiring.swift in Sources */,
 				630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */,
 				63C0A81C21B70EFA00DF0156 /* AddPersonViewController.swift in Sources */,
 				63F678EA2245460000DF066F /* ListSelectionViewController.swift in Sources */,
+				6346284D22537212009E7E37 /* CloudStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

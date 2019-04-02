@@ -61,5 +61,7 @@
 	<string>Walmart Wish List needs to access your photos to save pictures</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Walmart Wish List needs to access your photos to save pictures</string>
+	<key>CKSharingSupported</key>
+	<true/>
 </dict>
 </plist>

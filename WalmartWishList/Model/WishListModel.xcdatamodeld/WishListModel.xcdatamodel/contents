@@ -2,27 +2,33 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18E205e" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ItemObject" representedClassName=".ItemObject" syncable="YES" codeGenerationType="class">
         <attribute name="availableOnline" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="cloudKitData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="isPurchased" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="largeImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="salePrice" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="shortDesc" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="items" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="List" representedClassName=".List" syncable="YES" codeGenerationType="class">
+        <attribute name="cloudKitData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="people" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Person" inverseName="list" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName=".Person" syncable="YES" codeGenerationType="class">
+        <attribute name="cloudKitData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="itemCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ItemObject" inverseName="person" inverseEntity="ItemObject" syncable="YES"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="people" inverseEntity="List" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ItemObject" positionX="466.7265625" positionY="28.703125" width="128" height="150"/>
-        <element name="List" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="Person" positionX="225" positionY="54" width="128" height="120"/>
+        <element name="ItemObject" positionX="466.7265625" positionY="28.703125" width="128" height="180"/>
+        <element name="List" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Person" positionX="225" positionY="54" width="128" height="150"/>
     </elements>
 </model>

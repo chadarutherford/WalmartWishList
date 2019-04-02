@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
-final class ListViewViewController: UIViewController, PersistentContainerRequiring {
+final class ListViewViewController: UIViewController, PersistentContainerRequiring, CloudStoreRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Properties
     var persistentContainer: NSPersistentContainer!
+    var cloudStore: CloudStore!
     var fetchedResultsController: NSFetchedResultsController<Person>?
     var list: List!
     
@@ -61,11 +62,13 @@ final class ListViewViewController: UIViewController, PersistentContainerRequiri
             guard let addPersonVC = segue.destination as? AddPersonViewController else { return }
             addPersonVC.persistentContainer = persistentContainer
             addPersonVC.list = list
+            addPersonVC.cloudStore = cloudStore
         case SegueConstant.itemsSegue:
             guard let listItemVC = segue.destination as? ListItemViewController else { return }
             listItemVC.persistentContainer = persistentContainer
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             listItemVC.person = fetchedResultsController?.object(at: indexPath)
+            listItemVC.cloudStore = cloudStore
         default:
             break
         }

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import PhotosUI
 
-final class AddPersonViewController: UIViewController, PersistentContainerRequiring {
+final class AddPersonViewController: UIViewController, PersistentContainerRequiring, CloudStoreRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var personImageView: UIImageView!
@@ -22,6 +22,7 @@ final class AddPersonViewController: UIViewController, PersistentContainerRequir
     private var imagePicker = UIImagePickerController()
     private var imageData = Data()
     var persistentContainer: NSPersistentContainer!
+    var cloudStore: CloudStore!
     var list: List!
     
     // MARK: - View Controller Life Cycle
@@ -50,10 +51,15 @@ final class AddPersonViewController: UIViewController, PersistentContainerRequir
             let person = Person.find(byName: name, orCreateIn: moc)
             if person.name == nil || person.name?.isEmpty == true {
                 person.name = name
+                person.recordName = UUID().uuidString
             }
             person.image = self?.imageData
             let newPeople: Set<AnyHashable> = self?.list.people?.adding(person) ?? [person]
             self?.list.people = NSSet(set: newPeople)
+            
+            self?.cloudStore.storePerson(person) { _ in
+                // no action
+            }
         }
         self.dismiss(animated: true)
     }

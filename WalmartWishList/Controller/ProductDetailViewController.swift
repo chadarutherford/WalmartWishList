@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-final class ProductDetailViewController: UIViewController, PersistentContainerRequiring {
+final class ProductDetailViewController: UIViewController, PersistentContainerRequiring, CloudStoreRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var productImageView: UIImageView!
@@ -22,6 +22,7 @@ final class ProductDetailViewController: UIViewController, PersistentContainerRe
     // MARK: - Properties
     var person: Person!
     var persistentContainer: NSPersistentContainer!
+    var cloudStore: CloudStore!
     var item: SearchItem?
     var newItem: ItemObject?
     
@@ -41,6 +42,7 @@ final class ProductDetailViewController: UIViewController, PersistentContainerRe
         let context = persistentContainer.viewContext
         newItem = ItemObject(context: context)
         newItem?.name = name
+        newItem?.recordName = UUID().uuidString
         newItem?.salePrice = price
         newItem?.largeImage = image
         newItem?.shortDesc = productDescription
@@ -63,6 +65,10 @@ final class ProductDetailViewController: UIViewController, PersistentContainerRe
             
             let newItems: Set<AnyHashable> = self.person.items?.adding(item) ?? [item]
             self.person.items = NSSet(set: newItems)
+            
+            self.cloudStore.storePerson(self.person) { _ in
+                
+            }
         }
         performSegue(withIdentifier: SegueConstant.unwindToListItem, sender: self)
     }

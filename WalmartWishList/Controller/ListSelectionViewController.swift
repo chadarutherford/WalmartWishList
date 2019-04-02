@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import CloudKit
 
-class ListSelectionViewController: UIViewController, AddListDelegate, PersistentContainerRequiring {
+class ListSelectionViewController: UIViewController, AddListDelegate, PersistentContainerRequiring, CloudStoreRequiring {
     
     
     // MARK: - Outlets
@@ -17,6 +18,9 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
     // MARK: - Properties
     var fetchedResultsController: NSFetchedResultsController<List>?
     var persistentContainer: NSPersistentContainer!
+    var cloudStore: CloudStore!
+    var listName: String?
+    var shareList: CKRecord?
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -44,22 +48,56 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
         moc.persist {
             let list = List(context: moc)
             list.title = title
+            list.recordName = UUID().uuidString
+            
+            self.cloudStore.storeList(list) { _ in
+                // no action
+            }
         }
     }
     
     // MARK: - Helper Methods
-//    private func prepareToShare(share: CKShare, record: CKRecord) {
-//        let sharingViewController = UICloudSharingController { (UICloudSharingController, handler: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
-//            let modRecordsList = CKModifyRecordsOperation(recordsToSave: [record, share], recordIDsToDelete: nil)
-//            modRecordsList.modifyRecordsCompletionBlock = { record, recordID, error in
-//                handler(share, CKContainer.default(), error)
-//            }
-//            CKContainer.default().privateCloudDatabase.add(modRecordsList)
-//        }
-//        sharingViewController.delegate = self
-//        sharingViewController.availablePermissions = [.allowReadWrite, .allowPrivate]
-//        present(sharingViewController, animated: true)
-//    }
+    private func prepareToShare(share: CKShare, record: CKRecord) {
+        let sharingViewController = UICloudSharingController { [weak self] (UICloudSharingController, handler: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
+            let modRecordsList = CKModifyRecordsOperation(recordsToSave: [record, share], recordIDsToDelete: nil)
+            modRecordsList.modifyRecordsCompletionBlock = { record, recordID, error in
+                handler(share, CKContainer.default(), error)
+            }
+            self?.cloudStore.privateDatabase.add(modRecordsList)
+        }
+        sharingViewController.delegate = self
+        sharingViewController.availablePermissions = [.allowReadWrite, .allowPrivate]
+        present(sharingViewController, animated: true)
+    }
+    
+    func fetchShare(_ cloudKitShareMetadata: CKShare.Metadata) {
+        let operation = CKFetchRecordsOperation(
+            recordIDs: [cloudKitShareMetadata.rootRecordID])
+        
+        operation.perRecordCompletionBlock = { record, _, error in
+            
+            if error != nil {
+                print("Error: \(error?.localizedDescription ?? "")")
+            }
+            
+            if let shareRecord = record {
+                DispatchQueue.main.async() {
+                    print("\(shareRecord["people"])")
+                }
+            }
+        }
+        
+        operation.fetchRecordsCompletionBlock = { (recordsWithRecordIDs,error) in
+            if error != nil {
+                print("Error: \(error?.localizedDescription ?? "")")
+            }else {
+                if let recordsWithRecordIDs = recordsWithRecordIDs {
+                    print("Count \(recordsWithRecordIDs.count)")
+                }
+            }
+        }
+        CKContainer.default().sharedCloudDatabase.add(operation)
+    }
     
     // MARK: - Actions
     @IBAction func addTapped(_ sender: UIButton) {
@@ -77,6 +115,7 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
             guard let selectedIndex = tableView.indexPathForSelectedRow else { return }
             guard let list = fetchedResultsController?.object(at: selectedIndex) else { return }
             listViewVC.persistentContainer = persistentContainer
+            listViewVC.cloudStore = cloudStore
             listViewVC.list = list
         default:
             break
@@ -110,7 +149,21 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let defaultZoneId = CKRecordZone.ID(zoneName: "listsZone", ownerName: CKCurrentUserDefaultName)
+        guard let listToShare = fetchedResultsController?.object(at: indexPath).recordForZone(defaultZoneId) else { return }
+        let share = CKShare(rootRecord: listToShare)
         
+        
+        
+        if let listName = listToShare.object(forKey: "title") as? String {
+            self.listName = listToShare.object(forKey: "title") as? String
+            share[CKShare.SystemFieldKey.title] = "Sharing \(listName)" as CKRecordValue?
+        } else {
+            share[CKShare.SystemFieldKey.title] = "" as CKRecordValue?
+            self.listName = "list"
+        }
+        share[CKShare.SystemFieldKey.shareType] = "com.chadarutherford.WalmartWishList" as CKRecordValue
+        prepareToShare(share: share, record: listToShare)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -123,15 +176,21 @@ extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 extension ListSelectionViewController: UICloudSharingControllerDelegate {
+    func cloudSharingControllerDidSaveShare(_ csc: UICloudSharingController) {
+        print("Saved Successfully")
+    }
+    
     func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error) {
-        
+        print("Failed to save: \(error.localizedDescription)")
     }
     
     func itemTitle(for csc: UICloudSharingController) -> String? {
-        return ""
+        return self.listName
     }
     
-    
+    func itemThumbnailData(for csc: UICloudSharingController) -> Data? {
+        return nil
+    }
 }
 
 extension ListSelectionViewController: NSFetchedResultsControllerDelegate {

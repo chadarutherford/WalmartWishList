@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ProductSearchViewController: UIViewController, PersistentContainerRequiring {
+class ProductSearchViewController: UIViewController, PersistentContainerRequiring, CloudStoreRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -17,6 +17,7 @@ class ProductSearchViewController: UIViewController, PersistentContainerRequirin
     
     // MARK: - Properties
     var persistentContainer: NSPersistentContainer!
+    var cloudStore: CloudStore!
     var person: Person!
     var products = [SearchItem]()
     private var searchTerm = ""
@@ -80,6 +81,7 @@ class ProductSearchViewController: UIViewController, PersistentContainerRequirin
             productDetailVC.person = person
             productDetailVC.item = passedItem
             productDetailVC.persistentContainer = persistentContainer
+            productDetailVC.cloudStore = cloudStore
         default:
             break
         }

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-final class ListItemViewController: UIViewController, PersistentContainerRequiring {
+final class ListItemViewController: UIViewController, PersistentContainerRequiring, CloudStoreRequiring {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -19,6 +19,7 @@ final class ListItemViewController: UIViewController, PersistentContainerRequiri
     var person: Person!
     var fetchedResultsController: NSFetchedResultsController<ItemObject>?
     var persistentContainer: NSPersistentContainer!
+    var cloudStore: CloudStore!
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -98,6 +99,7 @@ final class ListItemViewController: UIViewController, PersistentContainerRequiri
             guard let productSearchVC = segue.destination as? ProductSearchViewController else { return }
             productSearchVC.persistentContainer = persistentContainer
             productSearchVC.person = person
+            productSearchVC.cloudStore = cloudStore
         default:
             break
         }
