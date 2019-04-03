@@ -31,7 +31,9 @@ struct SegueConstant {
 struct NetworkingConstants {
     static let baseURL = "https://api.walmartlabs.com/v1/search?"
     static let apiKey = "apiKey=5cjczkw7a8ghwxduvgwrhk4v"
+    static let format = "&format=json"
     static let finalUrl = "&query="
+    static let responseGroup = "&responseGroup=full"
 }
 
 struct DatabaseConstants {

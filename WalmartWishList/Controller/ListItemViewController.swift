@@ -63,6 +63,7 @@ final class ListItemViewController: UIViewController, PersistentContainerRequiri
             self?.persistentContainer.viewContext.persist {
                 guard let itemToDelete = self?.fetchedResultsController?.object(at: indexPath) else { return }
                 self?.persistentContainer.viewContext.delete(itemToDelete)
+                self?.person.itemCount -= 1
             }
             completionHandler(true)
         }
@@ -76,6 +77,7 @@ final class ListItemViewController: UIViewController, PersistentContainerRequiri
                 guard let itemToCheck = self?.fetchedResultsController?.object(at: indexPath) else { return }
                 itemToCheck.isPurchased = !itemToCheck.isPurchased
             }
+            completionHandler(true)
         }
         action.backgroundColor = UIColor.green
         return action

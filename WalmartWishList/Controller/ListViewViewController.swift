@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CloudKit
 
 final class ListViewViewController: UIViewController, PersistentContainerRequiring, CloudStoreRequiring {
     
@@ -19,6 +20,7 @@ final class ListViewViewController: UIViewController, PersistentContainerRequiri
     var cloudStore: CloudStore!
     var fetchedResultsController: NSFetchedResultsController<Person>?
     var list: List!
+    var metaData: CKShare.Metadata!
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -84,15 +86,26 @@ extension ListViewViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController?.fetchedObjects?.count ?? 0
+        guard let count = list.people?.count else { return 0 }
+        return fetchedResultsController?.fetchedObjects?.count ?? count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.personCell, for: indexPath) as? PersonCell else { return UITableViewCell() }
-        guard let person = fetchedResultsController?.object(at: indexPath) else { return UITableViewCell() }
-        guard let imageData = person.image else { return UITableViewCell() }
-        guard let name = person.name else { return UITableViewCell() }
-        cell.configure(withImage: imageData, withName: name, withItemCount: Int(person.itemCount))
+        guard let count = fetchedResultsController?.fetchedObjects?.count else { return UITableViewCell() }
+        if count > 0 {
+            guard let person = fetchedResultsController?.object(at: indexPath) else { return UITableViewCell() }
+            guard let imageData = person.image else { return UITableViewCell() }
+            guard let name = person.name else { return UITableViewCell() }
+            cell.configure(withImage: imageData, withName: name, withItemCount: Int(person.itemCount))
+        } else {
+            guard let people = list.people else { return UITableViewCell() }
+            let peopleArray = Array(people as! Set<Person>)
+            let person = peopleArray[indexPath.row]
+            guard let imageData = person.image else { return UITableViewCell() }
+            guard let name = person.name else { return UITableViewCell() }
+            cell.configure(withImage: imageData, withName: name, withItemCount: Int(person.itemCount))
+        }
         return cell
     }
     

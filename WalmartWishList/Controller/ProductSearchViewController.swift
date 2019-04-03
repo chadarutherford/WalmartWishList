@@ -33,8 +33,9 @@ class ProductSearchViewController: UIViewController, PersistentContainerRequirin
     
     // MARK: - Helper Methods
     private func loadItems(completion: @escaping (Bool, Error?) -> ()) {
-        guard let query = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        guard let query = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)?.lowercased() else { return }
         let searchURL = "\(NetworkingConstants.baseURL)\(NetworkingConstants.apiKey)\(NetworkingConstants.finalUrl)\(query)"
+        print(searchURL)
         guard let url = URL(string: searchURL) else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let data = data else { return }
@@ -55,7 +56,8 @@ class ProductSearchViewController: UIViewController, PersistentContainerRequirin
                     self?.collectionView.reloadData()
                 }
             } catch let error {
-                completion(false, error)
+                debugPrint(error.localizedDescription)
+//                completion(false, error)
             }
         }.resume()
     }

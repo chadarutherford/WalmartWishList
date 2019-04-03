@@ -18,6 +18,11 @@ class CloudStore {
         set { UserDefaults.standard.set(newValue, forKey: "CloudStore.isSubscribedToDatabase") }
     }
     
+    var isSubscribedToSharedDatabase: Bool {
+        get { return UserDefaults.standard.bool(forKey: "CloudStore.isSubscribedToSharedDatabase") }
+        set { UserDefaults.standard.set(newValue, forKey: "CloudStore.isSubscribedToSharedDatabase") }
+    }
+    
     var privateDatabaseChangeToken: CKServerChangeToken? {
         get { return UserDefaults.standard.serverChangeToken(forKey: "CloudStore.privateDatabaseChangeToken") }
         set { UserDefaults.standard.set(newValue, forKey: "CloudStore.privateDatabaseChangeToken") }
@@ -55,6 +60,29 @@ extension CloudStore {
         }
         privateDatabase.add(operation)
     }
+    
+    func subscribeToSharedDatabase(_ completion: @escaping (Error?) -> ()) {
+        guard isSubscribedToSharedDatabase == false else {
+            completion(nil)
+            return
+        }
+        
+        let notificationInfo = CKSubscription.NotificationInfo()
+        notificationInfo.shouldSendContentAvailable = true
+        
+        let subscription = CKDatabaseSubscription(subscriptionID: "shared-changes")
+        subscription.notificationInfo = notificationInfo
+        
+        let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: [])
+        
+        operation.modifySubscriptionsCompletionBlock = { [unowned self] subscriptions, subscriptionIds, error in
+            if error == nil {
+                self.isSubscribedToSharedDatabase = true
+            }
+            completion(error)
+        }
+        CKContainer.default().sharedCloudDatabase.add(operation)
+    }
 }
 
 extension CloudStore {
@@ -69,6 +97,8 @@ extension CloudStore {
                     completionHandler(.failed)
                 }
             }
+        } else if notification.subscriptionID == "shared-changes" {
+            
         }
     }
 }

@@ -21,6 +21,7 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
     var cloudStore: CloudStore!
     var listName: String?
     var shareList: CKRecord?
+    var metaData: CKShare.Metadata?
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
             self.present(alert, animated: true)
         }
     }
+    
     
     // AddListDelegate Methods
     func saveList(withTitle title: String) {
@@ -71,32 +73,45 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
     }
     
     func fetchShare(_ cloudKitShareMetadata: CKShare.Metadata) {
-        let operation = CKFetchRecordsOperation(
-            recordIDs: [cloudKitShareMetadata.rootRecordID])
+        let operation = CKFetchRecordsOperation(recordIDs: [cloudKitShareMetadata.rootRecordID])
         
         operation.perRecordCompletionBlock = { record, _, error in
-            
-            if error != nil {
+            guard error == nil, record != nil else {
                 print("Error: \(error?.localizedDescription ?? "")")
+                return
             }
             
-            if let shareRecord = record {
-                DispatchQueue.main.async() {
-                    print("\(shareRecord["people"])")
+            DispatchQueue.main.async {
+                guard let shareRecord = record else { return }
+                let database = CKContainer.default().sharedCloudDatabase
+                let predicate = NSPredicate(format: "TRUEPREDICATE", argumentArray: nil)
+                let query = CKQuery(recordType: "List", predicate: predicate)
+                let operation = CKQueryOperation(query: query)
+                operation.recordFetchedBlock = { record in
+                    let list = List(context: self.persistentContainer.viewContext)
+                    list.title = record["title"]
+                    list.recordName = record.recordID.recordName
+                    list.cloudKitData = record.encodedSystemFields
+                    
+                    if let personReferences = record["people"] as? [CKRecord.Reference] {
+                        let personIds = personReferences.map { reference in
+                            return reference.recordID.recordName
+                        }
+                        
+                        list.people = NSSet(array: personIds)
+                    }
                 }
+                database.add(operation)
             }
         }
         
-        operation.fetchRecordsCompletionBlock = { (recordsWithRecordIDs,error) in
-            if error != nil {
+        operation.fetchRecordsCompletionBlock = { _, error in
+            guard error != nil  else {
                 print("Error: \(error?.localizedDescription ?? "")")
-            }else {
-                if let recordsWithRecordIDs = recordsWithRecordIDs {
-                    print("Count \(recordsWithRecordIDs.count)")
-                }
+                return
             }
         }
-        CKContainer.default().sharedCloudDatabase.add(operation)
+        CKContainer(identifier: cloudKitShareMetadata.containerIdentifier).sharedCloudDatabase.add(operation)
     }
     
     // MARK: - Actions
@@ -116,6 +131,7 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
             guard let list = fetchedResultsController?.object(at: selectedIndex) else { return }
             listViewVC.persistentContainer = persistentContainer
             listViewVC.cloudStore = cloudStore
+            listViewVC.metaData = metaData
             listViewVC.list = list
         default:
             break

@@ -58,7 +58,7 @@ final class AddPersonViewController: UIViewController, PersistentContainerRequir
             self?.list.people = NSSet(set: newPeople)
             
             self?.cloudStore.storePerson(person) { _ in
-                // no action
+                
             }
         }
         self.dismiss(animated: true)

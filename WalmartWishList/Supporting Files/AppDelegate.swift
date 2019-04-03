@@ -51,6 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        cloudStore.subscribeToSharedDatabase { [weak self] error in
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+        }
         return true
     }
     
