@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UVY-qS-KOD">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,20 +20,20 @@
             <objects>
                 <viewController id="UVY-qS-KOD" customClass="ListItemViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qEc-uP-agk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hox-xV-rNm">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="nbx-xH-919">
-                                        <rect key="frame" x="162" y="40" width="51" height="30"/>
+                                        <rect key="frame" x="486.5" y="40" width="51" height="30"/>
                                         <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5n-cc-Fak">
-                                        <rect key="frame" x="333" y="48" width="22" height="22"/>
+                                        <rect key="frame" x="982" y="48" width="22" height="22"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="addTapped:" destination="UVY-qS-KOD" eventType="touchUpInside" id="qAN-to-ItZ"/>
@@ -55,23 +55,22 @@
                                     <constraint firstAttribute="trailing" secondItem="Y5n-cc-Fak" secondAttribute="trailing" constant="20" id="0aZ-z0-Vwc"/>
                                     <constraint firstItem="rCR-HX-d8c" firstAttribute="leading" secondItem="hox-xV-rNm" secondAttribute="leading" constant="20" id="EdK-tN-6ly"/>
                                     <constraint firstAttribute="bottom" secondItem="Y5n-cc-Fak" secondAttribute="bottom" constant="20" id="NYf-O8-XFy"/>
-                                    <constraint firstItem="nbx-xH-919" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hox-xV-rNm" secondAttribute="leading" constant="162" id="QD7-PE-ifc"/>
                                     <constraint firstItem="nbx-xH-919" firstAttribute="top" secondItem="hox-xV-rNm" secondAttribute="top" constant="40" id="QHY-44-iv6"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nbx-xH-919" secondAttribute="trailing" constant="162" id="aTj-9o-Odx"/>
                                     <constraint firstAttribute="bottom" secondItem="rCR-HX-d8c" secondAttribute="bottom" constant="16" id="dFQ-c2-rys"/>
+                                    <constraint firstItem="nbx-xH-919" firstAttribute="centerX" secondItem="hox-xV-rNm" secondAttribute="centerX" id="lBS-HX-Eq2"/>
                                     <constraint firstAttribute="bottom" secondItem="nbx-xH-919" secondAttribute="bottom" constant="20" id="md8-2h-RXY"/>
                                     <constraint firstAttribute="height" constant="90" id="q4d-VJ-T1Q"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-QS-V3L">
-                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
+                                <rect key="frame" x="0.0" y="90" width="1024" height="1276"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemsCell" rowHeight="80" id="CdV-y4-uka" customClass="ItemsCell" customModule="WalmartWishList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="1024" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CdV-y4-uka" id="NhT-Qa-vIu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="RLy-Z0-K9Q">

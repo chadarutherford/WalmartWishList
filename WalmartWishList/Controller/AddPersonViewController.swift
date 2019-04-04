@@ -41,6 +41,24 @@ final class AddPersonViewController: UIViewController, PersistentContainerRequir
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { newStatus in
+                switch newStatus {
+                case .authorized:
+                    break
+                default:
+                    break
+                }
+            }
+        case .restricted, .denied:
+            break
+        case .authorized:
+            break
+        default:
+            break
+        }
         self.present(imagePicker, animated: true)
     }
     
@@ -73,24 +91,6 @@ final class AddPersonViewController: UIViewController, PersistentContainerRequir
 extension AddPersonViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: - UIImagePickerController Delegate Methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let status = PHPhotoLibrary.authorizationStatus()
-        switch status {
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { newStatus in
-                switch newStatus {
-                case .authorized:
-                    break
-                default:
-                    break
-                }
-            }
-        case .restricted, .denied:
-            break
-        case .authorized:
-            break
-        default:
-            break
-        }
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             personImageView.image = pickedImage
             profileImageButton.isHidden = true
