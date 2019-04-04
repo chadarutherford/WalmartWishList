@@ -50,12 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
-        cloudStore.subscribeToSharedDatabase { [weak self] error in
-            DispatchQueue.main.async {
-                application.registerForRemoteNotifications()
-            }
-        }
         return true
     }
     
@@ -68,26 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         cloudStore.handleNotification(dict) { result in
             completionHandler(result)
         }
-    }
-    
-    func application(_ application: UIApplication, userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
-        let acceptSharesOperation = CKAcceptSharesOperation(
-            shareMetadatas: [cloudKitShareMetadata])
-        
-        acceptSharesOperation.perShareCompletionBlock = {
-            metadata, share, error in
-            if error != nil {
-                print("Error: \(error?.localizedDescription ?? "")")
-            } else {
-                DispatchQueue.main.async {
-                    guard let listSelectionVC = self.window?.rootViewController as? ListSelectionViewController else { return }
-                    listSelectionVC.fetchShare(cloudKitShareMetadata)
-                }
-            }
-        }
-        
-        CKContainer(identifier: cloudKitShareMetadata.containerIdentifier)
-            .add(acceptSharesOperation)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {

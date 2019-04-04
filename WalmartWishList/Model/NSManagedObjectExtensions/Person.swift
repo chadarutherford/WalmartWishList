@@ -32,7 +32,7 @@ extension Person {
         if let items = self.items as? Set<ItemObject> {
             let references: [CKRecord.Reference] = items.map { item in
                 let itemRecord = item.recordForZone(zone)
-                return CKRecord.Reference(record: itemRecord, action: .none)
+                return CKRecord.Reference(record: itemRecord, action: .deleteSelf)
             }
             record["items"] = references
         }

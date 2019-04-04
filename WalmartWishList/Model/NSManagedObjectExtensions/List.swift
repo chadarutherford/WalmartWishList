@@ -30,7 +30,7 @@ extension List {
         if let people = self.people as? Set<Person> {
             let references: [CKRecord.Reference] = people.map { person in
                 let personRecord = person.recordForZone(zone)
-                return CKRecord.Reference(record: personRecord, action: .none)
+                return CKRecord.Reference(record: personRecord, action: .deleteSelf)
             }
             record["people"] = references
         }
