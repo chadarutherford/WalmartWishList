@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7x6-DK-0qJ">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,22 +20,22 @@
             <objects>
                 <viewController storyboardIdentifier="ListSelectionVC" id="7x6-DK-0qJ" customClass="ListSelectionViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpO-sD-2f1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ebM-Aa-Rg3">
-                                <rect key="frame" x="0.0" y="90" width="414" height="772"/>
+                                <rect key="frame" x="0.0" y="90" width="320" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListCell" textLabel="Phj-uK-dTA" style="IBUITableViewCellStyleDefault" id="SyC-FX-I37">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SyC-FX-I37" id="K25-nv-z6N">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Phj-uK-dTA">
-                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -47,27 +47,16 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lwj-2c-8EY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walmart Wish List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSd-fP-wKg">
-                                        <rect key="frame" x="128" y="45" width="158" height="28"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="158" id="fn0-wr-1PI"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wish List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSd-fP-wKg">
+                                        <rect key="frame" x="121" y="45" width="78" height="28"/>
                                         <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walmart_spark" translatesAutoresizingMaskIntoConstraints="NO" id="vjk-9k-sVq">
-                                        <rect key="frame" x="286" y="47" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="2qJ-Cz-cf9"/>
-                                            <constraint firstAttribute="height" constant="25" id="ABB-nV-pbS"/>
-                                            <constraint firstAttribute="width" secondItem="vjk-9k-sVq" secondAttribute="height" multiplier="1:1" id="xPn-xd-8xv"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZ7-5l-rij">
-                                        <rect key="frame" x="372" y="48" width="22" height="22"/>
+                                        <rect key="frame" x="278" y="48" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="Qa6-T7-lSt"/>
                                         </constraints>
@@ -80,17 +69,14 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0058627240359999996" green="0.1180563048" blue="0.25512742999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.15294117647058825" green="0.41176470588235292" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="iSd-fP-wKg" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="45" id="5Uj-2p-VjQ"/>
                                     <constraint firstItem="YZ7-5l-rij" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="48" id="ETj-1v-nSd"/>
-                                    <constraint firstAttribute="bottom" secondItem="vjk-9k-sVq" secondAttribute="bottom" constant="18" id="HBT-zN-LxP"/>
                                     <constraint firstAttribute="trailing" secondItem="YZ7-5l-rij" secondAttribute="trailing" constant="20" id="Pks-d3-ePT"/>
                                     <constraint firstAttribute="height" constant="90" id="Wl6-mz-MkV"/>
                                     <constraint firstAttribute="bottom" secondItem="YZ7-5l-rij" secondAttribute="bottom" constant="20" id="aWJ-gO-Ld5"/>
                                     <constraint firstAttribute="bottom" secondItem="iSd-fP-wKg" secondAttribute="bottom" constant="17" id="gi8-Bt-NW5"/>
-                                    <constraint firstItem="vjk-9k-sVq" firstAttribute="top" secondItem="Lwj-2c-8EY" secondAttribute="top" constant="47" id="hKn-SV-L1d"/>
-                                    <constraint firstItem="vjk-9k-sVq" firstAttribute="leading" secondItem="iSd-fP-wKg" secondAttribute="trailing" id="neK-ot-l8O"/>
                                     <constraint firstItem="iSd-fP-wKg" firstAttribute="centerX" secondItem="Lwj-2c-8EY" secondAttribute="centerX" id="xla-0I-eC4"/>
                                 </constraints>
                             </view>
@@ -134,7 +120,4 @@
             <point key="canvasLocation" x="694" y="199"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="walmart_spark" width="440" height="493"/>
-    </resources>
 </document>

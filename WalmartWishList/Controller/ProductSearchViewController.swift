@@ -57,7 +57,7 @@ class ProductSearchViewController: UIViewController, PersistentContainerRequirin
                 }
             } catch let error {
                 debugPrint(error.localizedDescription)
-//                completion(false, error)
+                completion(false, error)
             }
         }.resume()
     }

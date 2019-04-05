@@ -47,7 +47,7 @@ final class AddPersonViewController: UIViewController, PersistentContainerRequir
             PHPhotoLibrary.requestAuthorization { newStatus in
                 switch newStatus {
                 case .authorized:
-                    break
+                    self.present(self.imagePicker, animated: true)
                 default:
                     break
                 }
@@ -55,11 +55,11 @@ final class AddPersonViewController: UIViewController, PersistentContainerRequir
         case .restricted, .denied:
             break
         case .authorized:
-            break
+            self.present(imagePicker, animated: true)
         default:
             break
         }
-        self.present(imagePicker, animated: true)
+        
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
