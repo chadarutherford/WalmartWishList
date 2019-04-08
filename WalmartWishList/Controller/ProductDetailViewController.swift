@@ -24,7 +24,6 @@ final class ProductDetailViewController: UIViewController, PersistentContainerRe
     var persistentContainer: NSPersistentContainer!
     var cloudStore: CloudStore!
     var item: SearchItem?
-    var newItem: ItemObject?
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
@@ -36,23 +35,13 @@ final class ProductDetailViewController: UIViewController, PersistentContainerRe
     private func loadProduct() {
         guard let name = item?.name else { return }
         guard let price = item?.salePrice else { return }
-        guard let productDescription = item?.shortDesc.removingPercentEncoding else { return }
+        guard let productDescription = item?.shortDesc else { return }
         guard let image = item?.largeImage else { return }
         guard let available = item?.availableOnline else { return }
-        let context = persistentContainer.viewContext
-        newItem = ItemObject(context: context)
-        newItem?.name = name
-        newItem?.recordName = UUID().uuidString
-        newItem?.salePrice = price
-        newItem?.largeImage = image
-        newItem?.shortDesc = productDescription
-        newItem?.availableOnline = available
-        newItem?.isPurchased = false
-        newItem?.person = person
         productImageView.image = UIImage(data: image)
         productNameLabel.text = name
         productPriceLabel.text = "Price: \(String(format: "$%.2f", price))"
-        productDescriptionTextView.text = "Description:\n \(productDescription)"
+        productDescriptionTextView.text = "Description:\n \(String(htmlEncodedString: productDescription))"
         productAvailableLabel.text = "Available Online: \(available ? "Yes" : "No")"
     }
     
@@ -60,10 +49,19 @@ final class ProductDetailViewController: UIViewController, PersistentContainerRe
     @IBAction func wishListButtonTapped(_ sender: UIButton) {
         let moc = persistentContainer.viewContext
         moc.persist {
-            var item = ItemObject.find(byName: self.newItem?.name ?? "", orCreateIn: moc)
-            item = self.newItem ?? ItemObject(context: moc)
+            guard let price = self.item?.salePrice, let available = self.item?.availableOnline, let purchased = self.item?.isPurchased else { return }
             
-            let newItems: Set<AnyHashable> = self.person.items?.adding(item) ?? [item]
+            let newItem = ItemObject.find(byName: self.item?.name ?? "", orCreateIn: moc)
+            newItem.name = self.item?.name
+            newItem.recordName = UUID().uuidString
+            newItem.salePrice = price
+            newItem.largeImage = self.item?.largeImage
+            newItem.shortDesc = self.item?.shortDesc
+            newItem.availableOnline = available
+            newItem.isPurchased = purchased
+            newItem.person = self.person
+            
+            let newItems: Set<AnyHashable> = self.person.items?.adding(newItem) ?? [newItem]
             self.person.items = NSSet(set: newItems)
             
             self.cloudStore.storePerson(self.person) { _ in

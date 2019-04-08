@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "63CA9EB421B5D8BB00DF7E70"
-               BuildableName = "WalmartWishList.app"
-               BlueprintName = "WalmartWishList"
-               ReferencedContainer = "container:WalmartWishList.xcodeproj">
+               BuildableName = "CloudWishList.app"
+               BlueprintName = "CloudWishList"
+               ReferencedContainer = "container:CloudWishList.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "63CA9EB421B5D8BB00DF7E70"
-            BuildableName = "WalmartWishList.app"
-            BlueprintName = "WalmartWishList"
-            ReferencedContainer = "container:WalmartWishList.xcodeproj">
+            BuildableName = "CloudWishList.app"
+            BlueprintName = "CloudWishList"
+            ReferencedContainer = "container:CloudWishList.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "63CA9EB421B5D8BB00DF7E70"
-            BuildableName = "WalmartWishList.app"
-            BlueprintName = "WalmartWishList"
-            ReferencedContainer = "container:WalmartWishList.xcodeproj">
+            BuildableName = "CloudWishList.app"
+            BlueprintName = "CloudWishList"
+            ReferencedContainer = "container:CloudWishList.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "63CA9EB421B5D8BB00DF7E70"
-            BuildableName = "WalmartWishList.app"
-            BlueprintName = "WalmartWishList"
-            ReferencedContainer = "container:WalmartWishList.xcodeproj">
+            BuildableName = "CloudWishList.app"
+            BlueprintName = "CloudWishList"
+            ReferencedContainer = "container:CloudWishList.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
