@@ -28,6 +28,11 @@ final class ProductDetailViewController: UIViewController, PersistentContainerRe
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            // Fallback on earlier versions
+        }
         loadProduct()
     }
     

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630B84F6227B149900F7057A /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B84F5227B149900F7057A /* ListDataSource.swift */; };
+		630B84F8227B1F3400F7057A /* DataProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B84F7227B1F3400F7057A /* DataProviderDelegate.swift */; };
+		630B84FA227B1FBB00F7057A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B84F9227B1FBB00F7057A /* DataProvider.swift */; };
 		630BFEFB21B6B05600D30DE2 /* ListViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFA21B6B05600D30DE2 /* ListViewViewController.swift */; };
 		630BFEFD21B6B17700D30DE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFEFC21B6B17700D30DE2 /* Constants.swift */; };
 		630BFF0121B6B2C200D30DE2 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BFF0021B6B2C200D30DE2 /* ListItem.swift */; };
@@ -54,6 +57,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630B84F5227B149900F7057A /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
+		630B84F7227B1F3400F7057A /* DataProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderDelegate.swift; sourceTree = "<group>"; };
+		630B84F9227B1FBB00F7057A /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		630BFEFA21B6B05600D30DE2 /* ListViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewViewController.swift; sourceTree = "<group>"; };
 		630BFEFC21B6B17700D30DE2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		630BFF0021B6B2C200D30DE2 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
@@ -115,6 +121,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		630B84F4227B147600F7057A /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				630B84F5227B149900F7057A /* ListDataSource.swift */,
+				630B84F9227B1FBB00F7057A /* DataProvider.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
 		6344A0F621EFD62F006EB97C /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +182,7 @@
 		63CA9EB721B5D8BB00DF7E70 /* WalmartWishList */ = {
 			isa = PBXGroup;
 			children = (
+				630B84F4227B147600F7057A /* DataSources */,
 				63CA9ECE21B5D91D00DF7E70 /* Model */,
 				63CA9ECD21B5D91600DF7E70 /* View */,
 				63CA9ECC21B5D90D00DF7E70 /* Controller */,
@@ -258,6 +274,7 @@
 				63E7DE9F2252559800E086A9 /* AddListDelegate.swift */,
 				63E7DEA322525E8400E086A9 /* PersistentContainerRequiring.swift */,
 				6346284A225371E2009E7E37 /* CloudStoreRequiring.swift */,
+				630B84F7227B1F3400F7057A /* DataProviderDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -375,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				630B84FA227B1FBB00F7057A /* DataProvider.swift in Sources */,
 				637E703621B846B5008A09D4 /* ItemsCell.swift in Sources */,
 				637C1343224CE9BC006EEFF8 /* WishListModel.xcdatamodeld in Sources */,
 				6383C92A21EFB67000AC6FBA /* ProductSearchViewController.swift in Sources */,
@@ -383,6 +401,7 @@
 				63E7DEA922526DB400E086A9 /* Person.swift in Sources */,
 				634ADB7321B85B5400175B28 /* SearchItemCell.swift in Sources */,
 				63E7DEA02252559800E086A9 /* AddListDelegate.swift in Sources */,
+				630B84F6227B149900F7057A /* ListDataSource.swift in Sources */,
 				6344A0F321EFCF6A006EB97C /* ProductDetailViewController.swift in Sources */,
 				63305A92224BB26000D4CF59 /* AddListViewController.swift in Sources */,
 				630BFF0321B6D52600D30DE2 /* PersonCell.swift in Sources */,
@@ -393,6 +412,7 @@
 				63E7DEA422525E8400E086A9 /* PersistentContainerRequiring.swift in Sources */,
 				634F641E21EFA4BB00F2F360 /* ListItemViewController.swift in Sources */,
 				63462853225387A9009E7E37 /* List.swift in Sources */,
+				630B84F8227B1F3400F7057A /* DataProviderDelegate.swift in Sources */,
 				63639604225B5D8A009AF028 /* String.swift in Sources */,
 				633DBF8B224E3C55004F79BF /* SearchItem.swift in Sources */,
 				630BFEFB21B6B05600D30DE2 /* ListViewViewController.swift in Sources */,

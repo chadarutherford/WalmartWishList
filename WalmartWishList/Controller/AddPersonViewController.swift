@@ -28,6 +28,11 @@ final class AddPersonViewController: UIViewController, PersistentContainerRequir
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            // Fallback on earlier versions
+        }
         profileImageButton.isHidden = false
         profileImageButton.isEnabled = true
         popupView.layer.cornerRadius = 10

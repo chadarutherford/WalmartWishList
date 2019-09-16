@@ -20,11 +20,15 @@ final class ListViewViewController: UIViewController, PersistentContainerRequiri
     var cloudStore: CloudStore!
     var fetchedResultsController: NSFetchedResultsController<Person>?
     var list: List!
-    var metaData: CKShare.Metadata!
     
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            // Fallback on earlier versions
+        }
         tableView.delegate = self
         tableView.dataSource = self
     }

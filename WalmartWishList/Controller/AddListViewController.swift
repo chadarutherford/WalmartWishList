@@ -14,10 +14,15 @@ class AddListViewController: UIViewController {
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     
-    var delegate: AddListDelegate?
+    weak var delegate: AddListDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            // Fallback on earlier versions
+        }
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
     }

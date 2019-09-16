@@ -24,6 +24,11 @@ final class ListItemViewController: UIViewController, PersistentContainerRequiri
     // MARK: - ViewController Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            // Fallback on earlier versions
+        }
         tableView.delegate = self
         tableView.dataSource = self
     }

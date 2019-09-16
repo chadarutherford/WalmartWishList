@@ -16,31 +16,24 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     // MARK: - Properties
-    var fetchedResultsController: NSFetchedResultsController<List>?
+    var dataSource: ListDataSource!
+    var dataProvider: DataProvider!
     var persistentContainer: NSPersistentContainer!
     var cloudStore: CloudStore!
-    var listName: String?
-    var shareList: CKRecord?
-    var metaData: CKShare.Metadata?
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        let moc = persistentContainer.viewContext
-        let request = NSFetchRequest<List>(entityName: "List")
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultsController?.delegate = self
-        do {
-            try fetchedResultsController?.performFetch()
-        } catch {
-            let alert = UIAlertController(title: "Error", message: "The request to load existing records failed.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true)
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            // Fallback on earlier versions
         }
+        tableView.delegate = self
+        let moc = persistentContainer.viewContext
+        self.dataProvider = DataProvider(managedObjectContext: moc)
+        self.dataSource = ListDataSource(cellIdentifier: CellConstant.listCell, tableView: self.tableView, dataProvider: self.dataProvider)
+        self.tableView.dataSource = self.dataSource
     }
     
     
@@ -51,14 +44,11 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
             let list = List(context: moc)
             list.title = title
             list.recordName = UUID().uuidString
-            
             self.cloudStore.storeList(list) { _ in
                 // no action
             }
         }
     }
-    
-    // MARK: - Helper Methods
     
     // MARK: - Actions
     @IBAction func addTapped(_ sender: UIButton) {
@@ -74,10 +64,9 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
         case SegueConstant.listSelected:
             guard let listViewVC = segue.destination as? ListViewViewController else { return }
             guard let selectedIndex = tableView.indexPathForSelectedRow else { return }
-            guard let list = fetchedResultsController?.object(at: selectedIndex) else { return }
+            let list = self.dataProvider.object(at: selectedIndex)
             listViewVC.persistentContainer = persistentContainer
             listViewVC.cloudStore = cloudStore
-            listViewVC.metaData = metaData
             listViewVC.list = list
         default:
             break
@@ -85,65 +74,9 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
     }
 }
 
-extension ListSelectionViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController?.fetchedObjects?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellConstant.listCell, for: indexPath)
-        guard let list = fetchedResultsController?.object(at: indexPath) else { return UITableViewCell() }
-        cell.textLabel?.text = list.title
-        return cell
-    }
-    
+extension ListSelectionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: SegueConstant.listSelected, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        persistentContainer.viewContext.persist { [weak self] in
-            guard let objectToDelete = self?.fetchedResultsController?.object(at: indexPath) else { return }
-            self?.persistentContainer.viewContext.delete(objectToDelete)
-        }
-    }
-}
-
-extension ListSelectionViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            guard let insertIndex = newIndexPath else { return }
-            tableView.insertRows(at: [insertIndex], with: .automatic)
-        case .delete:
-            guard let deleteIndex = indexPath else { return }
-            tableView.deleteRows(at: [deleteIndex], with: .automatic)
-        case .move:
-            guard let fromIndex = indexPath, let toIndex = newIndexPath else { return }
-            tableView.moveRow(at: fromIndex, to: toIndex)
-        case .update:
-            guard let updateIndex = indexPath else { return }
-            tableView.reloadRows(at: [updateIndex], with: .automatic)
-        @unknown default:
-            break
-        }
     }
 }

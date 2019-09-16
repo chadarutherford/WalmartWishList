@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wRa-eC-cLy">
-    <device id="ipad9_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wRa-eC-cLy">
+    <device id="retina6_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,16 +16,16 @@
         <!--Product Search View Controller-->
         <scene sceneID="eXl-YO-mYt">
             <objects>
-                <viewController id="wRa-eC-cLy" customClass="ProductSearchViewController" customModule="WalmartWishList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wRa-eC-cLy" customClass="ProductSearchViewController" customModule="CloudWishList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vAT-XW-baK">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DAY-mb-eYE">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZB-Au-q79">
-                                        <rect key="frame" x="293.5" y="40" width="181" height="38"/>
+                                        <rect key="frame" x="116.66666666666669" y="40" width="181" height="38"/>
                                         <fontDescription key="fontDescription" name="Bogle-Bold" family="Bogle" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -53,26 +51,26 @@
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search Walmart.com...." translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KC-jp-dPs">
-                                <rect key="frame" x="0.0" y="90" width="768" height="56"/>
+                                <rect key="frame" x="0.0" y="90" width="414" height="56"/>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.41176470588235292" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="barTintColor" red="0.15294117647058825" green="0.41176470588235292" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ItB-1K-wjo">
-                                <rect key="frame" x="0.0" y="146" width="768" height="878"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="146" width="414" height="750"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lHB-j7-kUP">
-                                    <size key="itemSize" width="150" height="210"/>
+                                    <size key="itemSize" width="150" height="220"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SearchItemCell" id="n4E-8O-17z" customClass="SearchItemCell" customModule="WalmartWishList" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="10" width="150" height="210"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SearchItemCell" id="n4E-8O-17z" customClass="SearchItemCell" customModule="CloudWishList" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="150" height="225"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="225"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NP6-xs-vM7">
@@ -82,23 +80,23 @@
                                                         <constraint firstAttribute="height" constant="120" id="AMF-kB-o6b"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ki0-E3-KOL">
-                                                    <rect key="frame" x="10" y="144" width="130" height="56"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Ki0-E3-KOL">
+                                                    <rect key="frame" x="10" y="144" width="130" height="71"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone XS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-J8-umI">
-                                                            <rect key="frame" x="17" y="0.0" width="96.5" height="24"/>
+                                                            <rect key="frame" x="16.999999999999993" y="0.0" width="96.333333333333314" height="35.666666666666664"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Price: $999.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzo-3a-1xO">
-                                                            <rect key="frame" x="17" y="27" width="96.5" height="17"/>
+                                                            <rect key="frame" x="16.999999999999993" y="37.666666666666657" width="96.333333333333314" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Available Online: Yes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXZ-cB-kDc">
-                                                            <rect key="frame" x="7" y="47" width="116.5" height="9"/>
+                                                            <rect key="frame" x="6.6666666666666643" y="56.666666666666657" width="116.66666666666669" height="14.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -115,6 +113,7 @@
                                             <constraint firstItem="Ki0-E3-KOL" firstAttribute="leading" secondItem="n4E-8O-17z" secondAttribute="leading" constant="10" id="cAO-hq-pji"/>
                                             <constraint firstItem="NP6-xs-vM7" firstAttribute="centerX" secondItem="n4E-8O-17z" secondAttribute="centerX" id="wMD-JQ-TFz"/>
                                         </constraints>
+                                        <size key="customSize" width="150" height="225"/>
                                         <connections>
                                             <outlet property="productAvailableLabel" destination="cXZ-cB-kDc" id="t1x-z1-CUA"/>
                                             <outlet property="productImageView" destination="NP6-xs-vM7" id="P0B-dV-NPh"/>

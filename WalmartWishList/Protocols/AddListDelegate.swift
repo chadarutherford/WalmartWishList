@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol AddListDelegate {
+protocol AddListDelegate: AnyObject {
     func saveList(withTitle title: String)
 }
