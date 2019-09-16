@@ -79,6 +79,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="ebM-Aa-Rg3" firstAttribute="leading" secondItem="hbK-Fn-BoQ" secondAttribute="leading" id="5TJ-DC-JTH"/>
                             <constraint firstItem="hbK-Fn-BoQ" firstAttribute="bottom" secondItem="ebM-Aa-Rg3" secondAttribute="bottom" id="NdV-aj-fdf"/>
