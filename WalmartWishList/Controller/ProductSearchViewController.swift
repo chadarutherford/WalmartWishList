@@ -26,11 +26,6 @@ class ProductSearchViewController: UIViewController, PersistentContainerRequirin
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .dark
-        } else {
-            // Fallback on earlier versions
-        }
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self

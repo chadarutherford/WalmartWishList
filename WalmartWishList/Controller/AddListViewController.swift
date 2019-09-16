@@ -18,11 +18,6 @@ class AddListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .dark
-        } else {
-            // Fallback on earlier versions
-        }
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
     }

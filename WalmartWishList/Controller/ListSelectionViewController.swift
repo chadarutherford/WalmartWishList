@@ -24,11 +24,6 @@ class ListSelectionViewController: UIViewController, AddListDelegate, Persistent
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .dark
-        } else {
-            // Fallback on earlier versions
-        }
         tableView.delegate = self
         let moc = persistentContainer.viewContext
         self.dataProvider = DataProvider(managedObjectContext: moc)
